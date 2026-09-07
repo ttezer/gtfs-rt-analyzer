@@ -1,0 +1,28 @@
+# Rust build cache
+/target/
+
+# Fuzz artifacts
+/crates/rt-model/fuzz/target/
+/crates/rt-model/fuzz/corpus/
+/crates/rt-model/fuzz/artifacts/
+
+# Local-only files (not for version control)
+/notgit/
+/samples/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor temp files
+*.swp
+*.swo
+*~
+
+# IDE configs
+.vscode/
+.idea/
+
+# Environment variables
+.env
+.env.local

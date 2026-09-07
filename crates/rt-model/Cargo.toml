@@ -1,0 +1,15 @@
+[package]
+name = "gtfs-rt-model"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Dependency-free GTFS-Realtime protobuf decoder that reports wire- and schema-level anomalies instead of silently tolerating them."
+keywords = ["gtfs", "gtfs-realtime", "protobuf", "transit", "decoder"]
+categories = ["parser-implementations"]
+readme = "README.md"
+
+# BAĞIMLILIK YOK — bilinçli. Gerekçe README ve plan belgesinde:
+# prost/quick-protobuf gibi kütüphaneler hoşgörülüdür ve bu decoder'ın işi tam da
+# onların sessizce yuttuğu şeyleri raporlamaktır.
+[dependencies]

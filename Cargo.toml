@@ -1,0 +1,13 @@
+[workspace]
+members = ["crates/rt-model"]
+resolver = "2"
+
+[workspace.package]
+license = "MIT"
+edition = "2021"
+repository = "https://github.com/ttezer/gtfs-rt-analyzer"
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
