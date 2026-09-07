@@ -69,6 +69,11 @@ h2 { font-size: 21px; }
 .feed-map { height: 460px; border: 1px solid var(--line); background: #eef2f4; }
 .map-note { margin: 7px 0 0; color: var(--muted); font-size: 12px; }
 .catalog-status { margin-top: 0; }
+.schedule-score { margin-top: 10px; }
+.schedule-score strong { display: block; margin-bottom: 7px; }
+.schedule-score-values { display: flex; flex-wrap: wrap; gap: 8px; }
+.schedule-score-value { border: 1px solid var(--line); border-radius: 3px; padding: 4px 7px; background: #fff; color: #536473; font-size: 12px; }
+.schedule-score-value strong { display: inline; margin: 0; color: var(--ink); font-size: 14px; }
 .feed-list { height: 460px; overflow: auto; border: 1px solid var(--line); background: #fff; }
 .feed-card { padding: 12px; border-bottom: 1px solid var(--line); }
 .feed-card:last-child { border-bottom: 0; }

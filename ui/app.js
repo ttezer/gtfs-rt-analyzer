@@ -13,6 +13,9 @@ const catalogState = {
   feeds: [],
   markers: [],
   map: null,
+  scoreCache: new Map(),
+  scoreRequest: 0,
+  analyzerModule: null,
 };
 
 const elements = {
@@ -43,6 +46,7 @@ const elements = {
   catalogProvenance: $("catalog-provenance"),
   catalogCount: $("catalog-count"),
   catalogNotice: $("catalog-status"),
+  scheduleScore: $("schedule-score"),
   feedMap: $("feed-map"),
   feedList: $("feed-list"),
 };
@@ -112,6 +116,127 @@ function feedCenter(feed) {
   return Number.isFinite(lat) && Number.isFinite(lon) ? [lat, lon] : null;
 }
 
+function scheduleUrl(feed) {
+  return feed.static_reference
+    ? `https://files.mobilitydatabase.org/${encodeURIComponent(feed.static_reference)}/latest.zip`
+    : null;
+}
+
+function todayNumber() {
+  const now = new Date();
+  return now.getFullYear() * 10000 + (now.getMonth() + 1) * 100 + now.getDate();
+}
+
+function setScheduleNotice(text, kind = "neutral") {
+  setNotice(elements.scheduleScore, text, kind);
+}
+
+function showScheduleOption(feed) {
+  const cached = feed.static_reference && catalogState.scoreCache.get(feed.static_reference);
+  if (cached) {
+    renderScheduleResult(feed, cached);
+    return;
+  }
+  if (!feed.static_reference) {
+    setScheduleNotice("Bu feed için katalogda bağlı Schedule yok; skor hesaplanamaz.", "neutral");
+    return;
+  }
+
+  elements.scheduleScore.className = "notice neutral";
+  elements.scheduleScore.innerHTML = "";
+  const title = document.createElement("strong");
+  title.textContent = `Bağlı Schedule · ${feed.static_reference}`;
+  elements.scheduleScore.append(title);
+  const description = document.createElement("div");
+  description.textContent = "Yayın ve Genel skoru, Schedule ZIP'i indirildikten sonra tarayıcıda hesaplanır.";
+  elements.scheduleScore.append(description);
+  const button = document.createElement("button");
+  button.type = "button";
+  button.textContent = "Schedule skorunu hesapla";
+  button.addEventListener("click", () => void loadScheduleScore(feed));
+  elements.scheduleScore.append(button);
+}
+
+function renderScheduleResult(feed, result) {
+  const r5 = result?.reports?.r5;
+  if (!r5) {
+    setScheduleNotice("Schedule çözümlendi ancak skor raporu bulunamadı.", "warning");
+    return;
+  }
+
+  elements.scheduleScore.className = "notice success";
+  elements.scheduleScore.innerHTML = "";
+  const title = document.createElement("strong");
+  title.textContent = `Bağlı Schedule · ${feed.static_reference}`;
+  elements.scheduleScore.append(title);
+
+  const values = document.createElement("div");
+  values.className = "schedule-score-values";
+  for (const [label, value] of [["Yayın", r5.pub_score], ["Genel", r5.score]]) {
+    const item = document.createElement("span");
+    item.className = "schedule-score-value";
+    item.append(`${label} `);
+    const score = document.createElement("strong");
+    score.textContent = `${Number(value).toFixed(1)}/100`;
+    item.append(score);
+    values.append(item);
+  }
+  elements.scheduleScore.append(values);
+
+  if (result.validation_status === "PARTIAL") {
+    const partial = document.createElement("div");
+    partial.className = "muted";
+    partial.textContent = "Analyzer doğrulaması eksik kapsamlı; skor temkinli yorumlanmalı.";
+    elements.scheduleScore.append(partial);
+  }
+}
+
+async function loadScheduleScore(feed) {
+  const requestId = ++catalogState.scoreRequest;
+  if (!feed.static_reference) {
+    setScheduleNotice("Bu feed için katalogda bağlı Schedule yok; skor hesaplanamaz.", "neutral");
+    return;
+  }
+
+  const cached = catalogState.scoreCache.get(feed.static_reference);
+  if (cached) {
+    renderScheduleResult(feed, cached);
+    return;
+  }
+
+  const url = scheduleUrl(feed);
+  setScheduleNotice("Bağlı Schedule indiriliyor ve analyzer çalışıyor…", "neutral");
+  const controller = new AbortController();
+  const timeout = window.setTimeout(() => controller.abort(), 90_000);
+
+  try {
+    const response = await fetch(url, { cache: "no-store", signal: controller.signal });
+    if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+    const bytes = new Uint8Array(await response.arrayBuffer());
+    if (requestId !== catalogState.scoreRequest) return;
+
+    if (!catalogState.analyzerModule) {
+      const module = await import("./pkg/schedule/gtfs_wasm.js");
+      await module.default();
+      catalogState.analyzerModule = module;
+    }
+    const raw = catalogState.analyzerModule.validate_with_today(bytes, "{}", todayNumber());
+    if (!raw?.Ok) {
+      throw new Error(raw?.Fatal?.message || "Schedule doğrulanamadı");
+    }
+    catalogState.scoreCache.set(feed.static_reference, raw.Ok);
+    if (requestId === catalogState.scoreRequest) renderScheduleResult(feed, raw.Ok);
+  } catch (error) {
+    if (requestId !== catalogState.scoreRequest) return;
+    const message = error?.name === "AbortError"
+      ? "Schedule isteği zaman aşımına uğradı."
+      : error?.message || "Schedule skoru alınamadı.";
+    setScheduleNotice(`Schedule skoru alınamadı: ${message}`, "warning");
+  } finally {
+    window.clearTimeout(timeout);
+  }
+}
+
 function feedMatches(feed) {
   const search = elements.catalogSearch.value.trim().toLocaleLowerCase("tr-TR");
   const haystack = [feed.provider, feed.name, feed.municipality, feed.country_code]
@@ -139,6 +264,7 @@ function selectCatalogFeed(feed) {
     "neutral",
   );
   elements.feedUrl.focus();
+  showScheduleOption(feed);
 }
 
 function popupForFeed(feed) {

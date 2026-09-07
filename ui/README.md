@@ -29,3 +29,8 @@ Sonra herhangi bir statik HTTP sunucusuyla `ui/` klasörünü servis edin. `file
 credential benzeri sorgu parametresi bulunmayan kayıtlar arayüzde çalıştırılabilir
 aday olarak tutulur. Katalog gerektiğinde elle yenilenir; tarayıcı her açılışta
 MobilityDatabase API'sine bağlanmaz.
+
+Katalogda `static_reference` varsa feed seçildiğinde aynı MobilityDatabase
+Schedule ZIP'i istemciye indirilir ve `gtfs-analyzer` WASM'ı ile Yayın ve Genel
+skor hesaplanır. Bu skorlar bağlı Schedule'a aittir; GTFS-Realtime verisinin
+kalite skoru değildir. Schedule bağlantısı olmayan kayıtlarda skor gösterilmez.
