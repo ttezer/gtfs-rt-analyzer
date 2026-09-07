@@ -27,3 +27,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `Access-Control-Allow-Origin`. It fetches allow-listed addresses only, returns the bytes
   untouched as `application/x-protobuf`, stores nothing, and leaves all parsing and
   validation to the browser.
+- `inspect` example for decoding a `.pb` file during development.
