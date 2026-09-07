@@ -2,8 +2,9 @@
 
 An independent GTFS-Realtime analyzer written in Rust.
 
-> **Status: early development.** Only the protobuf decoder exists today. There are no
-> validation rules, no CLI and no reports yet. Nothing here is stable.
+> **Status: early development.** The protobuf decoder, a WebAssembly report adapter and
+> a static browser UI exist today. Static GTFS cross-checks and validation rules are not
+> implemented yet. Nothing here is stable.
 
 ## Why another one
 
@@ -69,6 +70,17 @@ The browser adapter is built separately for WebAssembly:
 ```
 cargo build --target wasm32-unknown-unknown --release -p gtfs-rt-wasm
 ```
+
+The static browser UI is in `ui/`. Build its WebAssembly package with `wasm-pack`,
+then serve the directory over HTTP:
+
+```
+wasm-pack build crates/rt-wasm --target web --release --out-dir ../../ui/pkg
+python3 -m http.server 4173 --directory ui
+```
+
+The UI prefers direct fetch, reports CORS/timeout/upstream states separately, falls back
+to the restricted proxy when configured, and keeps only compact report history in memory.
 
 The decoder also has a libFuzzer target. From the repository root:
 

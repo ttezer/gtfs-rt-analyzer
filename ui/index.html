@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="GTFS-Realtime feed gözlem ve analiz aracı" />
+    <title>GTFS-RT Analyzer</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">GTFS-RT ANALYZER</p>
+        <h1>Realtime feed gözlemi</h1>
+        <p class="subtitle">
+          URL veya dosya → çözümle → kaynak ve yapısal durumu gör.
+        </p>
+      </div>
+      <div id="wasm-status" class="status-pill pending">WASM hazırlanıyor</div>
+    </header>
+
+    <main class="layout">
+      <section class="panel controls" aria-labelledby="controls-title">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">KAYNAK</p>
+            <h2 id="controls-title">Feed izle</h2>
+          </div>
+          <span id="monitor-state" class="muted">Durduruldu</span>
+        </div>
+
+        <label for="feed-url">GTFS-RT URL</label>
+        <input
+          id="feed-url"
+          type="url"
+          autocomplete="url"
+          placeholder="https://ornek.org/realtime.pb"
+        />
+
+        <label for="proxy-url">Proxy URL <span class="muted">(CORS fallback, isteğe bağlı)</span></label>
+        <input
+          id="proxy-url"
+          type="url"
+          autocomplete="url"
+          placeholder="https://worker-adresin.workers.dev"
+        />
+
+        <div class="control-grid">
+          <div>
+            <label for="interval">İzleme aralığı</label>
+            <select id="interval">
+              <option value="60">60 saniye</option>
+              <option value="120">120 saniye</option>
+              <option value="300">300 saniye</option>
+            </select>
+          </div>
+          <div class="button-row compact">
+            <button id="fetch-now" class="primary" type="button">Şimdi çek</button>
+            <button id="start-monitoring" type="button">İzlemeyi başlat</button>
+            <button id="stop-monitoring" type="button" disabled>Durdur</button>
+          </div>
+        </div>
+
+        <div id="request-status" class="notice neutral" role="status">
+          Bir URL girip Şimdi çek düğmesine basın.
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="panel-heading small-heading">
+          <div>
+            <p class="eyebrow">TEK SEFERLİK ANALİZ</p>
+            <h2>Yerel dosya</h2>
+          </div>
+          <span class="muted">Baytlar tarayıcıdan çıkmaz</span>
+        </div>
+        <input id="file-input" type="file" accept=".pb,.bin,application/octet-stream" />
+        <button id="analyze-file" type="button" disabled>Dosyayı analiz et</button>
+      </section>
+
+      <section class="panel report" aria-labelledby="report-title">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">SON RAPOR</p>
+            <h2 id="report-title">Henüz veri yok</h2>
+          </div>
+          <span id="source-badge" class="badge">—</span>
+        </div>
+
+        <div class="metric-grid">
+          <div class="metric"><span>Feed yaşı</span><strong id="feed-age">—</strong></div>
+          <div class="metric"><span>Entity</span><strong id="entity-count">—</strong></div>
+          <div class="metric"><span>Anomali</span><strong id="anomaly-count">—</strong></div>
+          <div class="metric"><span>Son başarılı çekim</span><strong id="last-success">—</strong></div>
+        </div>
+
+        <div class="entity-breakdown" id="entity-breakdown">
+          <span>TripUpdate —</span>
+          <span>Vehicle —</span>
+          <span>Alert —</span>
+        </div>
+
+        <div id="report-status" class="notice neutral">Rapor hazır olduğunda burada görünecek.</div>
+
+        <details open>
+          <summary>Anomaliler</summary>
+          <div id="anomalies" class="anomaly-list empty">Henüz anomali yok.</div>
+        </details>
+
+        <details>
+          <summary>Çekim geçmişi <span class="muted">(yalnızca özet)</span></summary>
+          <div id="history" class="history empty">Henüz çekim yok.</div>
+        </details>
+      </section>
+    </main>
+
+    <footer>
+      <span>Çözümleme tarayıcıdaki WASM katmanında yapılır.</span>
+      <span>Ham snapshot saklanmaz.</span>
+    </footer>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
