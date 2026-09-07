@@ -2,9 +2,9 @@
 
 An independent GTFS-Realtime analyzer written in Rust.
 
-> **Status: early development.** The protobuf decoder, a WebAssembly report adapter and
-> a static browser UI exist today. Static GTFS cross-checks and validation rules are not
-> implemented yet. Nothing here is stable.
+> **Status: early development.** The protobuf decoder, a WebAssembly report adapter, a
+> static browser UI and a narrow static GTFS index reader exist today. Cross-check rules
+> are not implemented yet. Nothing here is stable.
 
 ## Why another one
 
@@ -81,6 +81,10 @@ python3 -m http.server 4173 --directory ui
 
 The UI prefers direct fetch, reports CORS/timeout/upstream states separately, falls back
 to the restricted proxy when configured, and keeps only compact report history in memory.
+
+The static GTFS reader is the independent `gtfs-static` crate. It reads only the
+`routes`, `trips`, `stops`, `stop_times` and optional `calendar` tables needed by later
+realtime cross-checks; it does not depend on `gtfs-pipeline`.
 
 The decoder also has a libFuzzer target. From the repository root:
 

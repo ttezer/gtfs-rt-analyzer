@@ -1,0 +1,11 @@
+[package]
+name = "gtfs-static"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Narrow static GTFS reader and deterministic indexes for realtime cross-checks."
+
+[dependencies]
+csv = "1.3"
+zip = { version = "2.4", default-features = false, features = ["deflate"] }
