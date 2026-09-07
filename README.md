@@ -64,6 +64,19 @@ cargo clippy --workspace --all-targets -- -D warnings
 
 `gtfs-rt-model` has zero dependencies; `cargo tree` should show a single line.
 
+The decoder also has a libFuzzer target. From the repository root:
+
+```
+cargo +nightly fuzz list --fuzz-dir crates/rt-model/fuzz
+cargo +nightly fuzz run decode_feed --fuzz-dir crates/rt-model/fuzz
+```
+
+The workspace itself stays on stable Rust; cargo-fuzz uses nightly for sanitizer
+instrumentation.
+
+The integration mutation tests run with the normal workspace test command and
+cover truncation, single-bit flips and common boundary/tail mutations.
+
 ## License
 
 MIT

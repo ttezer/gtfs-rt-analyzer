@@ -1,0 +1,23 @@
+[package]
+name = "gtfs-rt-model-fuzz"
+version = "0.0.0"
+publish = false
+edition = "2021"
+
+[package.metadata]
+cargo-fuzz = true
+
+[workspace]
+
+[dependencies]
+libfuzzer-sys = "0.4"
+
+[dependencies.gtfs-rt-model]
+path = ".."
+
+[[bin]]
+name = "decode_feed"
+path = "fuzz_targets/decode_feed.rs"
+test = false
+doc = false
+bench = false
