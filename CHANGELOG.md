@@ -14,3 +14,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   deprecated group encoding, declared lengths beyond the buffer, and zero field numbers.
   The reader stops at the first fault rather than guessing at re-alignment.
 - Anomaly model separating wire-level framing faults from schema-level observations.
+- Full GTFS-Realtime message model: 26 messages and 12 enums decoded from proto2,
+  including `Shape`, `Stop` and `TripModifications`. Every field is optional in the
+  type system; proto2 `required` is enforced as an anomaly so a missing field degrades
+  the result instead of discarding it.
+- Schema-level anomalies: unknown and extension-range field numbers, missing required
+  fields, `FeedEntity` carrying several payloads or none, unrecognised enum values,
+  and invalid UTF-8. Enum gaps in the specification are preserved rather than filled,
+  so a producer sending `TripDescriptor.ScheduleRelationship = 4` is reported.
+- `decode_feed_message` entry point returning the decoded feed alongside its anomalies.
