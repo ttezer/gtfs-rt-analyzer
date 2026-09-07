@@ -65,6 +65,9 @@ describe('method and routing', () => {
     expect(res.status).toBe(200);
     const body = (await res.json()) as { feeds: { id: string }[] };
     expect(body.feeds.map((f) => f.id)).toContain('mbta-alerts');
+    expect(body.feeds.map((f) => f.id)).toEqual(
+      expect.arrayContaining(['septa-trips', 'septa-alerts']),
+    );
   });
 
   it('404s unknown paths', async () => {
@@ -124,6 +127,30 @@ describe('allowlist enforcement', () => {
       okFetch(),
     );
     expect(res.status).toBe(200);
+  });
+
+  it('resolves the validated SEPTA feeds to their fixed upstream URLs', async () => {
+    const entries = [
+      [
+        'septa-trips',
+        'https://www3.septa.org/gtfsrt/septa-pa-us/Trip/rtTripUpdates.pb',
+      ],
+      [
+        'septa-alerts',
+        'https://www3.septa.org/gtfsrt/septa-pa-us/Service/rtServiceAlerts.pb',
+      ],
+    ] as const;
+
+    for (const [id, target] of entries) {
+      const upstream = okFetch();
+      const res = await handleRequest(req(`/fetch?feed=${id}`), ENV, upstream);
+      expect(res.status, id).toBe(200);
+      expect(res.headers.get('X-Proxy-Feed-Id')).toBe(id);
+      expect(upstream).toHaveBeenCalledWith(target, expect.objectContaining({
+        method: 'GET',
+        redirect: 'manual',
+      }));
+    }
   });
 });
 

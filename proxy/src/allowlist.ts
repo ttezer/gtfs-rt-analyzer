@@ -49,6 +49,18 @@ export const FEEDS: readonly FeedEntry[] = [
     url: 'https://cdn.mbta.com/realtime/Alerts.pb',
     kind: 'alerts',
   },
+  {
+    id: 'septa-trips',
+    label: 'SEPTA — Trip Updates',
+    url: 'https://www3.septa.org/gtfsrt/septa-pa-us/Trip/rtTripUpdates.pb',
+    kind: 'trip_updates',
+  },
+  {
+    id: 'septa-alerts',
+    label: 'SEPTA — Service Alerts',
+    url: 'https://www3.septa.org/gtfsrt/septa-pa-us/Service/rtServiceAlerts.pb',
+    kind: 'alerts',
+  },
 ] as const;
 
 const BY_ID = new Map(FEEDS.map((f) => [f.id, f]));
