@@ -86,6 +86,14 @@ allowlist is what limits the blast radius.
 `wrangler.toml` `[vars]`: `ALLOWED_ORIGINS` (comma-separated), `UPSTREAM_TIMEOUT_MS`,
 `MAX_RESPONSE_BYTES`, `RATE_LIMIT_REQUESTS`, `RATE_LIMIT_WINDOW_MS`.
 
+## Cloudflare deployment
+
+The Worker is connected to the `main` branch of the repository. Cloudflare Workers
+Builds should use `/proxy` as the root directory, leave the build command empty, and
+use `npx wrangler deploy` as the deploy command. The production `ALLOWED_ORIGINS`
+value is already declared in `wrangler.toml`; dashboard runtime variables should stay
+consistent with it.
+
 ## Development
 
 ```
