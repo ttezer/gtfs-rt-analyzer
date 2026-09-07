@@ -73,6 +73,14 @@ pub fn decode_feed_message(bytes: &[u8]) -> DecodedFeed {
 /// [`decode_feed_message`] ile aynı, ama hazırlanmış bir bağlam alır
 /// (ör. değiştirilmiş derinlik kapağı ile).
 pub fn decode_feed_message_with(bytes: &[u8], mut ctx: DecodeCtx) -> DecodedFeed {
+    if let Some(looks_like) = decode::looks_like_non_protobuf(bytes) {
+        ctx.report(AnomalyKind::NotProtobuf { looks_like }, 0);
+        return DecodedFeed {
+            message: FeedMessage::default(),
+            anomalies: ctx.into_anomalies(),
+        };
+    }
+
     let message = decode::decode_body::<FeedMessage>(bytes, &mut ctx);
     DecodedFeed { message, anomalies: ctx.into_anomalies() }
 }

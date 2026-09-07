@@ -48,6 +48,7 @@ What the decoder reports:
 
 | Level | Anomalies |
 |---|---|
+| Payload | HTML/XML/JSON body detected as `not_protobuf` |
 | Wire | truncated payload · trailing garbage · varint over 10 bytes · unexpected wire type · deprecated group encoding · reserved wire type · declared length beyond buffer · zero field number · nesting past the depth cap |
 | Schema | unknown field number · extension-range field · missing proto2 `required` field · `FeedEntity` with several payloads or none · unknown enum value · invalid UTF-8 |
 

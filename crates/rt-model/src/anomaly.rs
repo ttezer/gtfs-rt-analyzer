@@ -40,8 +40,9 @@ impl fmt::Display for Anomaly {
 
 /// Gözlem türü.
 ///
-/// İki aile: **wire** düzeyi (protobuf çerçevelemesi bozuk) ve **şema** düzeyi
-/// (çerçeveleme sağlam ama GTFS-Realtime şemasıyla uyuşmuyor).
+/// Üç aile: **payload** düzeyi (içerik protobuf değil), **wire** düzeyi
+/// (protobuf çerçevelemesi bozuk) ve **şema** düzeyi (çerçeveleme sağlam ama
+/// GTFS-Realtime şemasıyla uyuşmuyor).
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum AnomalyKind {
     // ── wire düzeyi ──────────────────────────────────────────────────────────
@@ -63,6 +64,11 @@ pub enum AnomalyKind {
     ZeroFieldNumber,
     /// İç içe mesaj derinliği kapağı aşıldı.
     DepthLimitExceeded { limit: u32 },
+    /// Payload protobuf yerine yaygın bir HTTP hata/yanıt gövdesine benziyor.
+    ///
+    /// Decoder'ın üreteceği daha düşük seviyeli wire belirtilerinden önce
+    /// gösterilmesi gereken bir payload teşhisidir.
+    NotProtobuf { looks_like: &'static str },
 
     // ── şema düzeyi ──────────────────────────────────────────────────────────
     /// Bu mesajda tanımlı olmayan alan numarası.
@@ -101,6 +107,9 @@ impl fmt::Display for AnomalyKind {
             }
             ZeroFieldNumber => write!(f, "field number 0 is invalid"),
             DepthLimitExceeded { limit } => write!(f, "nesting deeper than {limit}"),
+            NotProtobuf { looks_like } => {
+                write!(f, "payload is not protobuf (looks like {looks_like})")
+            }
             UnknownField { field } => write!(f, "unknown field number {field}"),
             ExtensionField { field } => write!(f, "extension field number {field} (not decoded)"),
             MissingRequiredField { field } => write!(f, "required field '{field}' is missing"),
@@ -134,6 +143,11 @@ impl AnomalyKind {
         )
     }
 
+    /// Girdi protobuf yerine yaygın bir metin hata/yanıt gövdesine mi benziyor?
+    pub fn is_payload_level(&self) -> bool {
+        matches!(self, Self::NotProtobuf { .. })
+    }
+
     /// Sabit, yeniden adlandırmaya dayanıklı kısa ad. Dedup/gruplama anahtarı olarak
     /// kullanılabilir; `Debug` çıktısının aksine varyant adı değişse bile sabit kalır.
     pub fn stable_name(&self) -> &'static str {
@@ -148,6 +162,7 @@ impl AnomalyKind {
             LengthExceedsRemaining { .. } => "length_exceeds_remaining",
             ZeroFieldNumber => "zero_field_number",
             DepthLimitExceeded { .. } => "depth_limit_exceeded",
+            NotProtobuf { .. } => "not_protobuf",
             UnknownField { .. } => "unknown_field",
             ExtensionField { .. } => "extension_field",
             MissingRequiredField { .. } => "missing_required_field",

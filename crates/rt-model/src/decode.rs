@@ -28,6 +28,64 @@ pub const DEFAULT_MAX_DEPTH: u32 = 32;
 /// Uzantı alan aralıkları — `gtfs-realtime.proto` her mesajda bu ikisini ayırır.
 const EXTENSION_RANGES: [(u32, u32); 2] = [(1000, 1999), (9000, 9999)];
 
+/// Yaygın HTTP hata gövdelerini protobuf decoder'ına sokmadan önce ayırır.
+///
+/// Bu yalnızca payload'ın ilk anlamlı baytlarına bakar; gerçek protobuf alanları
+/// `0x0a` veya `0x12` gibi binary tag'lerle başladığı için metin yanıtlarını
+/// yanlışlıkla sınıflandırma riski düşüktür. Tespit bir doğrulama kuralı değil,
+/// taşıma katmanı teşhisidir: içerik gerçekten protobuf değilse decoder'ın
+/// `deprecated group` gibi teknik ama yanıltıcı bir belirti üretmesini önler.
+pub(crate) fn looks_like_non_protobuf(bytes: &[u8]) -> Option<&'static str> {
+    let bytes = trim_text_prefix(bytes);
+
+    if bytes.is_empty() {
+        return None;
+    }
+
+    if bytes[0] == b'{' || bytes[0] == b'[' {
+        return Some("json");
+    }
+
+    if bytes[0] == b'<' {
+        if starts_with_ascii_case_insensitive(bytes, b"<!doctype html")
+            || starts_with_ascii_case_insensitive(bytes, b"<html")
+            || contains_ascii_case_insensitive(bytes, b"<body")
+            || contains_ascii_case_insensitive(bytes, b"<head")
+            || contains_ascii_case_insensitive(bytes, b"<script")
+        {
+            return Some("html");
+        }
+
+        return Some("xml");
+    }
+
+    None
+}
+
+fn trim_text_prefix(bytes: &[u8]) -> &[u8] {
+    let mut start = if bytes.starts_with(b"\xef\xbb\xbf") { 3 } else { 0 };
+
+    while start < bytes.len() && matches!(bytes[start], b' ' | b'\t' | b'\r' | b'\n') {
+        start += 1;
+    }
+
+    &bytes[start..]
+}
+
+fn starts_with_ascii_case_insensitive(bytes: &[u8], prefix: &[u8]) -> bool {
+    bytes.len() >= prefix.len()
+        && bytes[..prefix.len()]
+            .iter()
+            .zip(prefix)
+            .all(|(actual, expected)| actual.eq_ignore_ascii_case(expected))
+}
+
+fn contains_ascii_case_insensitive(bytes: &[u8], needle: &[u8]) -> bool {
+    bytes
+        .windows(needle.len())
+        .any(|window| starts_with_ascii_case_insensitive(window, needle))
+}
+
 fn in_extension_range(field: u32) -> bool {
     EXTENSION_RANGES.iter().any(|&(lo, hi)| field >= lo && field <= hi)
 }

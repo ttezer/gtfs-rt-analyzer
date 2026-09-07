@@ -33,6 +33,49 @@ fn minimal_valid_feed_is_silent() {
 }
 
 #[test]
+fn html_error_body_is_reported_as_not_protobuf() {
+    let out = decode_feed_message(b" \n<!DOCTYPE html><html><body>502</body></html>");
+
+    assert_eq!(
+        out.anomalies,
+        vec![gtfs_rt_model::Anomaly::new(
+            AnomalyKind::NotProtobuf { looks_like: "html" },
+            "",
+            0,
+        )]
+    );
+    assert!(out.message.header.is_none());
+}
+
+#[test]
+fn xml_error_body_with_bom_is_reported_as_not_protobuf() {
+    let out = decode_feed_message(b"\xef\xbb\xbf<?xml version=\"1.0\"?><Error/>");
+
+    assert_eq!(
+        out.anomalies,
+        vec![gtfs_rt_model::Anomaly::new(
+            AnomalyKind::NotProtobuf { looks_like: "xml" },
+            "",
+            0,
+        )]
+    );
+}
+
+#[test]
+fn json_error_body_is_reported_as_not_protobuf() {
+    let out = decode_feed_message(b"\r\n {\"error\":\"bad gateway\"}");
+
+    assert_eq!(
+        out.anomalies,
+        vec![gtfs_rt_model::Anomaly::new(
+            AnomalyKind::NotProtobuf { looks_like: "json" },
+            "",
+            0,
+        )]
+    );
+}
+
+#[test]
 fn header_fields_round_trip() {
     let bytes = Enc::new()
         .msg_field(
@@ -316,7 +359,11 @@ fn html_error_page_does_not_panic() {
     // Yaygın vaka: feed yerine HTML hata sayfası dönmesi.
     let out = decode_feed_message(b"<!DOCTYPE html><html><body>502 Bad Gateway</body></html>");
     assert!(!out.is_clean());
-    assert!(out.wire_anomalies().count() > 0);
+    assert_eq!(out.wire_anomalies().count(), 0);
+    assert!(out.anomalies.iter().any(|a| {
+        a.kind == AnomalyKind::NotProtobuf { looks_like: "html" }
+            && a.kind.is_payload_level()
+    }));
 }
 
 #[test]
