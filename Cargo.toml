@@ -1,5 +1,5 @@
 [workspace]
-members = ["crates/rt-model", "crates/rt-wasm", "crates/gtfs-static"]
+members = ["crates/rt-model", "crates/rt-wasm", "crates/gtfs-static", "crates/rt-rules"]
 resolver = "2"
 
 [workspace.package]

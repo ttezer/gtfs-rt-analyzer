@@ -108,6 +108,15 @@ name = "gtfs-rt-model"
 version = "0.1.0"
 
 [[package]]
+name = "gtfs-rt-rules"
+version = "0.1.0"
+dependencies = [
+ "gtfs-rt-model",
+ "gtfs-static",
+ "zip",
+]
+
+[[package]]
 name = "gtfs-rt-wasm"
 version = "0.1.0"
 dependencies = [

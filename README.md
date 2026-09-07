@@ -3,8 +3,8 @@
 An independent GTFS-Realtime analyzer written in Rust.
 
 > **Status: early development.** The protobuf decoder, a WebAssembly report adapter, a
-> static browser UI and a narrow static GTFS index reader exist today. Cross-check rules
-> are not implemented yet. Nothing here is stable.
+> static browser UI, a narrow static GTFS index reader and the first static ↔ realtime
+> consistency rules exist today. Nothing here is stable.
 
 ## Why another one
 
@@ -85,6 +85,11 @@ to the restricted proxy when configured, and keeps only compact report history i
 The static GTFS reader is the independent `gtfs-static` crate. It reads only the
 `routes`, `trips`, `stops`, `stop_times` and optional `calendar` tables needed by later
 realtime cross-checks; it does not depend on `gtfs-pipeline`.
+
+The `gtfs-rt-rules` crate contains the first static ↔ realtime consistency checks:
+trip and route references, stop/stop-sequence matches, and multiple vehicles for one
+trip. Dynamic `ADDED`, `NEW` and `DUPLICATED` trips are not forced to exist in the
+static feed.
 
 The decoder also has a libFuzzer target. From the repository root:
 
