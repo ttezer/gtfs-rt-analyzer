@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="GTFS-Realtime feed gözlem ve analiz aracı" />
     <title>GTFS-RT Analyzer</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      crossorigin=""
+    />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
@@ -20,6 +25,64 @@
     </header>
 
     <main class="layout">
+      <section class="panel catalog-panel" aria-labelledby="catalog-title">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">FEED KATALOĞU</p>
+            <h2 id="catalog-title">Haritadan feed seç</h2>
+            <p class="catalog-description">
+              MobilityDatabase snapshot'ındaki çalıştırılabilir GTFS-Realtime kaynakları.
+            </p>
+          </div>
+          <span id="catalog-count" class="muted">Katalog yükleniyor…</span>
+        </div>
+
+        <div class="catalog-controls">
+          <label>
+            Ara
+            <input id="catalog-search" type="search" placeholder="Kurum, şehir veya feed adı" />
+          </label>
+          <label>
+            Tür
+            <select id="catalog-type">
+              <option value="all">Tümü</option>
+              <option value="vehicle_positions">Araç</option>
+              <option value="trip_updates">Sefer</option>
+              <option value="alerts">Uyarı</option>
+            </select>
+          </label>
+          <label>
+            Durum
+            <select id="catalog-feed-status">
+              <option value="all">Tümü</option>
+              <option value="active">Aktif</option>
+              <option value="deprecated">Eski</option>
+              <option value="development">Geliştirme</option>
+            </select>
+          </label>
+          <label>
+            Kaynak
+            <select id="catalog-provenance">
+              <option value="all">Tümü</option>
+              <option value="official">Resmî</option>
+              <option value="community">Topluluk</option>
+              <option value="unknown">Belirsiz</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="catalog-grid">
+          <div>
+            <div id="feed-map" class="feed-map" aria-label="GTFS-Realtime feed haritası"></div>
+            <p class="map-note">Nokta yaklaşık feed konumunu gösterir.</p>
+          </div>
+          <div>
+            <div id="catalog-status" class="notice neutral">Katalog yükleniyor…</div>
+            <div id="feed-list" class="feed-list"></div>
+          </div>
+        </div>
+      </section>
+
       <section class="panel controls" aria-labelledby="controls-title">
         <div class="panel-heading">
           <div>
@@ -42,6 +105,7 @@
           id="proxy-url"
           type="url"
           autocomplete="url"
+          value="https://gtfs-rt-proxy.ttezer.workers.dev"
           placeholder="https://worker-adresin.workers.dev"
         />
 
@@ -119,6 +183,7 @@
       <span>Ham snapshot saklanmaz.</span>
     </footer>
 
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
     <script type="module" src="./app.js"></script>
   </body>
 </html>

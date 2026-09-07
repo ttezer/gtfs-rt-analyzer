@@ -9,6 +9,12 @@ const state = {
   lastStartedAt: null,
 };
 
+const catalogState = {
+  feeds: [],
+  markers: [],
+  map: null,
+};
+
 const elements = {
   wasmStatus: $("wasm-status"),
   monitorState: $("monitor-state"),
@@ -31,6 +37,14 @@ const elements = {
   reportStatus: $("report-status"),
   anomalies: $("anomalies"),
   history: $("history"),
+  catalogSearch: $("catalog-search"),
+  catalogType: $("catalog-type"),
+  catalogStatus: $("catalog-feed-status"),
+  catalogProvenance: $("catalog-provenance"),
+  catalogCount: $("catalog-count"),
+  catalogNotice: $("catalog-status"),
+  feedMap: $("feed-map"),
+  feedList: $("feed-list"),
 };
 
 function setNotice(element, text, kind = "neutral") {
@@ -60,6 +74,199 @@ function formatAge(seconds) {
   if (age < 60) return `${Math.max(0, age)} sn`;
   if (age < 3600) return `${Math.floor(age / 60)} dk`;
   return `${Math.floor(age / 3600)} sa`;
+}
+
+const TYPE_LABELS = {
+  vehicle_positions: "Araç",
+  trip_updates: "Sefer",
+  alerts: "Uyarı",
+};
+
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function feedTitle(feed) {
+  return feed.name ? `${feed.provider} — ${feed.name}` : feed.provider;
+}
+
+function feedTypeLabels(feed) {
+  return (feed.entity_types || []).map((type) => TYPE_LABELS[type] || type);
+}
+
+function feedProvenance(feed) {
+  if (feed.official === true) return "official";
+  if (feed.official === false) return "community";
+  return "unknown";
+}
+
+function feedCenter(feed) {
+  if (!feed.center) return null;
+  const lat = Number(feed.center.lat);
+  const lon = Number(feed.center.lon);
+  return Number.isFinite(lat) && Number.isFinite(lon) ? [lat, lon] : null;
+}
+
+function feedMatches(feed) {
+  const search = elements.catalogSearch.value.trim().toLocaleLowerCase("tr-TR");
+  const haystack = [feed.provider, feed.name, feed.municipality, feed.country_code]
+    .filter(Boolean)
+    .join(" ")
+    .toLocaleLowerCase("tr-TR");
+  const searchMatches = !search || haystack.includes(search);
+  const typeMatches = elements.catalogType.value === "all"
+    || feed.entity_types?.includes(elements.catalogType.value);
+  const statusMatches = elements.catalogStatus.value === "all"
+    || feed.status === elements.catalogStatus.value;
+  const provenanceMatches = elements.catalogProvenance.value === "all"
+    || feedProvenance(feed) === elements.catalogProvenance.value;
+  return searchMatches && typeMatches && statusMatches && provenanceMatches;
+}
+
+function selectCatalogFeed(feed) {
+  elements.feedUrl.value = feed.url;
+  if (!elements.proxyUrl.value.trim()) {
+    elements.proxyUrl.value = "https://gtfs-rt-proxy.ttezer.workers.dev";
+  }
+  setNotice(
+    elements.requestStatus,
+    `${feedTitle(feed)} seçildi. Şimdi çek düğmesine basın.`,
+    "neutral",
+  );
+  elements.feedUrl.focus();
+}
+
+function popupForFeed(feed) {
+  const types = feedTypeLabels(feed).join(", ") || "Tür belirtilmemiş";
+  const provenance = feed.official === true
+    ? "Resmî"
+    : feed.official === false
+      ? "Topluluk"
+      : "Belirsiz";
+  const schedule = feed.static_reference ? "Schedule bağlantısı var" : "Schedule bağlantısı yok";
+  return `<strong>${escapeHtml(feedTitle(feed))}</strong><br>${escapeHtml(types)} · ${escapeHtml(provenance)}<br>${escapeHtml(schedule)}`;
+}
+
+function clearMapMarkers() {
+  for (const marker of catalogState.markers) marker.remove();
+  catalogState.markers = [];
+}
+
+function renderCatalog() {
+  const filtered = catalogState.feeds.filter(feedMatches);
+  elements.catalogCount.textContent = `${filtered.length.toLocaleString("tr-TR")} feed`;
+  elements.catalogNotice.textContent = filtered.length
+    ? "Bir feed seçin; URL izleme formuna doldurulur."
+    : "Bu filtrelerle feed bulunamadı.";
+  elements.catalogNotice.className = "notice neutral";
+
+  if (catalogState.map) {
+    clearMapMarkers();
+    const markerGroup = [];
+    for (const feed of filtered) {
+      const center = feedCenter(feed);
+      if (center === null) continue;
+      const color = feed.official === true ? "#176b62" : feed.official === false ? "#8a641d" : "#536473";
+      const marker = window.L.circleMarker(center, {
+        radius: 5,
+        color,
+        weight: 1,
+        fillColor: color,
+        fillOpacity: 0.75,
+      });
+      marker.bindPopup(popupForFeed(feed));
+      marker.on("click", () => selectCatalogFeed(feed));
+      marker.addTo(catalogState.map);
+      catalogState.markers.push(marker);
+      markerGroup.push(center);
+    }
+    if (markerGroup.length > 0 && filtered.length < 30) {
+      catalogState.map.fitBounds(markerGroup, { padding: [20, 20], maxZoom: 10 });
+    }
+  }
+
+  elements.feedList.innerHTML = "";
+  const fragment = document.createDocumentFragment();
+  for (const feed of filtered) {
+    const card = document.createElement("article");
+    card.className = "feed-card";
+
+    const header = document.createElement("div");
+    header.className = "feed-card-header";
+    const title = document.createElement("h3");
+    title.textContent = feedTitle(feed);
+    header.append(title);
+    const selectButton = document.createElement("button");
+    selectButton.type = "button";
+    selectButton.textContent = "Seç";
+    selectButton.addEventListener("click", () => selectCatalogFeed(feed));
+    header.append(selectButton);
+    card.append(header);
+
+    const location = [feed.municipality, feed.country_code].filter(Boolean).join(", ");
+    if (location) {
+      const locationText = document.createElement("p");
+      locationText.textContent = location;
+      card.append(locationText);
+    }
+
+    const meta = document.createElement("div");
+    meta.className = "feed-meta";
+    for (const label of feedTypeLabels(feed)) {
+      const tag = document.createElement("span");
+      tag.className = "feed-tag";
+      tag.textContent = label;
+      meta.append(tag);
+    }
+    const provenanceTag = document.createElement("span");
+    provenanceTag.className = `feed-tag ${feedProvenance(feed)}`;
+    provenanceTag.textContent = feed.official === true
+      ? "Resmî"
+      : feed.official === false
+        ? "Topluluk"
+        : "Belirsiz";
+    meta.append(provenanceTag);
+    const statusTag = document.createElement("span");
+    statusTag.className = "feed-tag";
+    statusTag.textContent = feed.status;
+    meta.append(statusTag);
+    const scheduleTag = document.createElement("span");
+    scheduleTag.className = "feed-tag";
+    scheduleTag.textContent = feed.static_reference ? "Schedule bağlı" : "Schedule yok";
+    meta.append(scheduleTag);
+    card.append(meta);
+    fragment.append(card);
+  }
+  elements.feedList.append(fragment);
+}
+
+async function initCatalog() {
+  if (window.L) {
+    catalogState.map = window.L.map(elements.feedMap, { worldCopyJump: true }).setView([25, 10], 2);
+    window.L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: "&copy; OpenStreetMap contributors",
+      maxZoom: 18,
+    }).addTo(catalogState.map);
+  } else {
+    elements.feedMap.textContent = "Harita kütüphanesi yüklenemedi; liste kullanılabilir.";
+  }
+
+  try {
+    const response = await fetch("./feeds.json", { cache: "no-store" });
+    if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+    const payload = await response.json();
+    catalogState.feeds = Array.isArray(payload.feeds) ? payload.feeds : [];
+    renderCatalog();
+  } catch (error) {
+    elements.catalogCount.textContent = "Katalog yok";
+    elements.catalogNotice.className = "notice error";
+    elements.catalogNotice.textContent = `Katalog yüklenemedi: ${error?.message || "bilinmeyen hata"}`;
+  }
 }
 
 function proxyFetchUrl(proxyBase, feedUrl) {
@@ -281,6 +488,12 @@ elements.fileInput.addEventListener("change", () => {
   elements.analyzeFile.disabled = !elements.fileInput.files?.length || !state.ready;
 });
 elements.analyzeFile.addEventListener("click", analyzeFile);
+elements.catalogSearch.addEventListener("input", renderCatalog);
+elements.catalogType.addEventListener("change", renderCatalog);
+elements.catalogStatus.addEventListener("change", renderCatalog);
+elements.catalogProvenance.addEventListener("change", renderCatalog);
+
+void initCatalog();
 
 try {
   await init();
