@@ -64,6 +64,12 @@ cargo clippy --workspace --all-targets -- -D warnings
 
 `gtfs-rt-model` has zero dependencies; `cargo tree` should show a single line.
 
+The browser adapter is built separately for WebAssembly:
+
+```
+cargo build --target wasm32-unknown-unknown --release -p gtfs-rt-wasm
+```
+
 The decoder also has a libFuzzer target. From the repository root:
 
 ```
