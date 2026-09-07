@@ -23,3 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   and invalid UTF-8. Enum gaps in the specification are preserved rather than filled,
   so a producer sending `TripDescriptor.ScheduleRelationship = 4` is reported.
 - `decode_feed_message` entry point returning the decoded feed alongside its anomalies.
+- `proxy/`: a restricted CORS proxy as a Cloudflare Worker, for feeds that do not send
+  `Access-Control-Allow-Origin`. It fetches allow-listed addresses only, returns the bytes
+  untouched as `application/x-protobuf`, stores nothing, and leaves all parsing and
+  validation to the browser.

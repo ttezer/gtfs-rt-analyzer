@@ -1,0 +1,16 @@
+name = "gtfs-rt-analyzer-proxy"
+main = "src/index.ts"
+compatibility_date = "2026-09-01"
+
+# Yalnızca bizim GitHub Pages origin'imize CORS izni verilir.
+# Yerel geliştirme için `wrangler dev --var ALLOWED_ORIGINS:http://localhost:5173`.
+[vars]
+ALLOWED_ORIGINS = "https://ttezer.github.io"
+UPSTREAM_TIMEOUT_MS = "10000"
+MAX_RESPONSE_BYTES = "33554432"
+RATE_LIMIT_REQUESTS = "60"
+RATE_LIMIT_WINDOW_MS = "60000"
+
+# Depolama bağlaması BİLİNÇLİ OLARAK YOK: proxy feed saklamaz.
+# KV, R2, D1 ya da Durable Object eklenmesi, "saklamayan proxy" sözleşmesini bozar
+# ve ayrıca gözden geçirilmelidir.
