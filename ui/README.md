@@ -21,3 +21,11 @@ Sonra herhangi bir statik HTTP sunucusuyla `ui/` klasörünü servis edin. `file
 - Proxy, yalnızca kendi allowlist'indeki adresleri kabul eder.
 - Yerel dosya analizi tarayıcıda yapılır; ham baytlar saklanmaz.
 - Geçmişte yalnızca son sekiz rapor özeti tutulur.
+
+## Feed kataloğu
+
+`feeds.json`, MobilityDatabase'den alınmış sabit bir GTFS-Realtime snapshot'ıdır.
+İlk sürümde yalnızca HTTPS kullanan, kimlik doğrulaması istemeyen ve URL'sinde
+credential benzeri sorgu parametresi bulunmayan kayıtlar arayüzde çalıştırılabilir
+aday olarak tutulur. Katalog gerektiğinde elle yenilenir; tarayıcı her açılışta
+MobilityDatabase API'sine bağlanmaz.
