@@ -1,8 +1,10 @@
-import init, { analyze_feed } from "./pkg/gtfs_rt_wasm.js";
+import init, { analyze_feed, analyze_feed_with_schedule } from "./pkg/gtfs_rt_wasm.js";
 
 const $ = (id) => document.getElementById(id);
 const state = {
   ready: false,
+  /// Yüklenmiş statik GTFS arşivi; yoksa tutarlılık kuralları hiç koşmaz.
+  scheduleBytes: null,
   timer: null,
   inFlight: false,
   history: [],
@@ -29,6 +31,9 @@ const elements = {
   requestStatus: $("request-status"),
   fileInput: $("file-input"),
   analyzeFile: $("analyze-file"),
+  scheduleInput: $("schedule-input"),
+  scheduleState: $("schedule-state"),
+  consistency: $("consistency"),
   reportTitle: $("report-title"),
   sourceBadge: $("source-badge"),
   feedAge: $("feed-age"),
@@ -404,7 +409,73 @@ async function fetchBytes(url) {
 }
 
 function reportBytes(bytes) {
-  return JSON.parse(analyze_feed(bytes));
+  // Statik tarife yüklüyse tutarlılık kuralları da koşar. Yüklü değilse hiçbir
+  // tutarlılık iddiası üretilmez — karşılaştıracak bir tarife olmadan o iddia
+  // kurulamaz.
+  const json = state.scheduleBytes
+    ? analyze_feed_with_schedule(bytes, state.scheduleBytes)
+    : analyze_feed(bytes);
+  return JSON.parse(json);
+}
+
+function renderConsistency(report) {
+  const target = elements.consistency;
+
+  if (report.schedule_error) {
+    target.className = "anomaly-list";
+    target.innerHTML = `<div class="anomaly error"><strong>Statik GTFS okunamadı</strong><span>${escapeHtml(report.schedule_error)}</span></div>`;
+    return;
+  }
+
+  const consistency = report.consistency;
+  if (!consistency) {
+    target.className = "anomaly-list empty";
+    target.textContent = "Statik GTFS yüklenmedi.";
+    return;
+  }
+
+  const { schedule, notices } = consistency;
+  const counted = [
+    `${consistency.checked_trip_references} sefer referansı`,
+    `${consistency.checked_stop_time_updates} durak güncellemesi`,
+    `${consistency.skipped_dynamic_trips} dinamik sefer atlandı`,
+  ].join(" · ");
+  const scale = `${schedule.trips} sefer · ${schedule.stops} durak · ${schedule.routes} hat`;
+
+  if (notices.length === 0) {
+    target.className = "anomaly-list";
+    target.innerHTML = `<div class="anomaly info"><strong>Tutarsızlık bulunamadı</strong><span>${escapeHtml(counted)}</span><small>${escapeHtml(scale)}</small></div>`;
+    return;
+  }
+
+  target.className = "anomaly-list";
+  target.innerHTML = notices
+    .slice(0, 100)
+    .map(
+      (notice) =>
+        `<div class="anomaly ${notice.severity}"><strong>${escapeHtml(notice.code)}</strong><span>${escapeHtml(notice.message)}</span><small>${escapeHtml(notice.path)}</small></div>`,
+    )
+    .join("");
+
+  if (notices.length > 100) {
+    target.innerHTML += `<div class="anomaly muted"><span>${notices.length - 100} bulgu daha gösterilmiyor</span></div>`;
+  }
+}
+
+async function loadSchedule() {
+  const file = elements.scheduleInput.files?.[0];
+  if (!file) {
+    state.scheduleBytes = null;
+    elements.scheduleState.textContent = "Statik feed yüklenirse her rapora tutarlılık bölümü eklenir.";
+    return;
+  }
+  try {
+    state.scheduleBytes = new Uint8Array(await file.arrayBuffer());
+    elements.scheduleState.textContent = `${file.name} · ${Math.round(file.size / 1024)} KB yüklendi`;
+  } catch (error) {
+    state.scheduleBytes = null;
+    elements.scheduleState.textContent = `Okunamadı: ${error.message}`;
+  }
 }
 
 function reportSummary(report, source, completedAt, actualInterval) {
@@ -469,6 +540,8 @@ function renderReport(report, source, completedAt, actualInterval) {
       elements.anomalies.append(more);
     }
   }
+
+  renderConsistency(report);
 
   state.history.unshift(reportSummary(report, source, completedAt, actualInterval));
   state.history = state.history.slice(0, 8);
@@ -578,6 +651,7 @@ elements.fileInput.addEventListener("change", () => {
   elements.analyzeFile.disabled = !elements.fileInput.files?.length || !state.ready;
 });
 elements.analyzeFile.addEventListener("click", analyzeFile);
+elements.scheduleInput.addEventListener("change", loadSchedule);
 elements.catalogSearch.addEventListener("input", renderCatalog);
 elements.catalogType.addEventListener("change", renderCatalog);
 elements.catalogStatus.addEventListener("change", renderCatalog);

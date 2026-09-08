@@ -36,3 +36,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   broken stop times silently hid unknown stops.
 - New `RT_TIME_ON_NON_STOPPING_UPDATE`: a stop marked `SKIPPED` or `NO_DATA` that still
   carries an arrival or departure prediction.
+- The consistency rules are reachable from the browser. `analyze_feed_with_schedule` takes a
+  realtime payload and a static GTFS archive and returns the consistency report alongside the
+  realtime one; the UI accepts a schedule and renders it.

@@ -146,6 +146,18 @@
 
         <div class="panel-heading small-heading">
           <div>
+            <p class="eyebrow">TARİFE KARŞILAŞTIRMASI</p>
+            <h2>Statik GTFS</h2>
+          </div>
+          <span class="muted">İsteğe bağlı</span>
+        </div>
+        <input id="schedule-input" type="file" accept=".zip,application/zip" />
+        <p id="schedule-state" class="muted small">Statik feed yüklenirse her rapora tutarlılık bölümü eklenir.</p>
+
+        <div class="divider"></div>
+
+        <div class="panel-heading small-heading">
+          <div>
             <p class="eyebrow">TEK SEFERLİK ANALİZ</p>
             <h2>Yerel dosya</h2>
           </div>
@@ -178,6 +190,11 @@
         </div>
 
         <div id="report-status" class="notice neutral">Rapor hazır olduğunda burada görünecek.</div>
+
+        <details open>
+          <summary>Tarife tutarlılığı</summary>
+          <div id="consistency" class="anomaly-list empty">Statik GTFS yüklenmedi.</div>
+        </details>
 
         <details open>
           <summary>Anomaliler</summary>

@@ -39,10 +39,10 @@ touch. Worth doing as its own change.
 — the product's core claim — are compiled, tested and committed, but not wired to anything
 the browser can call. `analyze_feed` decodes protobuf and stops there.
 
-- [ ] `gtfs-rt-wasm` depends on `gtfs-static` and `gtfs-rt-rules`
-- [ ] An exported entry point that takes a realtime payload plus a static GTFS archive and
+- [x] `gtfs-rt-wasm` depends on `gtfs-static` and `gtfs-rt-rules`
+- [x] An exported entry point that takes a realtime payload plus a static GTFS archive and
   returns the consistency report
-- [ ] UI accepts a static feed and renders the report
+- [x] UI accepts a static feed and renders the report
 
 ## 4. Stop the WebAssembly bundle from drifting
 

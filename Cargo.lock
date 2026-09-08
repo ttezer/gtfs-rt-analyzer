@@ -121,9 +121,12 @@ name = "gtfs-rt-wasm"
 version = "0.1.0"
 dependencies = [
  "gtfs-rt-model",
+ "gtfs-rt-rules",
+ "gtfs-static",
  "serde",
  "serde_json",
  "wasm-bindgen",
+ "zip",
 ]
 
 [[package]]

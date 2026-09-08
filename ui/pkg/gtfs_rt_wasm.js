@@ -23,6 +23,33 @@ export function analyze_feed(bytes) {
         wasm.__wbindgen_free(deferred2_0, deferred2_1, 1);
     }
 }
+
+/**
+ * Bir GTFS-RT payload'ını, karşılık gelen statik GTFS arşiviyle birlikte inceler.
+ *
+ * Realtime raporu her durumda üretilir. Statik arşiv açılamazsa tutarlılık bölümü
+ * düşer ve sebebi `schedule_error` alanına yazılır: bozuk bir tarife, snapshot
+ * hakkında söylenebilecekleri geçersiz kılmaz.
+ * @param {Uint8Array} bytes
+ * @param {Uint8Array} schedule_zip
+ * @returns {string}
+ */
+export function analyze_feed_with_schedule(bytes, schedule_zip) {
+    let deferred3_0;
+    let deferred3_1;
+    try {
+        const ptr0 = passArray8ToWasm0(bytes, wasm.__wbindgen_malloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ptr1 = passArray8ToWasm0(schedule_zip, wasm.__wbindgen_malloc);
+        const len1 = WASM_VECTOR_LEN;
+        const ret = wasm.analyze_feed_with_schedule(ptr0, len0, ptr1, len1);
+        deferred3_0 = ret[0];
+        deferred3_1 = ret[1];
+        return getStringFromWasm0(ret[0], ret[1]);
+    } finally {
+        wasm.__wbindgen_free(deferred3_0, deferred3_1, 1);
+    }
+}
 function __wbg_get_imports() {
     const import0 = {
         __proto__: null,
