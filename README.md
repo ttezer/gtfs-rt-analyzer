@@ -2,6 +2,10 @@
 
 An independent GTFS-Realtime analyzer written in Rust.
 
+## Canlı demo
+
+GitHub Pages: [ttezer.github.io/gtfs-rt-analyzer](https://ttezer.github.io/gtfs-rt-analyzer/)
+
 > **Status: early development.** The protobuf decoder, a WebAssembly report adapter, a
 > static browser UI, a narrow static GTFS index reader and the first static ↔ realtime
 > consistency rules exist today. Nothing here is stable.
