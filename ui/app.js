@@ -294,14 +294,19 @@ function renderCatalog() {
 }
 
 async function initCatalog() {
-  if (window.L) {
-    catalogState.map = window.L.map(elements.feedMap, { worldCopyJump: true }).setView([25, 10], 2);
-    window.L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution: "&copy; OpenStreetMap contributors",
-      maxZoom: 18,
-    }).addTo(catalogState.map);
-  } else {
-    elements.feedMap.textContent = "Harita kütüphanesi yüklenemedi; liste kullanılabilir.";
+  try {
+    if (window.L) {
+      catalogState.map = window.L.map(elements.feedMap, { worldCopyJump: true }).setView([25, 10], 2);
+      window.L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "&copy; OpenStreetMap contributors",
+        maxZoom: 18,
+      }).addTo(catalogState.map);
+    } else {
+      throw new Error("Leaflet yüklenemedi");
+    }
+  } catch (error) {
+    elements.feedMap.textContent = "Harita yüklenemedi; liste kullanılabilir.";
+    console.warn("Harita başlatılamadı", error);
   }
 
   try {
