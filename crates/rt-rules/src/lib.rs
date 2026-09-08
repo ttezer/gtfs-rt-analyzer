@@ -6,7 +6,7 @@
 //! statik `trips.txt` karşılığı zorlanmaz.
 
 use std::collections::BTreeMap;
-use gtfs_rt_model::model::enums::TripScheduleRelationship;
+use gtfs_rt_model::model::enums::{StopTimeScheduleRelationship, TripScheduleRelationship};
 use gtfs_rt_model::model::{FeedMessage, StopTimeUpdate, TripDescriptor};
 use gtfs_static::StaticFeed;
 
@@ -174,6 +174,21 @@ fn check_trip_reference(
     }
 }
 
+/// Durak, gerçek zamanlı tahmin taşımaması gereken bir durumda mı?
+///
+/// Spec dört `StopTimeUpdate.ScheduleRelationship` değerinin **dördünde de** durağın
+/// statik `stop_times.txt` içinde bulunmasını bekler; dolayısıyla bu alan referans
+/// bütünlüğü kontrollerini muaf tutmaz. Yalnızca `SKIPPED` (araç durakta durmayacak)
+/// ve `NO_DATA` ("bu durak için gerçek zamanlı bilgi verilmiyor") durumlarında zaman
+/// tahmini göndermek kendi içinde çelişkilidir.
+fn forbids_time_prediction(update: &StopTimeUpdate) -> Option<&'static str> {
+    match update.schedule_relationship {
+        Some(StopTimeScheduleRelationship::Skipped) => Some("SKIPPED"),
+        Some(StopTimeScheduleRelationship::NoData) => Some("NO_DATA"),
+        _ => None,
+    }
+}
+
 fn check_stop_time_update(
     static_feed: &StaticFeed,
     static_trip: &gtfs_static::Trip,
@@ -182,10 +197,10 @@ fn check_stop_time_update(
     path: &str,
     report: &mut ConsistencyReport,
 ) {
-    let Some(static_times) = static_feed.stop_times_for_trip(&static_trip.trip_id) else {
-        return;
-    };
-
+    // `stop_id`'nin stops.txt içinde bulunması, seferin stop_times kaydından
+    // BAĞIMSIZ bir iddiadır. Eskiden bu kontrol, stop_times bulunamadığında yapılan
+    // erken dönüşün arkasında kalıyordu: statik feed'in stop_times'ı bozuksa bilinmeyen
+    // bir durak sessizce geçiyordu.
     if let Some(stop_id) = update.stop_id.as_deref() {
         if !static_feed.stops().contains_key(stop_id) {
             report.notices.push(Notice {
@@ -197,6 +212,22 @@ fn check_stop_time_update(
             });
         }
     }
+
+    if let Some(state) = forbids_time_prediction(update) {
+        if update.arrival.is_some() || update.departure.is_some() {
+            report.notices.push(Notice {
+                code: "RT_TIME_ON_NON_STOPPING_UPDATE",
+                severity: Severity::Warning,
+                entity_id: entity_id.map(str::to_owned),
+                path: format!("{path}.schedule_relationship"),
+                message: format!("durak {state} olarak işaretli ama varış/kalkış tahmini gönderiliyor"),
+            });
+        }
+    }
+
+    let Some(static_times) = static_feed.stop_times_for_trip(&static_trip.trip_id) else {
+        return;
+    };
 
     if let Some(sequence) = update.stop_sequence {
         let matching = static_times.iter().find(|time| time.stop_sequence == sequence);
@@ -244,7 +275,8 @@ fn multiple_vehicle_notices(vehicles_by_trip: BTreeMap<String, Vec<String>>) -> 
 mod tests {
     use super::*;
     use gtfs_rt_model::model::feed::{FeedEntity, FeedMessage};
-    use gtfs_rt_model::model::trip_update::{StopTimeUpdate, TripUpdate};
+    use gtfs_rt_model::model::enums::StopTimeScheduleRelationship;
+    use gtfs_rt_model::model::trip_update::{StopTimeEvent, StopTimeUpdate, TripUpdate};
     use gtfs_rt_model::model::vehicle::VehiclePosition;
     use gtfs_rt_model::model::descriptor::TripDescriptor;
     use std::io::{Cursor, Write};
@@ -254,7 +286,9 @@ mod tests {
     fn static_feed() -> StaticFeed {
         let files = [
             ("routes.txt", "route_id\nR1\n"),
-            ("trips.txt", "route_id,service_id,trip_id\nR1,S1,T1\n"),
+            // T2 bilerek stop_times'sız: statik feed'in eksik olduğu durumda
+            // stop_id kontrolünün hâlâ çalıştığını ölçmek için.
+            ("trips.txt", "route_id,service_id,trip_id\nR1,S1,T1\nR1,S1,T2\n"),
             ("stops.txt", "stop_id\nS1\nS2\n"),
             ("stop_times.txt", "trip_id,stop_id,stop_sequence\nT1,S1,1\nT1,S2,2\n"),
         ];
@@ -350,5 +384,119 @@ mod tests {
         assert_eq!(report.notices.len(), 1);
         assert_eq!(report.notices[0].code, "RT_MULTIPLE_VEHICLES_FOR_TRIP");
         assert_eq!(report.notices[0].severity, Severity::Warning);
+    }
+
+    /// Tek bir `stop_time_update` taşıyan sefer güncellemesi kurar.
+    fn update_for(trip_id: &str, update: StopTimeUpdate) -> FeedMessage {
+        realtime(vec![FeedEntity {
+            id: Some("e1".to_owned()),
+            trip_update: Some(TripUpdate {
+                trip: Some(trip(trip_id, None)),
+                stop_time_update: vec![update],
+                ..TripUpdate::default()
+            }),
+            ..FeedEntity::default()
+        }])
+    }
+
+    #[test]
+    fn unknown_stop_is_reported() {
+        let report = check_snapshot(
+            &static_feed(),
+            &update_for(
+                "T1",
+                StopTimeUpdate { stop_id: Some("GHOST".to_owned()), ..StopTimeUpdate::default() },
+            ),
+        );
+        assert_eq!(report.notices.len(), 1);
+        assert_eq!(report.notices[0].code, "RT_STOP_NOT_IN_STATIC");
+    }
+
+    #[test]
+    fn unknown_stop_sequence_is_reported() {
+        let report = check_snapshot(
+            &static_feed(),
+            &update_for("T1", StopTimeUpdate { stop_sequence: Some(99), ..StopTimeUpdate::default() }),
+        );
+        assert_eq!(report.notices.len(), 1);
+        assert_eq!(report.notices[0].code, "RT_STOP_SEQUENCE_NOT_IN_STATIC");
+    }
+
+    #[test]
+    fn unknown_stop_is_caught_even_when_the_trip_has_no_stop_times() {
+        // T2 trips.txt içinde var ama stop_times.txt içinde yok. Bu iki kontrol
+        // birbirinden bağımsız: eksik stop_times, bilinmeyen bir durağı gizlememeli.
+        let report = check_snapshot(
+            &static_feed(),
+            &update_for(
+                "T2",
+                StopTimeUpdate { stop_id: Some("GHOST".to_owned()), ..StopTimeUpdate::default() },
+            ),
+        );
+        assert_eq!(report.notices.len(), 1);
+        assert_eq!(report.notices[0].code, "RT_STOP_NOT_IN_STATIC");
+    }
+
+    #[test]
+    fn prediction_on_a_skipped_stop_is_reported() {
+        for state in [StopTimeScheduleRelationship::Skipped, StopTimeScheduleRelationship::NoData] {
+            let report = check_snapshot(
+                &static_feed(),
+                &update_for(
+                    "T1",
+                    StopTimeUpdate {
+                        stop_id: Some("S1".to_owned()),
+                        stop_sequence: Some(1),
+                        schedule_relationship: Some(state),
+                        arrival: Some(StopTimeEvent {
+                            delay: Some(60),
+                            ..StopTimeEvent::default()
+                        }),
+                        ..StopTimeUpdate::default()
+                    },
+                ),
+            );
+            assert!(
+                report.notices.iter().any(|n| n.code == "RT_TIME_ON_NON_STOPPING_UPDATE"),
+                "{state:?} için bulgu yok: {:?}",
+                report.notices
+            );
+        }
+    }
+
+    #[test]
+    fn a_skipped_stop_without_a_prediction_is_silent() {
+        // Kapının fazla geniş olmadığını gösterir: SKIPPED tek başına bulgu değildir.
+        let report = check_snapshot(
+            &static_feed(),
+            &update_for(
+                "T1",
+                StopTimeUpdate {
+                    stop_id: Some("S1".to_owned()),
+                    stop_sequence: Some(1),
+                    schedule_relationship: Some(StopTimeScheduleRelationship::Skipped),
+                    ..StopTimeUpdate::default()
+                },
+            ),
+        );
+        assert!(report.is_clean(), "{:?}", report.notices);
+    }
+
+    #[test]
+    fn schedule_relationship_does_not_exempt_reference_checks() {
+        // Spec dört değerin dördünde de durağın statik stop_times.txt içinde
+        // bulunmasını bekler; SKIPPED bir durağı bilinmeyen yapmaz.
+        let report = check_snapshot(
+            &static_feed(),
+            &update_for(
+                "T1",
+                StopTimeUpdate {
+                    stop_id: Some("GHOST".to_owned()),
+                    schedule_relationship: Some(StopTimeScheduleRelationship::Skipped),
+                    ..StopTimeUpdate::default()
+                },
+            ),
+        );
+        assert!(report.notices.iter().any(|n| n.code == "RT_STOP_NOT_IN_STATIC"));
     }
 }

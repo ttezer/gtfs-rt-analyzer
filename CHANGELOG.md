@@ -28,3 +28,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   untouched as `application/x-protobuf`, stores nothing, and leaves all parsing and
   validation to the browser.
 - `inspect` example for decoding a `.pb` file during development.
+
+### Fixed
+
+- Unknown stop ids are reported even when the referenced trip has no rows in
+  `stop_times.txt`. The check previously sat behind an early return, so a static feed with
+  broken stop times silently hid unknown stops.
+- New `RT_TIME_ON_NON_STOPPING_UPDATE`: a stop marked `SKIPPED` or `NO_DATA` that still
+  carries an arrival or departure prediction.

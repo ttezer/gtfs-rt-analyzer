@@ -20,14 +20,17 @@ touch. Worth doing as its own change.
 
 ## 2. Correct the consistency rules
 
-- [ ] **`stop_id` membership no longer depends on `stop_times`.** `check_stop_time_update`
+- [x] **`stop_id` membership no longer depends on `stop_times`.** `check_stop_time_update`
   returned early when a trip had no stop times, which also silenced the check for whether
   a `stop_id` exists in `stops.txt`. Two independent claims, one of them conditioned on the
   other's data being present.
-- [ ] **Read `StopTimeUpdate.schedule_relationship`.** The trip-level exemption for
-  `ADDED`/`NEW`/`DUPLICATED` is right, but stop-level `SKIPPED` and `NO_DATA` were ignored.
-  A `SKIPPED` stop carries different expectations and is a false-positive source.
-- [ ] **Cover the two untested rules.** `RT_STOP_NOT_IN_STATIC` and
+- [x] **Read `StopTimeUpdate.schedule_relationship`** — though not for the reason the review
+  gave. The review called it a false-positive source and expected the reference checks to be
+  relaxed for `SKIPPED`. Checking the specification showed the opposite: all four values
+  assume the stop exists in static `stop_times.txt`, so relaxing anything would have opened a
+  hole. What the field is good for is the inverse check — a stop marked `SKIPPED` or `NO_DATA`
+  should not carry an arrival or departure prediction.
+- [x] **Cover the two untested rules.** `RT_STOP_NOT_IN_STATIC` and
   `RT_STOP_SEQUENCE_NOT_IN_STATIC` had no test, so nothing proved they could fire at all.
 
 ## 3. Make the rules reachable from the browser
