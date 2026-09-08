@@ -27,8 +27,9 @@ Sonra herhangi bir statik HTTP sunucusuyla `ui/` klasörünü servis edin. `file
 `feeds.json`, MobilityDatabase'den alınmış sabit bir GTFS-Realtime snapshot'ıdır.
 İlk sürümde yalnızca HTTPS kullanan, kimlik doğrulaması istemeyen ve URL'sinde
 credential benzeri sorgu parametresi bulunmayan kayıtlar arayüzde çalıştırılabilir
-aday olarak tutulur. Katalog gerektiğinde elle yenilenir; tarayıcı her açılışta
-MobilityDatabase API'sine bağlanmaz.
+aday olarak tutulur. Katalog, GitHub Actions tarafından haftalık
+`feeds_v2.csv` snapshot'ından yenilenir; tarayıcı her açılışta MobilityDatabase
+API'sine bağlanmaz.
 
 Katalogda `static_reference` varsa feed seçildiğinde `schedule-scores.json`
 içindeki hazır Yayın ve Genel skoru gösterilir. Bu skorlar bağlı Schedule'a
