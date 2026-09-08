@@ -189,7 +189,10 @@ mod tests {
 
     #[test]
     fn round_trips_through_i32() {
-        assert_eq!(TripScheduleRelationship::from_i32(3), Some(TripScheduleRelationship::Canceled));
+        assert_eq!(
+            TripScheduleRelationship::from_i32(3),
+            Some(TripScheduleRelationship::Canceled)
+        );
         assert_eq!(TripScheduleRelationship::Canceled.as_i32(), 3);
         assert_eq!(TripScheduleRelationship::New.proto_name(), "New");
     }

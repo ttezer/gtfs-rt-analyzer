@@ -24,7 +24,11 @@ pub struct Anomaly {
 
 impl Anomaly {
     pub fn new(kind: AnomalyKind, path: impl Into<String>, offset: usize) -> Self {
-        Self { kind, path: path.into(), offset }
+        Self {
+            kind,
+            path: path.into(),
+            offset,
+        }
     }
 }
 
@@ -102,8 +106,14 @@ impl fmt::Display for AnomalyKind {
             }
             DeprecatedGroup => write!(f, "deprecated group wire type (3/4)"),
             ReservedWireType { found } => write!(f, "reserved wire type {found}"),
-            LengthExceedsRemaining { declared, remaining } => {
-                write!(f, "declared length {declared} exceeds {remaining} remaining byte(s)")
+            LengthExceedsRemaining {
+                declared,
+                remaining,
+            } => {
+                write!(
+                    f,
+                    "declared length {declared} exceeds {remaining} remaining byte(s)"
+                )
             }
             ZeroFieldNumber => write!(f, "field number 0 is invalid"),
             DepthLimitExceeded { limit } => write!(f, "nesting deeper than {limit}"),

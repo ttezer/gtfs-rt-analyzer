@@ -24,7 +24,10 @@ impl Message for TripUpdate {
             1 => set_if!(self.trip, ctx.nested(f, "trip")),
             2 => {
                 let i = self.stop_time_update.len();
-                push_if!(self.stop_time_update, ctx.nested_repeated(f, "stop_time_update", i));
+                push_if!(
+                    self.stop_time_update,
+                    ctx.nested_repeated(f, "stop_time_update", i)
+                );
             }
             3 => set_if!(self.vehicle, ctx.nested(f, "vehicle")),
             4 => set_if!(self.timestamp, ctx.u64(f)),
@@ -67,7 +70,10 @@ impl Message for StopTimeUpdate {
             3 => set_if!(self.departure, ctx.nested(f, "departure")),
             4 => set_if!(self.stop_id, ctx.string(f)),
             5 => set_if!(self.schedule_relationship, ctx.enum_value(f)),
-            6 => set_if!(self.stop_time_properties, ctx.nested(f, "stop_time_properties")),
+            6 => set_if!(
+                self.stop_time_properties,
+                ctx.nested(f, "stop_time_properties")
+            ),
             7 => set_if!(self.departure_occupancy_status, ctx.enum_value(f)),
             _ => return false,
         }

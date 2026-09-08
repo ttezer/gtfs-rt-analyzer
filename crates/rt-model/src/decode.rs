@@ -63,7 +63,11 @@ pub(crate) fn looks_like_non_protobuf(bytes: &[u8]) -> Option<&'static str> {
 }
 
 fn trim_text_prefix(bytes: &[u8]) -> &[u8] {
-    let mut start = if bytes.starts_with(b"\xef\xbb\xbf") { 3 } else { 0 };
+    let mut start = if bytes.starts_with(b"\xef\xbb\xbf") {
+        3
+    } else {
+        0
+    };
 
     while start < bytes.len() && matches!(bytes[start], b' ' | b'\t' | b'\r' | b'\n') {
         start += 1;
@@ -87,7 +91,9 @@ fn contains_ascii_case_insensitive(bytes: &[u8], needle: &[u8]) -> bool {
 }
 
 fn in_extension_range(field: u32) -> bool {
-    EXTENSION_RANGES.iter().any(|&(lo, hi)| field >= lo && field <= hi)
+    EXTENSION_RANGES
+        .iter()
+        .any(|&(lo, hi)| field >= lo && field <= hi)
 }
 
 /// Bir mesaj tipinin decode sözleşmesi.
@@ -152,7 +158,8 @@ impl DecodeCtx {
     /// Anomali kaydeder. Offset, kök payload'a göre normalize edilir.
     pub fn report(&mut self, kind: AnomalyKind, local_offset: usize) {
         let path = self.path.join(".");
-        self.anomalies.push(Anomaly::new(kind, path, self.offset_base + local_offset));
+        self.anomalies
+            .push(Anomaly::new(kind, path, self.offset_base + local_offset));
     }
 
     fn push_path(&mut self, seg: impl Into<String>) {
@@ -247,7 +254,10 @@ impl DecodeCtx {
             Some(v) => Some(v),
             None => {
                 self.report(
-                    AnomalyKind::UnknownEnumValue { enum_name: E::NAME, value: signed },
+                    AnomalyKind::UnknownEnumValue {
+                        enum_name: E::NAME,
+                        value: signed,
+                    },
                     f.offset,
                 );
                 None
@@ -271,7 +281,12 @@ impl DecodeCtx {
 
     fn decode_nested<M: Message>(&mut self, bytes: &[u8], base: usize) -> Option<M> {
         if self.depth + 1 > self.max_depth {
-            self.report(AnomalyKind::DepthLimitExceeded { limit: self.max_depth }, 0);
+            self.report(
+                AnomalyKind::DepthLimitExceeded {
+                    limit: self.max_depth,
+                },
+                0,
+            );
             return None;
         }
         let saved_base = self.offset_base;
@@ -307,7 +322,10 @@ impl DecodeCtx {
 
     fn wrong_type(&mut self, f: &Field<'_>, expected: u8) {
         self.report(
-            AnomalyKind::UnexpectedWireType { expected, found: f.wire_type },
+            AnomalyKind::UnexpectedWireType {
+                expected,
+                found: f.wire_type,
+            },
             f.offset,
         );
     }
@@ -332,9 +350,13 @@ pub fn decode_body<M: Message>(bytes: &[u8], ctx: &mut DecodeCtx) -> M {
             Ok(field) => {
                 if !msg.merge_field(&field, ctx) {
                     let kind = if in_extension_range(field.number) {
-                        AnomalyKind::ExtensionField { field: field.number }
+                        AnomalyKind::ExtensionField {
+                            field: field.number,
+                        }
                     } else {
-                        AnomalyKind::UnknownField { field: field.number }
+                        AnomalyKind::UnknownField {
+                            field: field.number,
+                        }
                     };
                     ctx.report(kind, field.offset);
                 }
@@ -345,7 +367,10 @@ pub fn decode_body<M: Message>(bytes: &[u8], ctx: &mut DecodeCtx) -> M {
                 // ile "payload'ın son 3 KB'ı bozuk" farklı teşhislerdir.
                 let left = reader.remaining();
                 if left > 0 {
-                    ctx.report(AnomalyKind::TrailingGarbage { remaining: left }, reader.position());
+                    ctx.report(
+                        AnomalyKind::TrailingGarbage { remaining: left },
+                        reader.position(),
+                    );
                 }
                 break;
             }

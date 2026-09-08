@@ -80,8 +80,10 @@ impl StaticFeed {
     /// GTFS ZIP arşivini bellekte açar. Gerekli beş tablodan `calendar.txt`
     /// eksik olabilir; bu durumda calendar indeksi boş kalır.
     pub fn from_zip_bytes(bytes: &[u8]) -> Result<Self, StaticFeedError> {
-        let mut archive = ZipArchive::new(Cursor::new(bytes))
-            .map_err(|source| StaticFeedError::Zip { detail: source.to_string() })?;
+        let mut archive =
+            ZipArchive::new(Cursor::new(bytes)).map_err(|source| StaticFeedError::Zip {
+                detail: source.to_string(),
+            })?;
 
         let routes = parse_routes(&read_required(&mut archive, "routes.txt")?)?;
         let trips = parse_trips(&read_required(&mut archive, "trips.txt")?)?;
@@ -139,12 +141,29 @@ impl StaticFeed {
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum StaticFeedError {
-    Zip { detail: String },
-    MissingFile { file: &'static str },
-    Csv { file: &'static str, detail: String },
-    MissingColumn { file: &'static str, column: &'static str },
-    DuplicateId { file: &'static str, id: String },
-    EmptyField { file: &'static str, column: &'static str, row: usize },
+    Zip {
+        detail: String,
+    },
+    MissingFile {
+        file: &'static str,
+    },
+    Csv {
+        file: &'static str,
+        detail: String,
+    },
+    MissingColumn {
+        file: &'static str,
+        column: &'static str,
+    },
+    DuplicateId {
+        file: &'static str,
+        id: String,
+    },
+    EmptyField {
+        file: &'static str,
+        column: &'static str,
+        row: usize,
+    },
     InvalidField {
         file: &'static str,
         column: &'static str,
@@ -166,7 +185,12 @@ impl fmt::Display for StaticFeedError {
             Self::EmptyField { file, column, row } => {
                 write!(f, "{file} satır {row}: {column} boş")
             }
-            Self::InvalidField { file, column, value, row } => {
+            Self::InvalidField {
+                file,
+                column,
+                value,
+                row,
+            } => {
                 write!(f, "{file} satır {row}: {column} geçersiz değer: {value}")
             }
         }
@@ -188,9 +212,9 @@ fn read_optional<R: Read + std::io::Seek>(
 ) -> Result<Option<Vec<u8>>, StaticFeedError> {
     let mut index = None;
     for i in 0..archive.len() {
-        let entry = archive
-            .by_index(i)
-            .map_err(|source| StaticFeedError::Zip { detail: source.to_string() })?;
+        let entry = archive.by_index(i).map_err(|source| StaticFeedError::Zip {
+            detail: source.to_string(),
+        })?;
         if entry.name().rsplit('/').next() == Some(wanted) {
             index = Some(i);
             break;
@@ -200,11 +224,15 @@ fn read_optional<R: Read + std::io::Seek>(
     let Some(index) = index else { return Ok(None) };
     let mut entry = archive
         .by_index(index)
-        .map_err(|source| StaticFeedError::Zip { detail: source.to_string() })?;
+        .map_err(|source| StaticFeedError::Zip {
+            detail: source.to_string(),
+        })?;
     let mut bytes = Vec::new();
     entry
         .read_to_end(&mut bytes)
-        .map_err(|source| StaticFeedError::Zip { detail: source.to_string() })?;
+        .map_err(|source| StaticFeedError::Zip {
+            detail: source.to_string(),
+        })?;
     Ok(Some(bytes))
 }
 
@@ -219,20 +247,31 @@ impl<'a> Table<'a> {
         let mut reader = csv::ReaderBuilder::new().flexible(true).from_reader(bytes);
         let headers = reader
             .headers()
-            .map_err(|source| StaticFeedError::Csv { file, detail: source.to_string() })?
+            .map_err(|source| StaticFeedError::Csv {
+                file,
+                detail: source.to_string(),
+            })?
             .clone();
-        Ok(Self { file, headers, bytes })
+        Ok(Self {
+            file,
+            headers,
+            bytes,
+        })
     }
 
     fn column(&self, name: &'static str) -> Result<usize, StaticFeedError> {
-        self.headers
-            .iter()
-            .position(|header| header == name)
-            .ok_or(StaticFeedError::MissingColumn { file: self.file, column: name })
+        self.headers.iter().position(|header| header == name).ok_or(
+            StaticFeedError::MissingColumn {
+                file: self.file,
+                column: name,
+            },
+        )
     }
 
     fn records(&self) -> Result<Vec<(usize, csv::StringRecord)>, StaticFeedError> {
-        let mut reader = csv::ReaderBuilder::new().flexible(true).from_reader(self.bytes);
+        let mut reader = csv::ReaderBuilder::new()
+            .flexible(true)
+            .from_reader(self.bytes);
         let mut rows = Vec::new();
         for (index, result) in reader.records().enumerate() {
             let row = index + 2;
@@ -264,7 +303,11 @@ impl<'a> Table<'a> {
     }
 
     fn optional(&self, record: &csv::StringRecord, index: usize) -> Option<String> {
-        record.get(index).map(str::trim).filter(|value| !value.is_empty()).map(str::to_owned)
+        record
+            .get(index)
+            .map(str::trim)
+            .filter(|value| !value.is_empty())
+            .map(str::to_owned)
     }
 }
 
@@ -279,7 +322,10 @@ fn parse_routes(bytes: &[u8]) -> Result<BTreeMap<String, Route>, StaticFeedError
     for (row, record) in table.records()? {
         let id = table.value(&record, route_id, row, "route_id")?;
         if routes.contains_key(&id) {
-            return Err(StaticFeedError::DuplicateId { file: "routes.txt", id });
+            return Err(StaticFeedError::DuplicateId {
+                file: "routes.txt",
+                id,
+            });
         }
         let route_type = match route_type.and_then(|index| table.optional(&record, index)) {
             Some(value) => Some(parse_number("routes.txt", "route_type", &value, row)?),
@@ -310,7 +356,10 @@ fn parse_trips(bytes: &[u8]) -> Result<BTreeMap<String, Trip>, StaticFeedError> 
     for (row, record) in table.records()? {
         let id = table.value(&record, trip_id, row, "trip_id")?;
         if trips.contains_key(&id) {
-            return Err(StaticFeedError::DuplicateId { file: "trips.txt", id });
+            return Err(StaticFeedError::DuplicateId {
+                file: "trips.txt",
+                id,
+            });
         }
         let direction_id = match direction.and_then(|index| table.optional(&record, index)) {
             Some(value) => Some(parse_number("trips.txt", "direction_id", &value, row)?),
@@ -341,7 +390,10 @@ fn parse_stops(bytes: &[u8]) -> Result<BTreeMap<String, Stop>, StaticFeedError> 
     for (row, record) in table.records()? {
         let id = table.value(&record, stop_id, row, "stop_id")?;
         if stops.contains_key(&id) {
-            return Err(StaticFeedError::DuplicateId { file: "stops.txt", id });
+            return Err(StaticFeedError::DuplicateId {
+                file: "stops.txt",
+                id,
+            });
         }
         stops.insert(
             id.clone(),
@@ -371,7 +423,8 @@ fn parse_stop_times(bytes: &[u8]) -> Result<BTreeMap<String, Vec<StopTime>>, Sta
         let sequence_value = table.value(&record, sequence, row, "stop_sequence")?;
         let stop_sequence = parse_number("stop_times.txt", "stop_sequence", &sequence_value, row)?;
         let arrival_time = parse_optional_time(&table, &record, arrival, row, "arrival_time")?;
-        let departure_time = parse_optional_time(&table, &record, departure, row, "departure_time")?;
+        let departure_time =
+            parse_optional_time(&table, &record, departure, row, "departure_time")?;
         by_trip.entry(trip.clone()).or_default().push(StopTime {
             trip_id: trip,
             arrival_time,
@@ -410,7 +463,10 @@ fn parse_calendars(bytes: &[u8]) -> Result<BTreeMap<String, Calendar>, StaticFee
     for (row, record) in table.records()? {
         let id = table.value(&record, service_id, row, "service_id")?;
         if calendars.contains_key(&id) {
-            return Err(StaticFeedError::DuplicateId { file: "calendar.txt", id });
+            return Err(StaticFeedError::DuplicateId {
+                file: "calendar.txt",
+                id,
+            });
         }
         let mut values = [false; 7];
         for (position, (name, index)) in day_columns.iter().enumerate() {
@@ -448,13 +504,18 @@ fn parse_optional_float(
     column: &'static str,
 ) -> Result<Option<f64>, StaticFeedError> {
     let Some(index) = index else { return Ok(None) };
-    let Some(value) = table.optional(record, index) else { return Ok(None) };
-    value.parse().map(Some).map_err(|_| StaticFeedError::InvalidField {
-        file: table.file,
-        column,
-        value,
-        row,
-    })
+    let Some(value) = table.optional(record, index) else {
+        return Ok(None);
+    };
+    value
+        .parse()
+        .map(Some)
+        .map_err(|_| StaticFeedError::InvalidField {
+            file: table.file,
+            column,
+            value,
+            row,
+        })
 }
 
 fn parse_optional_time(
@@ -465,13 +526,17 @@ fn parse_optional_time(
     column: &'static str,
 ) -> Result<Option<u32>, StaticFeedError> {
     let Some(index) = index else { return Ok(None) };
-    let Some(value) = table.optional(record, index) else { return Ok(None) };
-    parse_time(&value).map(Some).map_err(|_| StaticFeedError::InvalidField {
-        file: table.file,
-        column,
-        value,
-        row,
-    })
+    let Some(value) = table.optional(record, index) else {
+        return Ok(None);
+    };
+    parse_time(&value)
+        .map(Some)
+        .map_err(|_| StaticFeedError::InvalidField {
+            file: table.file,
+            column,
+            value,
+            row,
+        })
 }
 
 fn parse_number<T: std::str::FromStr>(
@@ -502,7 +567,12 @@ fn parse_time(value: &str) -> Result<u32, ()> {
         .ok_or(())
 }
 
-fn parse_flag(file: &'static str, column: &'static str, value: &str, row: usize) -> Result<bool, StaticFeedError> {
+fn parse_flag(
+    file: &'static str,
+    column: &'static str,
+    value: &str,
+    row: usize,
+) -> Result<bool, StaticFeedError> {
     match value {
         "0" => Ok(false),
         "1" => Ok(true),
@@ -515,7 +585,12 @@ fn parse_flag(file: &'static str, column: &'static str, value: &str, row: usize)
     }
 }
 
-fn validate_date(file: &'static str, column: &'static str, value: &str, row: usize) -> Result<(), StaticFeedError> {
+fn validate_date(
+    file: &'static str,
+    column: &'static str,
+    value: &str,
+    row: usize,
+) -> Result<(), StaticFeedError> {
     if value.len() == 8 && value.bytes().all(|byte| byte.is_ascii_digit()) {
         Ok(())
     } else {
@@ -576,7 +651,10 @@ mod tests {
         assert_eq!(feed.summary().stops, 2);
         assert_eq!(feed.summary().stop_times, 2);
         assert_eq!(feed.summary().calendars, 0);
-        assert_eq!(feed.routes()["R1"].route_long_name.as_deref(), Some("Main Street, Local"));
+        assert_eq!(
+            feed.routes()["R1"].route_long_name.as_deref(),
+            Some("Main Street, Local")
+        );
         let times = feed.stop_times_for_trip("T1").unwrap();
         assert_eq!(times[0].stop_sequence, 1);
         assert_eq!(times[0].arrival_time, Some(89_940));
@@ -603,7 +681,9 @@ mod tests {
         let archive = archive(&files[..3]);
         assert_eq!(
             StaticFeed::from_zip_bytes(&archive),
-            Err(StaticFeedError::MissingFile { file: "stop_times.txt" })
+            Err(StaticFeedError::MissingFile {
+                file: "stop_times.txt"
+            })
         );
     }
 
@@ -613,17 +693,25 @@ mod tests {
         files[1].1 = "route_id,service_id,trip_id\nR1,S1,T1\nR1,S1,T1\n";
         assert!(matches!(
             StaticFeed::from_zip_bytes(&archive(&files)),
-            Err(StaticFeedError::DuplicateId { file: "trips.txt", .. })
+            Err(StaticFeedError::DuplicateId {
+                file: "trips.txt",
+                ..
+            })
         ));
     }
 
     #[test]
     fn invalid_time_is_rejected() {
         let mut files = required_files();
-        files[3].1 = "trip_id,arrival_time,departure_time,stop_id,stop_sequence\nT1,25:60:00,,S1,1\n";
+        files[3].1 =
+            "trip_id,arrival_time,departure_time,stop_id,stop_sequence\nT1,25:60:00,,S1,1\n";
         assert!(matches!(
             StaticFeed::from_zip_bytes(&archive(&files)),
-            Err(StaticFeedError::InvalidField { file: "stop_times.txt", column: "arrival_time", .. })
+            Err(StaticFeedError::InvalidField {
+                file: "stop_times.txt",
+                column: "arrival_time",
+                ..
+            })
         ));
     }
 }

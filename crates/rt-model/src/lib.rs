@@ -82,5 +82,8 @@ pub fn decode_feed_message_with(bytes: &[u8], mut ctx: DecodeCtx) -> DecodedFeed
     }
 
     let message = decode::decode_body::<FeedMessage>(bytes, &mut ctx);
-    DecodedFeed { message, anomalies: ctx.into_anomalies() }
+    DecodedFeed {
+        message,
+        anomalies: ctx.into_anomalies(),
+    }
 }

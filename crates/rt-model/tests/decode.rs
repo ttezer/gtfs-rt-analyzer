@@ -14,7 +14,11 @@ use gtfs_rt_model::{decode_feed_message, decode_feed_message_with, DecodeCtx};
 /// Anomali türlerinin sabit adlarını verir — hangi anomalilerin çıktığını
 /// tek satırda karşılaştırmak için.
 fn kinds(bytes: &[u8]) -> Vec<&'static str> {
-    decode_feed_message(bytes).anomalies.iter().map(|a| a.kind.stable_name()).collect()
+    decode_feed_message(bytes)
+        .anomalies
+        .iter()
+        .map(|a| a.kind.stable_name())
+        .collect()
 }
 
 // ── Geçerli veri sessiz kalmalı ──────────────────────────────────────────────
@@ -22,12 +26,23 @@ fn kinds(bytes: &[u8]) -> Vec<&'static str> {
 #[test]
 fn minimal_valid_feed_is_silent() {
     let out = decode_feed_message(&minimal_feed());
-    assert!(out.is_clean(), "beklenmeyen anomaliler: {:?}", out.anomalies);
+    assert!(
+        out.is_clean(),
+        "beklenmeyen anomaliler: {:?}",
+        out.anomalies
+    );
     assert_eq!(out.message.entity.len(), 1);
     let e = &out.message.entity[0];
     assert_eq!(e.id.as_deref(), Some("e1"));
     assert_eq!(
-        e.trip_update.as_ref().unwrap().trip.as_ref().unwrap().trip_id.as_deref(),
+        e.trip_update
+            .as_ref()
+            .unwrap()
+            .trip
+            .as_ref()
+            .unwrap()
+            .trip_id
+            .as_deref(),
         Some("T1")
     );
 }
@@ -108,7 +123,10 @@ fn all_three_payload_kinds_are_silent() {
         };
         let bytes = Enc::new()
             .msg_field(1, header(1))
-            .msg_field(2, Enc::new().string_field(1, "e1").msg_field(field, payload))
+            .msg_field(
+                2,
+                Enc::new().string_field(1, "e1").msg_field(field, payload),
+            )
             .into_bytes();
         let out = decode_feed_message(&bytes);
         assert!(out.is_clean(), "{label}: {:?}", out.anomalies);
@@ -125,21 +143,36 @@ fn negative_delay_round_trips() {
         .into_bytes();
     let out = decode_feed_message(&bytes);
     assert!(out.is_clean(), "{:?}", out.anomalies);
-    assert_eq!(out.message.entity[0].trip_update.as_ref().unwrap().delay, Some(-120));
+    assert_eq!(
+        out.message.entity[0].trip_update.as_ref().unwrap().delay,
+        Some(-120)
+    );
 }
 
 #[test]
 fn position_with_both_required_fields_is_silent() {
     let vp = Enc::new()
         .msg_field(1, Enc::new().string_field(1, "T1"))
-        .msg_field(2, Enc::new().f32_field(1, 41.0).f32_field(2, 29.0).f64_field(4, 12345.5));
+        .msg_field(
+            2,
+            Enc::new()
+                .f32_field(1, 41.0)
+                .f32_field(2, 29.0)
+                .f64_field(4, 12345.5),
+        );
     let bytes = Enc::new()
         .msg_field(1, header(1))
         .msg_field(2, Enc::new().string_field(1, "e1").msg_field(4, vp))
         .into_bytes();
     let out = decode_feed_message(&bytes);
     assert!(out.is_clean(), "{:?}", out.anomalies);
-    let p = out.message.entity[0].vehicle.as_ref().unwrap().position.as_ref().unwrap();
+    let p = out.message.entity[0]
+        .vehicle
+        .as_ref()
+        .unwrap()
+        .position
+        .as_ref()
+        .unwrap();
     assert_eq!(p.latitude, Some(41.0));
     assert_eq!(p.odometer, Some(12345.5));
 }
@@ -148,7 +181,9 @@ fn position_with_both_required_fields_is_silent() {
 
 #[test]
 fn missing_feed_header_is_reported() {
-    let bytes = Enc::new().msg_field(2, entity_with_trip_update("e1", "T1")).into_bytes();
+    let bytes = Enc::new()
+        .msg_field(2, entity_with_trip_update("e1", "T1"))
+        .into_bytes();
     assert_eq!(kinds(&bytes), vec!["missing_required_field"]);
 }
 
@@ -171,10 +206,10 @@ fn missing_entity_id_is_reported() {
         .msg_field(2, Enc::new().msg_field(3, trip_update("T1")))
         .into_bytes();
     let out = decode_feed_message(&bytes);
-    assert!(out
-        .anomalies
-        .iter()
-        .any(|a| a.kind == AnomalyKind::MissingRequiredField { field: "FeedEntity.id" }));
+    assert!(out.anomalies.iter().any(|a| a.kind
+        == AnomalyKind::MissingRequiredField {
+            field: "FeedEntity.id"
+        }));
 }
 
 #[test]
@@ -183,14 +218,16 @@ fn missing_trip_in_trip_update_is_reported() {
         .msg_field(1, header(1))
         .msg_field(
             2,
-            Enc::new().string_field(1, "e1").msg_field(3, Enc::new().varint_field(4, 99)),
+            Enc::new()
+                .string_field(1, "e1")
+                .msg_field(3, Enc::new().varint_field(4, 99)),
         )
         .into_bytes();
     let out = decode_feed_message(&bytes);
-    assert!(out
-        .anomalies
-        .iter()
-        .any(|a| a.kind == AnomalyKind::MissingRequiredField { field: "TripUpdate.trip" }));
+    assert!(out.anomalies.iter().any(|a| a.kind
+        == AnomalyKind::MissingRequiredField {
+            field: "TripUpdate.trip"
+        }));
 }
 
 #[test]
@@ -252,7 +289,10 @@ fn unknown_field_is_reported_with_its_number() {
         .msg_field(2, entity_with_trip_update("e1", "T1"))
         .into_bytes();
     let out = decode_feed_message(&bytes);
-    assert!(out.anomalies.iter().any(|a| a.kind == AnomalyKind::UnknownField { field: 77 }));
+    assert!(out
+        .anomalies
+        .iter()
+        .any(|a| a.kind == AnomalyKind::UnknownField { field: 77 }));
 }
 
 #[test]
@@ -265,7 +305,9 @@ fn extension_range_fields_are_distinguished_from_unknown() {
             .into_bytes();
         let out = decode_feed_message(&bytes);
         assert!(
-            out.anomalies.iter().any(|a| a.kind == AnomalyKind::ExtensionField { field }),
+            out.anomalies
+                .iter()
+                .any(|a| a.kind == AnomalyKind::ExtensionField { field }),
             "alan {field} uzantı olarak işaretlenmedi: {:?}",
             out.anomalies
         );
@@ -278,7 +320,9 @@ fn extension_range_fields_are_distinguished_from_unknown() {
             .into_bytes();
         let out = decode_feed_message(&bytes);
         assert!(
-            out.anomalies.iter().any(|a| a.kind == AnomalyKind::UnknownField { field }),
+            out.anomalies
+                .iter()
+                .any(|a| a.kind == AnomalyKind::UnknownField { field }),
             "alan {field} yanlışlıkla uzantı sayıldı"
         );
     }
@@ -293,13 +337,26 @@ fn unknown_enum_value_is_reported_and_field_is_dropped() {
         .msg_field(2, Enc::new().string_field(1, "e1").msg_field(3, tu))
         .into_bytes();
     let out = decode_feed_message(&bytes);
-    assert!(out.anomalies.iter().any(|a| matches!(
-        a.kind,
-        AnomalyKind::UnknownEnumValue { value: 4, .. }
-    )));
-    let trip = out.message.entity[0].trip_update.as_ref().unwrap().trip.as_ref().unwrap();
-    assert_eq!(trip.schedule_relationship, None, "tanınmayan enum alanı düşmeli");
-    assert_eq!(trip.trip_id.as_deref(), Some("T1"), "diğer alanlar korunmalı");
+    assert!(out
+        .anomalies
+        .iter()
+        .any(|a| matches!(a.kind, AnomalyKind::UnknownEnumValue { value: 4, .. })));
+    let trip = out.message.entity[0]
+        .trip_update
+        .as_ref()
+        .unwrap()
+        .trip
+        .as_ref()
+        .unwrap();
+    assert_eq!(
+        trip.schedule_relationship, None,
+        "tanınmayan enum alanı düşmeli"
+    );
+    assert_eq!(
+        trip.trip_id.as_deref(),
+        Some("T1"),
+        "diğer alanlar korunmalı"
+    );
 }
 
 #[test]
@@ -311,8 +368,17 @@ fn known_enum_value_survives() {
         .into_bytes();
     let out = decode_feed_message(&bytes);
     assert!(out.is_clean(), "{:?}", out.anomalies);
-    let trip = out.message.entity[0].trip_update.as_ref().unwrap().trip.as_ref().unwrap();
-    assert_eq!(trip.schedule_relationship, Some(TripScheduleRelationship::Canceled));
+    let trip = out.message.entity[0]
+        .trip_update
+        .as_ref()
+        .unwrap()
+        .trip
+        .as_ref()
+        .unwrap();
+    assert_eq!(
+        trip.schedule_relationship,
+        Some(TripScheduleRelationship::Canceled)
+    );
 }
 
 // ── Wire düzeyi bozukluklar ──────────────────────────────────────────────────
@@ -327,7 +393,10 @@ fn wrong_wire_type_is_reported_and_other_fields_survive() {
     let out = decode_feed_message(&bytes);
     assert!(out.anomalies.iter().any(|a| matches!(
         a.kind,
-        AnomalyKind::UnexpectedWireType { expected: 2, found: 0 }
+        AnomalyKind::UnexpectedWireType {
+            expected: 2,
+            found: 0
+        }
     )));
     // Aynı mesajdaki sağlam alan korunmalı.
     assert_eq!(out.message.header.as_ref().unwrap().timestamp, Some(99));
@@ -336,11 +405,17 @@ fn wrong_wire_type_is_reported_and_other_fields_survive() {
 #[test]
 fn invalid_utf8_is_reported() {
     let bytes = Enc::new()
-        .msg_field(1, Enc::new().bytes_field(1, &[0xFF, 0xFE]).varint_field(3, 1))
+        .msg_field(
+            1,
+            Enc::new().bytes_field(1, &[0xFF, 0xFE]).varint_field(3, 1),
+        )
         .msg_field(2, entity_with_trip_update("e1", "T1"))
         .into_bytes();
     let out = decode_feed_message(&bytes);
-    assert!(out.anomalies.iter().any(|a| a.kind == AnomalyKind::InvalidUtf8));
+    assert!(out
+        .anomalies
+        .iter()
+        .any(|a| a.kind == AnomalyKind::InvalidUtf8));
 }
 
 #[test]
@@ -361,8 +436,7 @@ fn html_error_page_does_not_panic() {
     assert!(!out.is_clean());
     assert_eq!(out.wire_anomalies().count(), 0);
     assert!(out.anomalies.iter().any(|a| {
-        a.kind == AnomalyKind::NotProtobuf { looks_like: "html" }
-            && a.kind.is_payload_level()
+        a.kind == AnomalyKind::NotProtobuf { looks_like: "html" } && a.kind.is_payload_level()
     }));
 }
 
@@ -395,11 +469,16 @@ fn schema_has_no_cycles_so_nesting_cannot_run_away() {
 
     let out = decode_feed_message(&bytes);
     assert!(
-        !out.anomalies.iter().any(|a| matches!(a.kind, AnomalyKind::DepthLimitExceeded { .. })),
+        !out.anomalies
+            .iter()
+            .any(|a| matches!(a.kind, AnomalyKind::DepthLimitExceeded { .. })),
         "kapağa ulaşıldı — şema döngüsel hale gelmiş olabilir, varsayımı gözden geçir"
     );
     // ModifiedTripSelector'da 7 numaralı alan yok: iniş burada durur.
-    assert!(out.anomalies.iter().any(|a| a.kind == AnomalyKind::UnknownField { field: 7 }));
+    assert!(out
+        .anomalies
+        .iter()
+        .any(|a| a.kind == AnomalyKind::UnknownField { field: 7 }));
 }
 
 #[test]
@@ -417,8 +496,16 @@ fn deepest_legitimate_path_decodes_cleanly() {
         .into_bytes();
 
     let out = decode_feed_message(&bytes);
-    assert!(out.is_clean(), "en derin meşru yol anomali üretti: {:?}", out.anomalies);
-    let sel = &out.message.entity[0].alert.as_ref().unwrap().informed_entity[0];
+    assert!(
+        out.is_clean(),
+        "en derin meşru yol anomali üretti: {:?}",
+        out.anomalies
+    );
+    let sel = &out.message.entity[0]
+        .alert
+        .as_ref()
+        .unwrap()
+        .informed_entity[0];
     let mt = sel.trip.as_ref().unwrap().modified_trip.as_ref().unwrap();
     assert_eq!(mt.modifications_id.as_deref(), Some("MOD1"));
 }
@@ -490,5 +577,9 @@ fn anomalies_are_ordered_by_byte_offset() {
     let offsets: Vec<usize> = out.anomalies.iter().map(|a| a.offset).collect();
     let mut sorted = offsets.clone();
     sorted.sort_unstable();
-    assert_eq!(offsets, sorted, "anomaliler bayt sırasında değil: {:?}", out.anomalies);
+    assert_eq!(
+        offsets, sorted,
+        "anomaliler bayt sırasında değil: {:?}",
+        out.anomalies
+    );
 }

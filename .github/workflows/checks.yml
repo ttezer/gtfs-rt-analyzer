@@ -23,7 +23,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Install toolchain
-        run: rustup component add clippy
+        run: rustup component add clippy rustfmt
 
       - name: Cache cargo
         uses: actions/cache@v4
@@ -40,6 +40,9 @@ jobs:
 
       - name: Clippy
         run: cargo clippy --workspace --all-targets -- -D warnings
+
+      - name: Formatting
+        run: cargo fmt --all -- --check
 
   proxy:
     runs-on: ubuntu-latest

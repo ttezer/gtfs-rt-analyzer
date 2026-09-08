@@ -98,7 +98,9 @@ pub fn trip_update(trip_id: &str) -> Enc {
 
 /// Tek `TripUpdate` taşıyan geçerli `FeedEntity`.
 pub fn entity_with_trip_update(id: &str, trip_id: &str) -> Enc {
-    Enc::new().string_field(1, id).msg_field(3, trip_update(trip_id))
+    Enc::new()
+        .string_field(1, id)
+        .msg_field(3, trip_update(trip_id))
 }
 
 /// Tek entity'li, tümüyle geçerli bir `FeedMessage`.

@@ -222,7 +222,10 @@ impl Message for TranslatedImage {
         match f.number {
             1 => {
                 let i = self.localized_image.len();
-                push_if!(self.localized_image, ctx.nested_repeated(f, "localized_image", i));
+                push_if!(
+                    self.localized_image,
+                    ctx.nested_repeated(f, "localized_image", i)
+                );
             }
             _ => return false,
         }

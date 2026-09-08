@@ -35,7 +35,10 @@ impl Message for Alert {
         match f.number {
             1 => {
                 let i = self.active_period.len();
-                push_if!(self.active_period, ctx.nested_repeated(f, "active_period", i));
+                push_if!(
+                    self.active_period,
+                    ctx.nested_repeated(f, "active_period", i)
+                );
             }
             2 => {
                 let i = self.communication_period.len();
@@ -46,11 +49,17 @@ impl Message for Alert {
             }
             3 => {
                 let i = self.impact_period.len();
-                push_if!(self.impact_period, ctx.nested_repeated(f, "impact_period", i));
+                push_if!(
+                    self.impact_period,
+                    ctx.nested_repeated(f, "impact_period", i)
+                );
             }
             5 => {
                 let i = self.informed_entity.len();
-                push_if!(self.informed_entity, ctx.nested_repeated(f, "informed_entity", i));
+                push_if!(
+                    self.informed_entity,
+                    ctx.nested_repeated(f, "informed_entity", i)
+                );
             }
             6 => set_if!(self.cause, ctx.enum_value(f)),
             7 => set_if!(self.effect, ctx.enum_value(f)),
@@ -58,10 +67,16 @@ impl Message for Alert {
             10 => set_if!(self.header_text, ctx.nested(f, "header_text")),
             11 => set_if!(self.description_text, ctx.nested(f, "description_text")),
             12 => set_if!(self.tts_header_text, ctx.nested(f, "tts_header_text")),
-            13 => set_if!(self.tts_description_text, ctx.nested(f, "tts_description_text")),
+            13 => set_if!(
+                self.tts_description_text,
+                ctx.nested(f, "tts_description_text")
+            ),
             14 => set_if!(self.severity_level, ctx.enum_value(f)),
             15 => set_if!(self.image, ctx.nested(f, "image")),
-            16 => set_if!(self.image_alternative_text, ctx.nested(f, "image_alternative_text")),
+            16 => set_if!(
+                self.image_alternative_text,
+                ctx.nested(f, "image_alternative_text")
+            ),
             17 => set_if!(self.cause_detail, ctx.nested(f, "cause_detail")),
             18 => set_if!(self.effect_detail, ctx.nested(f, "effect_detail")),
             _ => return false,

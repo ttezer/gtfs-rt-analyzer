@@ -29,14 +29,21 @@ fn main() {
     let header = out.message.header.as_ref();
     println!("dosya            : {path}");
     println!("boyut            : {} bayt", bytes.len());
-    println!("çözme süresi     : {:.1} ms", elapsed.as_secs_f64() * 1000.0);
+    println!(
+        "çözme süresi     : {:.1} ms",
+        elapsed.as_secs_f64() * 1000.0
+    );
     println!(
         "rt sürümü        : {}",
-        header.and_then(|h| h.gtfs_realtime_version.as_deref()).unwrap_or("-")
+        header
+            .and_then(|h| h.gtfs_realtime_version.as_deref())
+            .unwrap_or("-")
     );
     println!(
         "header timestamp : {}",
-        header.and_then(|h| h.timestamp).map_or("-".to_string(), |t| t.to_string())
+        header
+            .and_then(|h| h.timestamp)
+            .map_or("-".to_string(), |t| t.to_string())
     );
     println!("entity sayısı    : {}", out.message.entity.len());
 

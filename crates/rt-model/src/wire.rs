@@ -77,7 +77,11 @@ pub struct WireReader<'a> {
 
 impl<'a> WireReader<'a> {
     pub fn new(buf: &'a [u8]) -> Self {
-        Self { buf, pos: 0, stopped: false }
+        Self {
+            buf,
+            pos: 0,
+            stopped: false,
+        }
     }
 
     /// Okunmamış bayt sayısı.
@@ -124,7 +128,10 @@ impl<'a> WireReader<'a> {
         let wt = (tag & 0x07) as u8;
 
         if number == 0 {
-            return Err(WireFault { kind: AnomalyKind::ZeroFieldNumber, offset: start });
+            return Err(WireFault {
+                kind: AnomalyKind::ZeroFieldNumber,
+                offset: start,
+            });
         }
 
         let value = match wt {
@@ -136,7 +143,10 @@ impl<'a> WireReader<'a> {
                 let remaining = self.remaining();
                 if len > remaining {
                     return Err(WireFault {
-                        kind: AnomalyKind::LengthExceedsRemaining { declared: len, remaining },
+                        kind: AnomalyKind::LengthExceedsRemaining {
+                            declared: len,
+                            remaining,
+                        },
                         offset: start,
                     });
                 }
@@ -148,7 +158,10 @@ impl<'a> WireReader<'a> {
                 // GTFS-Realtime group kullanmaz. Gövdesini atlamaya çalışmıyoruz:
                 // group'lar iç içe olabilir ve doğru atlamak, hiç kullanılmayan bir
                 // kodlama için gereksiz karmaşıklık. Okuyucu burada durur.
-                return Err(WireFault { kind: AnomalyKind::DeprecatedGroup, offset: start });
+                return Err(WireFault {
+                    kind: AnomalyKind::DeprecatedGroup,
+                    offset: start,
+                });
             }
             other => {
                 return Err(WireFault {
@@ -158,7 +171,12 @@ impl<'a> WireReader<'a> {
             }
         };
 
-        Ok(Field { number, wire_type: wt, value, offset: start })
+        Ok(Field {
+            number,
+            wire_type: wt,
+            value,
+            offset: start,
+        })
     }
 
     fn read_varint(&mut self, field_start: usize) -> Result<u64, WireFault> {
@@ -168,10 +186,16 @@ impl<'a> WireReader<'a> {
 
         loop {
             if self.pos >= self.buf.len() {
-                return Err(WireFault { kind: AnomalyKind::Truncated, offset: field_start });
+                return Err(WireFault {
+                    kind: AnomalyKind::Truncated,
+                    offset: field_start,
+                });
             }
             if consumed == MAX_VARINT_BYTES {
-                return Err(WireFault { kind: AnomalyKind::VarintTooLong, offset: field_start });
+                return Err(WireFault {
+                    kind: AnomalyKind::VarintTooLong,
+                    offset: field_start,
+                });
             }
             let byte = self.buf[self.pos];
             self.pos += 1;
@@ -188,7 +212,10 @@ impl<'a> WireReader<'a> {
 
     fn read_fixed<const N: usize>(&mut self, field_start: usize) -> Result<u64, WireFault> {
         if self.remaining() < N {
-            return Err(WireFault { kind: AnomalyKind::Truncated, offset: field_start });
+            return Err(WireFault {
+                kind: AnomalyKind::Truncated,
+                offset: field_start,
+            });
         }
         let mut bytes = [0u8; 8];
         bytes[..N].copy_from_slice(&self.buf[self.pos..self.pos + N]);
@@ -310,7 +337,10 @@ mod tests {
         buf.extend(std::iter::repeat_n(0xFF, MAX_VARINT_BYTES));
         buf.push(0x01);
         let got = fields(&buf);
-        assert_eq!(got[0].as_ref().unwrap_err().kind, AnomalyKind::VarintTooLong);
+        assert_eq!(
+            got[0].as_ref().unwrap_err().kind,
+            AnomalyKind::VarintTooLong
+        );
     }
 
     #[test]
@@ -327,7 +357,10 @@ mod tests {
     fn zero_field_number_is_reported() {
         let buf = [0x00, 0x00];
         let got = fields(&buf);
-        assert_eq!(got[0].as_ref().unwrap_err().kind, AnomalyKind::ZeroFieldNumber);
+        assert_eq!(
+            got[0].as_ref().unwrap_err().kind,
+            AnomalyKind::ZeroFieldNumber
+        );
     }
 
     #[test]
@@ -348,7 +381,10 @@ mod tests {
         for wt in [wire_type::START_GROUP, wire_type::END_GROUP] {
             let buf = [tag(1, wt)];
             let got = fields(&buf);
-            assert_eq!(got[0].as_ref().unwrap_err().kind, AnomalyKind::DeprecatedGroup);
+            assert_eq!(
+                got[0].as_ref().unwrap_err().kind,
+                AnomalyKind::DeprecatedGroup
+            );
         }
     }
 
@@ -359,7 +395,10 @@ mod tests {
         let got = fields(&buf);
         assert_eq!(
             got[0].as_ref().unwrap_err().kind,
-            AnomalyKind::LengthExceedsRemaining { declared: 9, remaining: 2 }
+            AnomalyKind::LengthExceedsRemaining {
+                declared: 9,
+                remaining: 2
+            }
         );
     }
 

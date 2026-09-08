@@ -5,10 +5,10 @@
 //! ilişkileri raporlar. Özellikle `ADDED`, `NEW` ve `DUPLICATED` trip'ler için
 //! statik `trips.txt` karşılığı zorlanmaz.
 
-use std::collections::BTreeMap;
 use gtfs_rt_model::model::enums::{StopTimeScheduleRelationship, TripScheduleRelationship};
 use gtfs_rt_model::model::{FeedMessage, StopTimeUpdate, TripDescriptor};
 use gtfs_static::StaticFeed;
+use std::collections::BTreeMap;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Severity {
@@ -70,7 +70,11 @@ pub fn check_snapshot(static_feed: &StaticFeed, realtime: &FeedMessage) -> Consi
                 );
                 if is_dynamic_trip(trip) {
                     report.skipped_dynamic_trips += 1;
-                } else if let Some(static_trip) = trip.trip_id.as_deref().and_then(|id| static_feed.trips().get(id)) {
+                } else if let Some(static_trip) = trip
+                    .trip_id
+                    .as_deref()
+                    .and_then(|id| static_feed.trips().get(id))
+                {
                     for (stop_index, update) in trip_update.stop_time_update.iter().enumerate() {
                         report.checked_stop_time_updates += 1;
                         check_stop_time_update(
@@ -101,10 +105,11 @@ pub fn check_snapshot(static_feed: &StaticFeed, realtime: &FeedMessage) -> Consi
                 if let Some(trip_id) = trip.trip_id.as_ref() {
                     if !is_dynamic_trip(trip) {
                         report.vehicle_trips += 1;
-                        vehicles_by_trip
-                            .entry(trip_id.clone())
-                            .or_default()
-                            .push(entity_id.clone().unwrap_or_else(|| format!("entity[{index}]")));
+                        vehicles_by_trip.entry(trip_id.clone()).or_default().push(
+                            entity_id
+                                .clone()
+                                .unwrap_or_else(|| format!("entity[{index}]")),
+                        );
                     }
                 }
             }
@@ -112,7 +117,9 @@ pub fn check_snapshot(static_feed: &StaticFeed, realtime: &FeedMessage) -> Consi
     }
 
     report.checked_trip_references = count_trip_references(realtime);
-    report.notices.extend(multiple_vehicle_notices(vehicles_by_trip));
+    report
+        .notices
+        .extend(multiple_vehicle_notices(vehicles_by_trip));
     report
 }
 
@@ -121,8 +128,17 @@ fn count_trip_references(realtime: &FeedMessage) -> usize {
         .entity
         .iter()
         .map(|entity| {
-            usize::from(entity.trip_update.as_ref().is_some_and(|value| value.trip.is_some()))
-                + usize::from(entity.vehicle.as_ref().is_some_and(|value| value.trip.is_some()))
+            usize::from(
+                entity
+                    .trip_update
+                    .as_ref()
+                    .is_some_and(|value| value.trip.is_some()),
+            ) + usize::from(
+                entity
+                    .vehicle
+                    .as_ref()
+                    .is_some_and(|value| value.trip.is_some()),
+            )
         })
         .sum()
 }
@@ -145,7 +161,9 @@ fn check_trip_reference(
     path: &str,
     report: &mut ConsistencyReport,
 ) {
-    let Some(trip_id) = trip.trip_id.as_deref() else { return };
+    let Some(trip_id) = trip.trip_id.as_deref() else {
+        return;
+    };
     if is_dynamic_trip(trip) {
         return;
     }
@@ -156,12 +174,17 @@ fn check_trip_reference(
             severity: Severity::Error,
             entity_id: entity_id.map(str::to_owned),
             path: format!("{path}.trip_id"),
-            message: format!("trip_id '{trip_id}' realtime snapshot'ında var, static trips.txt içinde yok"),
+            message: format!(
+                "trip_id '{trip_id}' realtime snapshot'ında var, static trips.txt içinde yok"
+            ),
         });
         return;
     };
 
-    if let (Some(realtime_route), Some(static_route)) = (trip.route_id.as_deref(), Some(static_trip.route_id.as_str())) {
+    if let (Some(realtime_route), Some(static_route)) = (
+        trip.route_id.as_deref(),
+        Some(static_trip.route_id.as_str()),
+    ) {
         if realtime_route != static_route {
             report.notices.push(Notice {
                 code: "RT_ROUTE_MISMATCH",
@@ -208,7 +231,9 @@ fn check_stop_time_update(
                 severity: Severity::Error,
                 entity_id: entity_id.map(str::to_owned),
                 path: format!("{path}.stop_id"),
-                message: format!("stop_id '{stop_id}' realtime snapshot'ında var, static stops.txt içinde yok"),
+                message: format!(
+                    "stop_id '{stop_id}' realtime snapshot'ında var, static stops.txt içinde yok"
+                ),
             });
         }
     }
@@ -220,7 +245,9 @@ fn check_stop_time_update(
                 severity: Severity::Warning,
                 entity_id: entity_id.map(str::to_owned),
                 path: format!("{path}.schedule_relationship"),
-                message: format!("durak {state} olarak işaretli ama varış/kalkış tahmini gönderiliyor"),
+                message: format!(
+                    "durak {state} olarak işaretli ama varış/kalkış tahmini gönderiliyor"
+                ),
             });
         }
     }
@@ -230,14 +257,19 @@ fn check_stop_time_update(
     };
 
     if let Some(sequence) = update.stop_sequence {
-        let matching = static_times.iter().find(|time| time.stop_sequence == sequence);
+        let matching = static_times
+            .iter()
+            .find(|time| time.stop_sequence == sequence);
         let Some(matching) = matching else {
             report.notices.push(Notice {
                 code: "RT_STOP_SEQUENCE_NOT_IN_STATIC",
                 severity: Severity::Error,
                 entity_id: entity_id.map(str::to_owned),
                 path: format!("{path}.stop_sequence"),
-                message: format!("stop_sequence {sequence} trip '{}' static stop_times.txt içinde yok", static_trip.trip_id),
+                message: format!(
+                    "stop_sequence {sequence} trip '{}' static stop_times.txt içinde yok",
+                    static_trip.trip_id
+                ),
             });
             return;
         };
@@ -265,7 +297,10 @@ fn multiple_vehicle_notices(vehicles_by_trip: BTreeMap<String, Vec<String>>) -> 
                 severity: Severity::Warning,
                 entity_id: None,
                 path: "vehicle.trip.trip_id".to_owned(),
-                message: format!("trip_id '{trip_id}' için aynı snapshot'ta {} araç bildiriyor", entities.len()),
+                message: format!(
+                    "trip_id '{trip_id}' için aynı snapshot'ta {} araç bildiriyor",
+                    entities.len()
+                ),
             })
         })
         .collect()
@@ -274,11 +309,11 @@ fn multiple_vehicle_notices(vehicles_by_trip: BTreeMap<String, Vec<String>>) -> 
 #[cfg(test)]
 mod tests {
     use super::*;
-    use gtfs_rt_model::model::feed::{FeedEntity, FeedMessage};
+    use gtfs_rt_model::model::descriptor::TripDescriptor;
     use gtfs_rt_model::model::enums::StopTimeScheduleRelationship;
+    use gtfs_rt_model::model::feed::{FeedEntity, FeedMessage};
     use gtfs_rt_model::model::trip_update::{StopTimeEvent, StopTimeUpdate, TripUpdate};
     use gtfs_rt_model::model::vehicle::VehiclePosition;
-    use gtfs_rt_model::model::descriptor::TripDescriptor;
     use std::io::{Cursor, Write};
     use zip::write::SimpleFileOptions;
     use zip::ZipWriter;
@@ -288,14 +323,22 @@ mod tests {
             ("routes.txt", "route_id\nR1\n"),
             // T2 bilerek stop_times'sız: statik feed'in eksik olduğu durumda
             // stop_id kontrolünün hâlâ çalıştığını ölçmek için.
-            ("trips.txt", "route_id,service_id,trip_id\nR1,S1,T1\nR1,S1,T2\n"),
+            (
+                "trips.txt",
+                "route_id,service_id,trip_id\nR1,S1,T1\nR1,S1,T2\n",
+            ),
             ("stops.txt", "stop_id\nS1\nS2\n"),
-            ("stop_times.txt", "trip_id,stop_id,stop_sequence\nT1,S1,1\nT1,S2,2\n"),
+            (
+                "stop_times.txt",
+                "trip_id,stop_id,stop_sequence\nT1,S1,1\nT1,S2,2\n",
+            ),
         ];
         let mut output = Cursor::new(Vec::new());
         let mut writer = ZipWriter::new(&mut output);
         for (name, content) in files {
-            writer.start_file(name, SimpleFileOptions::default()).unwrap();
+            writer
+                .start_file(name, SimpleFileOptions::default())
+                .unwrap();
             writer.write_all(content.as_bytes()).unwrap();
         }
         writer.finish().unwrap();
@@ -311,7 +354,10 @@ mod tests {
     }
 
     fn realtime(entities: Vec<FeedEntity>) -> FeedMessage {
-        FeedMessage { header: None, entity: entities }
+        FeedMessage {
+            header: None,
+            entity: entities,
+        }
     }
 
     #[test]
@@ -345,8 +391,14 @@ mod tests {
             ..FeedEntity::default()
         };
         let report = check_snapshot(&static_feed(), &realtime(vec![entity]));
-        assert!(report.notices.iter().any(|notice| notice.code == "RT_ROUTE_MISMATCH"));
-        assert!(report.notices.iter().any(|notice| notice.code == "RT_STOP_SEQUENCE_MISMATCH"));
+        assert!(report
+            .notices
+            .iter()
+            .any(|notice| notice.code == "RT_ROUTE_MISMATCH"));
+        assert!(report
+            .notices
+            .iter()
+            .any(|notice| notice.code == "RT_STOP_SEQUENCE_MISMATCH"));
     }
 
     #[test]
@@ -405,7 +457,10 @@ mod tests {
             &static_feed(),
             &update_for(
                 "T1",
-                StopTimeUpdate { stop_id: Some("GHOST".to_owned()), ..StopTimeUpdate::default() },
+                StopTimeUpdate {
+                    stop_id: Some("GHOST".to_owned()),
+                    ..StopTimeUpdate::default()
+                },
             ),
         );
         assert_eq!(report.notices.len(), 1);
@@ -416,7 +471,13 @@ mod tests {
     fn unknown_stop_sequence_is_reported() {
         let report = check_snapshot(
             &static_feed(),
-            &update_for("T1", StopTimeUpdate { stop_sequence: Some(99), ..StopTimeUpdate::default() }),
+            &update_for(
+                "T1",
+                StopTimeUpdate {
+                    stop_sequence: Some(99),
+                    ..StopTimeUpdate::default()
+                },
+            ),
         );
         assert_eq!(report.notices.len(), 1);
         assert_eq!(report.notices[0].code, "RT_STOP_SEQUENCE_NOT_IN_STATIC");
@@ -430,7 +491,10 @@ mod tests {
             &static_feed(),
             &update_for(
                 "T2",
-                StopTimeUpdate { stop_id: Some("GHOST".to_owned()), ..StopTimeUpdate::default() },
+                StopTimeUpdate {
+                    stop_id: Some("GHOST".to_owned()),
+                    ..StopTimeUpdate::default()
+                },
             ),
         );
         assert_eq!(report.notices.len(), 1);
@@ -439,7 +503,10 @@ mod tests {
 
     #[test]
     fn prediction_on_a_skipped_stop_is_reported() {
-        for state in [StopTimeScheduleRelationship::Skipped, StopTimeScheduleRelationship::NoData] {
+        for state in [
+            StopTimeScheduleRelationship::Skipped,
+            StopTimeScheduleRelationship::NoData,
+        ] {
             let report = check_snapshot(
                 &static_feed(),
                 &update_for(
@@ -457,7 +524,10 @@ mod tests {
                 ),
             );
             assert!(
-                report.notices.iter().any(|n| n.code == "RT_TIME_ON_NON_STOPPING_UPDATE"),
+                report
+                    .notices
+                    .iter()
+                    .any(|n| n.code == "RT_TIME_ON_NON_STOPPING_UPDATE"),
                 "{state:?} için bulgu yok: {:?}",
                 report.notices
             );
@@ -497,6 +567,9 @@ mod tests {
                 },
             ),
         );
-        assert!(report.notices.iter().any(|n| n.code == "RT_STOP_NOT_IN_STATIC"));
+        assert!(report
+            .notices
+            .iter()
+            .any(|n| n.code == "RT_STOP_NOT_IN_STATIC"));
     }
 }

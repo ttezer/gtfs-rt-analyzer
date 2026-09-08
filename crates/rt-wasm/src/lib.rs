@@ -129,9 +129,10 @@ fn build_report(bytes: &[u8], schedule_zip: Option<&[u8]>) -> Report {
     Report {
         schema_version: 1,
         bytes: bytes.len(),
-        valid_protobuf: decoded.anomalies.iter().all(|anomaly| {
-            !anomaly.kind.is_payload_level() && !anomaly.kind.is_wire_level()
-        }),
+        valid_protobuf: decoded
+            .anomalies
+            .iter()
+            .all(|anomaly| !anomaly.kind.is_payload_level() && !anomaly.kind.is_wire_level()),
         header: decoded.message.header.as_ref().map(header_report),
         entities: entity_counts(&decoded.message),
         anomalies: decoded.anomalies.iter().map(anomaly_report).collect(),
@@ -169,7 +170,9 @@ fn consistency_section(feed: &StaticFeed, report: ConsistencyReport) -> Consiste
 fn header_report(header: &gtfs_rt_model::model::FeedHeader) -> HeaderReport {
     HeaderReport {
         gtfs_realtime_version: header.gtfs_realtime_version.clone(),
-        incrementality: header.incrementality.map(|value| value.proto_name().to_owned()),
+        incrementality: header
+            .incrementality
+            .map(|value| value.proto_name().to_owned()),
         timestamp: header.timestamp,
         feed_version: header.feed_version.clone(),
     }
@@ -239,7 +242,9 @@ mod tests {
         let mut output = Cursor::new(Vec::new());
         let mut writer = zip::ZipWriter::new(&mut output);
         for (name, content) in files {
-            writer.start_file(name, zip::write::SimpleFileOptions::default()).unwrap();
+            writer
+                .start_file(name, zip::write::SimpleFileOptions::default())
+                .unwrap();
             writer.write_all(content.as_bytes()).unwrap();
         }
         writer.finish().unwrap();

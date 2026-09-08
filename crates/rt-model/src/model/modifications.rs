@@ -19,13 +19,19 @@ impl Message for TripModifications {
         match f.number {
             1 => {
                 let i = self.selected_trips.len();
-                push_if!(self.selected_trips, ctx.nested_repeated(f, "selected_trips", i));
+                push_if!(
+                    self.selected_trips,
+                    ctx.nested_repeated(f, "selected_trips", i)
+                );
             }
             2 => push_if!(self.start_times, ctx.string(f)),
             3 => push_if!(self.service_dates, ctx.string(f)),
             4 => {
                 let i = self.modifications.len();
-                push_if!(self.modifications, ctx.nested_repeated(f, "modifications", i));
+                push_if!(
+                    self.modifications,
+                    ctx.nested_repeated(f, "modifications", i)
+                );
             }
             _ => return false,
         }
@@ -48,12 +54,18 @@ impl Message for Modification {
     const NAME: &'static str = "TripModifications.Modification";
     fn merge_field(&mut self, f: &Field<'_>, ctx: &mut DecodeCtx) -> bool {
         match f.number {
-            1 => set_if!(self.start_stop_selector, ctx.nested(f, "start_stop_selector")),
+            1 => set_if!(
+                self.start_stop_selector,
+                ctx.nested(f, "start_stop_selector")
+            ),
             2 => set_if!(self.end_stop_selector, ctx.nested(f, "end_stop_selector")),
             3 => set_if!(self.propagated_modification_delay, ctx.i32(f)),
             4 => {
                 let i = self.replacement_stops.len();
-                push_if!(self.replacement_stops, ctx.nested_repeated(f, "replacement_stops", i));
+                push_if!(
+                    self.replacement_stops,
+                    ctx.nested_repeated(f, "replacement_stops", i)
+                );
             }
             5 => set_if!(self.service_alert_id, ctx.string(f)),
             6 => set_if!(self.last_modified_time, ctx.u64(f)),

@@ -14,9 +14,10 @@ a gate added afterwards would not have covered them.
 
 - [x] Workflow running `cargo test --workspace`, `cargo clippy --workspace --all-targets -D warnings`, the proxy's `vitest` suite and `tsc --noEmit`
 
-`cargo fmt --check` is deliberately not a gate yet: the tree does not currently satisfy
-rustfmt, and adding the gate would require reformatting files this work does not otherwise
-touch. Worth doing as its own change.
+- [x] `cargo fmt --all -- --check` as a gate. Deferred at first because the tree did not
+  satisfy rustfmt and the reformatting would have touched files unrelated to the work above;
+  done afterwards as its own change. 114 sites across 16 files. Test results are byte-identical
+  before and after, so the reformatting changed no behaviour.
 
 ## 2. Correct the consistency rules
 
