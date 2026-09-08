@@ -10,6 +10,12 @@ Repo kökünden:
 wasm-pack build crates/rt-wasm --target web --release --out-dir ../../ui/pkg
 ```
 
+`ui/pkg/` is generated and not tracked: the deploy workflow builds it from source, so the
+published bundle cannot fall behind the rules it is supposed to run.
+
+```
+```
+
 Sonra herhangi bir statik HTTP sunucusuyla `ui/` klasörünü servis edin. `file://`
 üzerinden açmayın; ES module ve WASM yükleme politikaları HTTP ister.
 

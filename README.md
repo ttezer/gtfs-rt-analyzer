@@ -75,7 +75,9 @@ The browser adapter is built separately for WebAssembly:
 cargo build --target wasm32-unknown-unknown --release -p gtfs-rt-wasm
 ```
 
-The static browser UI is in `ui/`. Build its WebAssembly package with `wasm-pack`,
+The static browser UI is in `ui/`. Its WebAssembly package is **not committed** — CI builds
+it from source when deploying, so a rule change cannot reach the site without the package
+being rebuilt. For local development, build it with `wasm-pack`,
 then serve the directory over HTTP:
 
 ```

@@ -50,4 +50,10 @@ the browser can call. `analyze_feed` decodes protobuf and stops there.
 the bundle matches its sources, but once item 3 lands, a forgotten rebuild would leave the
 published rules behind the repository with no gate to catch it.
 
-- [ ] CI rebuilds the bundle and fails when the committed copy differs
+- [x] Solved at the root instead: the bundle is no longer committed. The deploy workflow
+  builds it from source, so there is nothing to drift.
+
+A byte-comparison gate was measured first and rejected. The build is reproducible on one
+machine, but `wasm-opt` comes from the local toolchain (Homebrew v130 here) while CI would
+use the one `wasm-pack` fetches — so identical sources would produce different bytes and the
+gate would fail for the wrong reason. Removing the committed copy makes the question moot.
