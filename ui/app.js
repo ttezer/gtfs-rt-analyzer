@@ -305,19 +305,22 @@ async function initCatalog() {
   }
 
   try {
-    const [response, scoreResponse] = await Promise.all([
-      fetch("./feeds.json", { cache: "no-store" }),
-      fetch("./schedule-scores.json", { cache: "no-store" }),
-    ]);
+    const response = await fetch("./feeds.json", { cache: "no-store" });
     if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
     const payload = await response.json();
     catalogState.feeds = Array.isArray(payload.feeds) ? payload.feeds : [];
-    if (scoreResponse.ok) {
-      const scorePayload = await scoreResponse.json();
-      const scores = Array.isArray(scorePayload.scores) ? scorePayload.scores : [];
-      catalogState.scores = new Map(scores.map((score) => [score.static_reference, score]));
-    }
     renderCatalog();
+
+    try {
+      const scoreResponse = await fetch("./schedule-scores.json", { cache: "no-store" });
+      if (scoreResponse.ok) {
+        const scorePayload = await scoreResponse.json();
+        const scores = Array.isArray(scorePayload.scores) ? scorePayload.scores : [];
+        catalogState.scores = new Map(scores.map((score) => [score.static_reference, score]));
+      }
+    } catch (scoreError) {
+      console.warn("Schedule score snapshot yüklenemedi", scoreError);
+    }
   } catch (error) {
     elements.catalogCount.textContent = "Katalog yok";
     elements.catalogNotice.className = "notice error";
