@@ -86,6 +86,9 @@ const TYPE_LABELS = {
   alerts: "Uyarı",
 };
 
+const DEFAULT_MAP_CENTER = [25, 10];
+const DEFAULT_MAP_ZOOM = 2;
+
 function escapeHtml(value) {
   return String(value ?? "")
     .replaceAll("&", "&amp;")
@@ -200,6 +203,9 @@ function clearCatalogSelection() {
   catalogState.selectedFeed = null;
   renderCatalog();
   setScheduleNotice("Hazır Schedule skoru için feed seçin.", "neutral");
+  if (catalogState.map) {
+    catalogState.map.setView(DEFAULT_MAP_CENTER, DEFAULT_MAP_ZOOM);
+  }
 }
 
 function popupForFeed(feed) {
@@ -313,7 +319,8 @@ function renderCatalog() {
 async function initCatalog() {
   try {
     if (window.L) {
-      catalogState.map = window.L.map(elements.feedMap, { worldCopyJump: true }).setView([25, 10], 2);
+      catalogState.map = window.L.map(elements.feedMap, { worldCopyJump: true })
+        .setView(DEFAULT_MAP_CENTER, DEFAULT_MAP_ZOOM);
       window.L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution: "&copy; OpenStreetMap contributors",
         maxZoom: 18,
