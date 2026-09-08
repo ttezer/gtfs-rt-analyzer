@@ -126,7 +126,7 @@ function renderScheduleScore(feed) {
     setScheduleNotice("Bu feed için katalogda bağlı Schedule yok; skor gösterilemiyor.", "neutral");
     return;
   }
-  if (!score || score.publish_score === null || score.overall_score === null) {
+  if (!score || score.publish_score == null || score.overall_score == null) {
     setScheduleNotice(
       "Bağlı Schedule var; bu snapshot'ta hazır skor yok. Haftalık Actions yenilemesinde hesaplanacak.",
       "neutral",
@@ -193,7 +193,6 @@ function selectCatalogFeed(feed) {
     "neutral",
   );
   renderCatalog();
-  elements.feedUrl.focus();
   renderScheduleScore(feed);
 }
 
@@ -243,7 +242,10 @@ function renderCatalog() {
         fillOpacity: 0.75,
       });
       marker.bindPopup(popupForFeed(feed));
-      marker.on("click", () => selectCatalogFeed(feed));
+      marker.on("click", (event) => {
+        event.originalEvent?.stopPropagation();
+        selectCatalogFeed(feed);
+      });
       marker.addTo(catalogState.map);
       catalogState.markers.push(marker);
       markerGroup.push(center);
@@ -316,6 +318,7 @@ async function initCatalog() {
         attribution: "&copy; OpenStreetMap contributors",
         maxZoom: 18,
       }).addTo(catalogState.map);
+      catalogState.map.on("click", () => clearCatalogSelection());
     } else {
       throw new Error("Leaflet yüklenemedi");
     }
