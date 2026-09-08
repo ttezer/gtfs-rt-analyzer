@@ -9,6 +9,7 @@
 # Local-only files (not for version control)
 /notgit/
 /samples/
+/scripts/node_modules/
 
 # OS
 .DS_Store

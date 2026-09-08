@@ -1,0 +1,32 @@
+{
+  "source": "gtfs-analyzer",
+  "source_url": "https://github.com/ttezer/gtfs-analyzer",
+  "engine_version": "0.12.0",
+  "updated_at": "2026-09-08",
+  "scores": [
+    {
+      "static_reference": "jbda-chitacity-chita-aiaibus",
+      "schedule_url": "https://files.mobilitydatabase.org/jbda-chitacity-chita-aiaibus/latest.zip",
+      "etag": "\"3740556d8e157e483085e06cf4969d9a\"",
+      "last_modified": "Thu, 05 Mar 2026 00:59:41 GMT",
+      "content_length": 65332,
+      "sha256": "9165070ac46a04bd8aadca27ba06001a0b4eacb28634f306ebe7d1d8a10b3e45",
+      "publish_score": 100,
+      "overall_score": 95.7,
+      "validation_status": "COMPLETE",
+      "analyzed_at": "2026-09-08T06:49:21.811Z"
+    },
+    {
+      "static_reference": "mdb-437",
+      "schedule_url": "https://files.mobilitydatabase.org/mdb-437/latest.zip",
+      "etag": "\"22e4e0686ee1ce27cdd0ad01c5a7f76e\"",
+      "last_modified": "Mon, 07 Sep 2026 00:44:32 GMT",
+      "content_length": 34398324,
+      "sha256": "a5ffebba72ca444ee8bdaf802e266fc37aaf25372b118472f8042df87e35deea",
+      "publish_score": 100,
+      "overall_score": 76.3,
+      "validation_status": "COMPLETE",
+      "analyzed_at": "2026-09-08T06:45:09Z"
+    }
+  ]
+}

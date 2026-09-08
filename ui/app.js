@@ -13,9 +13,7 @@ const catalogState = {
   feeds: [],
   markers: [],
   map: null,
-  scoreCache: new Map(),
-  scoreRequest: 0,
-  analyzerModule: null,
+  scores: new Map(),
 };
 
 const elements = {
@@ -116,51 +114,18 @@ function feedCenter(feed) {
   return Number.isFinite(lat) && Number.isFinite(lon) ? [lat, lon] : null;
 }
 
-function scheduleUrl(feed) {
-  return feed.static_reference
-    ? `https://files.mobilitydatabase.org/${encodeURIComponent(feed.static_reference)}/latest.zip`
-    : null;
-}
-
-function todayNumber() {
-  const now = new Date();
-  return now.getFullYear() * 10000 + (now.getMonth() + 1) * 100 + now.getDate();
-}
-
 function setScheduleNotice(text, kind = "neutral") {
   setNotice(elements.scheduleScore, text, kind);
 }
 
-function showScheduleOption(feed) {
-  const cached = feed.static_reference && catalogState.scoreCache.get(feed.static_reference);
-  if (cached) {
-    renderScheduleResult(feed, cached);
-    return;
-  }
+function renderScheduleScore(feed) {
+  const score = feed.static_reference && catalogState.scores.get(feed.static_reference);
   if (!feed.static_reference) {
-    setScheduleNotice("Bu feed için katalogda bağlı Schedule yok; skor hesaplanamaz.", "neutral");
+    setScheduleNotice("Bu feed için katalogda bağlı Schedule yok; skor gösterilemiyor.", "neutral");
     return;
   }
-
-  elements.scheduleScore.className = "notice neutral";
-  elements.scheduleScore.innerHTML = "";
-  const title = document.createElement("strong");
-  title.textContent = `Bağlı Schedule · ${feed.static_reference}`;
-  elements.scheduleScore.append(title);
-  const description = document.createElement("div");
-  description.textContent = "Yayın ve Genel skoru, Schedule ZIP'i indirildikten sonra tarayıcıda hesaplanır.";
-  elements.scheduleScore.append(description);
-  const button = document.createElement("button");
-  button.type = "button";
-  button.textContent = "Schedule skorunu hesapla";
-  button.addEventListener("click", () => void loadScheduleScore(feed));
-  elements.scheduleScore.append(button);
-}
-
-function renderScheduleResult(feed, result) {
-  const r5 = result?.reports?.r5;
-  if (!r5) {
-    setScheduleNotice("Schedule çözümlendi ancak skor raporu bulunamadı.", "warning");
+  if (!score || score.publish_score === null || score.overall_score === null) {
+    setScheduleNotice("Bağlı Schedule var; bu katalog snapshot'ında hazır skor yok.", "neutral");
     return;
   }
 
@@ -172,7 +137,7 @@ function renderScheduleResult(feed, result) {
 
   const values = document.createElement("div");
   values.className = "schedule-score-values";
-  for (const [label, value] of [["Yayın", r5.pub_score], ["Genel", r5.score]]) {
+  for (const [label, value] of [["Yayın", score.publish_score], ["Genel", score.overall_score]]) {
     const item = document.createElement("span");
     item.className = "schedule-score-value";
     item.append(`${label} `);
@@ -182,58 +147,15 @@ function renderScheduleResult(feed, result) {
     values.append(item);
   }
   elements.scheduleScore.append(values);
-
-  if (result.validation_status === "PARTIAL") {
+  const metadata = document.createElement("div");
+  metadata.className = "muted";
+  metadata.textContent = `Hazır skor · ${score.analyzed_at || "tarih yok"}`;
+  elements.scheduleScore.append(metadata);
+  if (score.validation_status === "PARTIAL") {
     const partial = document.createElement("div");
     partial.className = "muted";
     partial.textContent = "Analyzer doğrulaması eksik kapsamlı; skor temkinli yorumlanmalı.";
     elements.scheduleScore.append(partial);
-  }
-}
-
-async function loadScheduleScore(feed) {
-  const requestId = ++catalogState.scoreRequest;
-  if (!feed.static_reference) {
-    setScheduleNotice("Bu feed için katalogda bağlı Schedule yok; skor hesaplanamaz.", "neutral");
-    return;
-  }
-
-  const cached = catalogState.scoreCache.get(feed.static_reference);
-  if (cached) {
-    renderScheduleResult(feed, cached);
-    return;
-  }
-
-  const url = scheduleUrl(feed);
-  setScheduleNotice("Bağlı Schedule indiriliyor ve analyzer çalışıyor…", "neutral");
-  const controller = new AbortController();
-  const timeout = window.setTimeout(() => controller.abort(), 90_000);
-
-  try {
-    const response = await fetch(url, { cache: "no-store", signal: controller.signal });
-    if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
-    const bytes = new Uint8Array(await response.arrayBuffer());
-    if (requestId !== catalogState.scoreRequest) return;
-
-    if (!catalogState.analyzerModule) {
-      const module = await import("./pkg/schedule/gtfs_wasm.js");
-      await module.default();
-      catalogState.analyzerModule = module;
-    }
-    const raw = catalogState.analyzerModule.validate_with_today(bytes, "{}", todayNumber());
-    if (!raw?.Ok) {
-      throw new Error(raw?.Fatal?.message || "Schedule doğrulanamadı");
-    }
-    catalogState.scoreCache.set(feed.static_reference, raw.Ok);
-    if (requestId === catalogState.scoreRequest) renderScheduleResult(feed, raw.Ok);
-  } catch (error) {
-    if (requestId !== catalogState.scoreRequest) return;
-    const message = error?.name === "AbortError"
-      ? "Schedule isteği zaman aşımına uğradı."
-      : error?.message || "Schedule skoru alınamadı.";
-    setScheduleNotice(`Schedule skoru alınamadı: ${message}`, "warning");
-  } finally {
-    window.clearTimeout(timeout);
   }
 }
 
@@ -264,7 +186,7 @@ function selectCatalogFeed(feed) {
     "neutral",
   );
   elements.feedUrl.focus();
-  showScheduleOption(feed);
+  renderScheduleScore(feed);
 }
 
 function popupForFeed(feed) {
@@ -383,10 +305,18 @@ async function initCatalog() {
   }
 
   try {
-    const response = await fetch("./feeds.json", { cache: "no-store" });
+    const [response, scoreResponse] = await Promise.all([
+      fetch("./feeds.json", { cache: "no-store" }),
+      fetch("./schedule-scores.json", { cache: "no-store" }),
+    ]);
     if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
     const payload = await response.json();
     catalogState.feeds = Array.isArray(payload.feeds) ? payload.feeds : [];
+    if (scoreResponse.ok) {
+      const scorePayload = await scoreResponse.json();
+      const scores = Array.isArray(scorePayload.scores) ? scorePayload.scores : [];
+      catalogState.scores = new Map(scores.map((score) => [score.static_reference, score]));
+    }
     renderCatalog();
   } catch (error) {
     elements.catalogCount.textContent = "Katalog yok";

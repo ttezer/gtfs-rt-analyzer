@@ -1,0 +1,45 @@
+name: Refresh schedule scores
+
+on:
+  schedule:
+    # 20:00 Europe/Istanbul (UTC+03:00) every Sunday.
+    - cron: "0 17 * * 0"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: schedule-scores
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install analyzer SDK
+        run: npm install --prefix scripts --package-lock=false --no-audit --no-fund
+
+      - name: Refresh schedule scores
+        run: node scripts/update-schedule-scores.mjs
+
+      - name: Commit changed scores
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ui/schedule-scores.json
+          if git diff --cached --quiet; then
+            echo "No score changes"
+            exit 0
+          fi
+          git commit -m "Refresh schedule scores"
+          git push
