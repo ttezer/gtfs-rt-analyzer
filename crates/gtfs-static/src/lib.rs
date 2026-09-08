@@ -5,7 +5,7 @@
 //! `gtfs-pipeline`'a bağlanmaz ve kural çalıştırmaz; deterministik indeksleri
 //! üst katmandaki cross-validation kurallarına verir.
 
-use std::collections::BTreeMap;
+use std::collections::{BTreeMap, BTreeSet};
 use std::fmt;
 use std::io::{Cursor, Read};
 use zip::ZipArchive;
@@ -37,7 +37,9 @@ pub struct Stop {
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct StopTime {
-    pub trip_id: String,
+    // `trip_id` bilerek YOK: bu kayıtlara yalnızca sefere göre indekslenmiş olarak
+    // erişilir, dolayısıyla anahtarı her satırda tekrar saklamak 4,5 milyon gereksiz
+    // `String` ayırması demekti.
     pub arrival_time: Option<u32>,
     pub departure_time: Option<u32>,
     pub stop_id: String,
@@ -67,6 +69,28 @@ pub struct StaticFeedSummary {
     pub calendars: usize,
 }
 
+/// `stop_times.txt` okunurken hangi seferlerin tutulacağı.
+///
+/// ÖLÇÜM (MBTA, 2026-09-08): arşivde 168.145 sefer ve 4.494.139 `stop_times` satırı var;
+/// tipik bir realtime snapshot'ı bunların yalnızca 883'üne (%0,5) atıfta bulunuyor.
+/// Tamamını indekslemek 2,27 GB tepe bellek ve tarayıcıda 20 saniye demekti.
+#[derive(Debug, Clone, Copy)]
+pub enum TripFilter<'a> {
+    /// Bütün seferler tutulur — araçlar ve testler için.
+    All,
+    /// Yalnızca bu kümedeki seferler tutulur; diğer satırlar okunur ve atılır.
+    Only(&'a BTreeSet<String>),
+}
+
+impl TripFilter<'_> {
+    fn keeps(&self, trip_id: &str) -> bool {
+        match self {
+            Self::All => true,
+            Self::Only(wanted) => wanted.contains(trip_id),
+        }
+    }
+}
+
 #[derive(Debug, Clone, PartialEq)]
 pub struct StaticFeed {
     routes: BTreeMap<String, Route>,
@@ -80,6 +104,18 @@ impl StaticFeed {
     /// GTFS ZIP arşivini bellekte açar. Gerekli beş tablodan `calendar.txt`
     /// eksik olabilir; bu durumda calendar indeksi boş kalır.
     pub fn from_zip_bytes(bytes: &[u8]) -> Result<Self, StaticFeedError> {
+        Self::from_zip_bytes_filtered(bytes, TripFilter::All)
+    }
+
+    /// Yalnızca ilgilenilen seferlerin `stop_times` kayıtlarını tutarak okur.
+    ///
+    /// `routes`, `trips` ve `stops` tam okunur — "bu kimlik tarifede var mı" sorusu
+    /// ancak tam kümeyle cevaplanabilir. Filtrelenen tek tablo `stop_times.txt`'tir;
+    /// arşivin hacminin ezici çoğunluğu zaten oradadır (MBTA'da 252 MB'ın 210 MB'ı).
+    pub fn from_zip_bytes_filtered(
+        bytes: &[u8],
+        filter: TripFilter<'_>,
+    ) -> Result<Self, StaticFeedError> {
         let mut archive =
             ZipArchive::new(Cursor::new(bytes)).map_err(|source| StaticFeedError::Zip {
                 detail: source.to_string(),
@@ -88,7 +124,7 @@ impl StaticFeed {
         let routes = parse_routes(&read_required(&mut archive, "routes.txt")?)?;
         let trips = parse_trips(&read_required(&mut archive, "trips.txt")?)?;
         let stops = parse_stops(&read_required(&mut archive, "stops.txt")?)?;
-        let stop_times = parse_stop_times(&read_required(&mut archive, "stop_times.txt")?)?;
+        let stop_times = read_stop_times(&mut archive, filter)?;
         let calendars = match read_optional(&mut archive, "calendar.txt")? {
             Some(bytes) => parse_calendars(&bytes)?,
             None => BTreeMap::new(),
@@ -408,28 +444,99 @@ fn parse_stops(bytes: &[u8]) -> Result<BTreeMap<String, Stop>, StaticFeedError> 
     Ok(stops)
 }
 
-fn parse_stop_times(bytes: &[u8]) -> Result<BTreeMap<String, Vec<StopTime>>, StaticFeedError> {
-    let table = Table::new("stop_times.txt", bytes)?;
-    let trip_id = table.column("trip_id")?;
-    let arrival = table.column("arrival_time").ok();
-    let departure = table.column("departure_time").ok();
-    let stop_id = table.column("stop_id")?;
-    let sequence = table.column("stop_sequence")?;
-    let mut by_trip: BTreeMap<String, Vec<StopTime>> = BTreeMap::new();
+/// `stop_times.txt`'i arşivden **akıtarak** okur.
+///
+/// Diğer tablolardan farklı olarak içerik `Vec<u8>`'e kopyalanmaz ve satırlar bir
+/// vektörde toplanmaz: bu dosya tek başına arşivin açılmış hacminin çoğunu oluşturur
+/// (MBTA'da 210 MB / 4,49M satır) ve tamamını bellekte tutmak ölçülen 2,27 GB tepe
+/// belleğin ana kaynağıydı.
+fn read_stop_times<R: Read + std::io::Seek>(
+    archive: &mut ZipArchive<R>,
+    filter: TripFilter<'_>,
+) -> Result<BTreeMap<String, Vec<StopTime>>, StaticFeedError> {
+    let mut index = None;
+    for i in 0..archive.len() {
+        let entry = archive.by_index(i).map_err(|source| StaticFeedError::Zip {
+            detail: source.to_string(),
+        })?;
+        if entry.name().rsplit('/').next() == Some("stop_times.txt") {
+            index = Some(i);
+            break;
+        }
+    }
+    let Some(index) = index else {
+        return Err(StaticFeedError::MissingFile {
+            file: "stop_times.txt",
+        });
+    };
+    let entry = archive
+        .by_index(index)
+        .map_err(|source| StaticFeedError::Zip {
+            detail: source.to_string(),
+        })?;
 
-    for (row, record) in table.records()? {
-        let trip = table.value(&record, trip_id, row, "trip_id")?;
-        let stop = table.value(&record, stop_id, row, "stop_id")?;
-        let sequence_value = table.value(&record, sequence, row, "stop_sequence")?;
-        let stop_sequence = parse_number("stop_times.txt", "stop_sequence", &sequence_value, row)?;
-        let arrival_time = parse_optional_time(&table, &record, arrival, row, "arrival_time")?;
-        let departure_time =
-            parse_optional_time(&table, &record, departure, row, "departure_time")?;
-        by_trip.entry(trip.clone()).or_default().push(StopTime {
-            trip_id: trip,
+    parse_stop_times_streaming(entry, filter)
+}
+
+fn parse_stop_times_streaming<R: Read>(
+    source: R,
+    filter: TripFilter<'_>,
+) -> Result<BTreeMap<String, Vec<StopTime>>, StaticFeedError> {
+    const FILE: &str = "stop_times.txt";
+    let mut reader = csv::ReaderBuilder::new().flexible(true).from_reader(source);
+    let headers = reader
+        .headers()
+        .map_err(|source| StaticFeedError::Csv {
+            file: FILE,
+            detail: source.to_string(),
+        })?
+        .clone();
+
+    let column = |name: &'static str| -> Result<usize, StaticFeedError> {
+        headers
+            .iter()
+            .position(|header| header.trim() == name)
+            .ok_or(StaticFeedError::MissingColumn {
+                file: FILE,
+                column: name,
+            })
+    };
+    let trip_at = column("trip_id")?;
+    let stop_at = column("stop_id")?;
+    let sequence_at = column("stop_sequence")?;
+    let arrival_at = column("arrival_time").ok();
+    let departure_at = column("departure_time").ok();
+
+    let mut by_trip: BTreeMap<String, Vec<StopTime>> = BTreeMap::new();
+    let mut record = csv::StringRecord::new();
+    let mut row = 1usize;
+
+    // Tek bir kayıt tamponu yeniden kullanılır; satırlar biriktirilmez.
+    while reader
+        .read_record(&mut record)
+        .map_err(|source| StaticFeedError::Csv {
+            file: FILE,
+            detail: format!("satır {}: {source}", row + 1),
+        })?
+    {
+        row += 1;
+
+        let trip = field(&record, trip_at, FILE, "trip_id", row)?;
+        // Filtre, herhangi bir ayırma yapılmadan ÖNCE uygulanır.
+        if !filter.keeps(trip) {
+            continue;
+        }
+        let trip = trip.to_owned();
+        let stop_id = field(&record, stop_at, FILE, "stop_id", row)?.to_owned();
+        let sequence_text = field(&record, sequence_at, FILE, "stop_sequence", row)?;
+        let stop_sequence = parse_number(FILE, "stop_sequence", sequence_text, row)?;
+        let arrival_time = optional_time(&record, arrival_at, FILE, "arrival_time", row)?;
+        let departure_time = optional_time(&record, departure_at, FILE, "departure_time", row)?;
+
+        by_trip.entry(trip).or_default().push(StopTime {
             arrival_time,
             departure_time,
-            stop_id: stop,
+            stop_id,
             stop_sequence,
         });
     }
@@ -438,6 +545,44 @@ fn parse_stop_times(bytes: &[u8]) -> Result<BTreeMap<String, Vec<StopTime>>, Sta
         times.sort_by_key(|stop_time| stop_time.stop_sequence);
     }
     Ok(by_trip)
+}
+
+/// Zorunlu bir alanı okur; boşsa hata verir.
+fn field<'r>(
+    record: &'r csv::StringRecord,
+    index: usize,
+    file: &'static str,
+    column: &'static str,
+    row: usize,
+) -> Result<&'r str, StaticFeedError> {
+    let value = record.get(index).unwrap_or("").trim();
+    if value.is_empty() {
+        return Err(StaticFeedError::EmptyField { file, column, row });
+    }
+    Ok(value)
+}
+
+/// Opsiyonel bir saat alanını okur; sütun yoksa ya da boşsa `None`.
+fn optional_time(
+    record: &csv::StringRecord,
+    index: Option<usize>,
+    file: &'static str,
+    column: &'static str,
+    row: usize,
+) -> Result<Option<u32>, StaticFeedError> {
+    let Some(index) = index else { return Ok(None) };
+    let value = record.get(index).unwrap_or("").trim();
+    if value.is_empty() {
+        return Ok(None);
+    }
+    parse_time(value)
+        .map(Some)
+        .map_err(|_| StaticFeedError::InvalidField {
+            file,
+            column,
+            value: value.to_owned(),
+            row,
+        })
 }
 
 fn parse_calendars(bytes: &[u8]) -> Result<BTreeMap<String, Calendar>, StaticFeedError> {
@@ -509,27 +654,6 @@ fn parse_optional_float(
     };
     value
         .parse()
-        .map(Some)
-        .map_err(|_| StaticFeedError::InvalidField {
-            file: table.file,
-            column,
-            value,
-            row,
-        })
-}
-
-fn parse_optional_time(
-    table: &Table<'_>,
-    record: &csv::StringRecord,
-    index: Option<usize>,
-    row: usize,
-    column: &'static str,
-) -> Result<Option<u32>, StaticFeedError> {
-    let Some(index) = index else { return Ok(None) };
-    let Some(value) = table.optional(record, index) else {
-        return Ok(None);
-    };
-    parse_time(&value)
         .map(Some)
         .map_err(|_| StaticFeedError::InvalidField {
             file: table.file,
@@ -713,5 +837,84 @@ mod tests {
                 ..
             })
         ));
+    }
+
+    fn archive_with_two_trips() -> Vec<u8> {
+        use std::io::Write;
+        let files = [
+            ("routes.txt", "route_id\nR1\n".to_owned()),
+            (
+                "trips.txt",
+                "route_id,service_id,trip_id\nR1,S1,T1\nR1,S1,T2\n".to_owned(),
+            ),
+            ("stops.txt", "stop_id\nS1\nS2\n".to_owned()),
+            (
+                "stop_times.txt",
+                "trip_id,stop_id,stop_sequence\nT1,S1,1\nT1,S2,2\nT2,S1,1\nT2,S2,2\n".to_owned(),
+            ),
+        ];
+        let mut output = Cursor::new(Vec::new());
+        let mut writer = zip::ZipWriter::new(&mut output);
+        for (name, content) in files {
+            writer
+                .start_file(name, zip::write::SimpleFileOptions::default())
+                .unwrap();
+            writer.write_all(content.as_bytes()).unwrap();
+        }
+        writer.finish().unwrap();
+        output.into_inner()
+    }
+
+    #[test]
+    fn without_a_filter_every_trip_is_indexed() {
+        let feed = StaticFeed::from_zip_bytes(&archive_with_two_trips()).unwrap();
+        assert_eq!(feed.stop_time_count(), 4);
+        assert!(feed.stop_times_for_trip("T1").is_some());
+        assert!(feed.stop_times_for_trip("T2").is_some());
+    }
+
+    #[test]
+    fn a_filter_keeps_only_the_requested_trips() {
+        // Asıl kazanç burada: ölçümde bir snapshot, arşivdeki seferlerin %0,5'ine
+        // atıfta bulunuyordu; kalan satırlar okunup atılır, bellekte durmaz.
+        let wanted = BTreeSet::from(["T2".to_owned()]);
+        let feed = StaticFeed::from_zip_bytes_filtered(
+            &archive_with_two_trips(),
+            TripFilter::Only(&wanted),
+        )
+        .unwrap();
+
+        assert_eq!(feed.stop_time_count(), 2);
+        assert!(feed.stop_times_for_trip("T2").is_some());
+        assert!(feed.stop_times_for_trip("T1").is_none());
+    }
+
+    #[test]
+    fn filtering_does_not_narrow_the_identity_tables() {
+        // "Bu kimlik tarifede var mı" sorusu tam kümeyle cevaplanır; filtre yalnızca
+        // stop_times'ı daraltır. Aksi halde filtrelenen her sefer yanlışlıkla
+        // "tarifede yok" sayılırdı.
+        let wanted = BTreeSet::from(["T2".to_owned()]);
+        let feed = StaticFeed::from_zip_bytes_filtered(
+            &archive_with_two_trips(),
+            TripFilter::Only(&wanted),
+        )
+        .unwrap();
+
+        assert_eq!(feed.trips().len(), 2, "trips.txt daraltılmamalı");
+        assert_eq!(feed.stops().len(), 2, "stops.txt daraltılmamalı");
+        assert_eq!(feed.routes().len(), 1);
+    }
+
+    #[test]
+    fn an_empty_filter_keeps_no_stop_times() {
+        let wanted = BTreeSet::new();
+        let feed = StaticFeed::from_zip_bytes_filtered(
+            &archive_with_two_trips(),
+            TripFilter::Only(&wanted),
+        )
+        .unwrap();
+        assert_eq!(feed.stop_time_count(), 0);
+        assert_eq!(feed.trips().len(), 2);
     }
 }

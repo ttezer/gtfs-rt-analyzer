@@ -6,8 +6,9 @@
 use gtfs_rt_model::model::{FeedEntity, FeedMessage};
 use gtfs_rt_model::{decode_feed_message, Anomaly};
 use gtfs_rt_rules::{check_snapshot, ConsistencyReport};
-use gtfs_static::StaticFeed;
+use gtfs_static::{StaticFeed, TripFilter};
 use serde::Serialize;
+use std::collections::BTreeSet;
 use wasm_bindgen::prelude::*;
 
 #[derive(Debug, Serialize)]
@@ -36,6 +37,9 @@ struct ConsistencySection {
     checked_stop_time_updates: usize,
     /// `ADDED`/`NEW`/`DUPLICATED` seferler: statik karşılık aranmaz, sayılır.
     skipped_dynamic_trips: usize,
+    /// Tarifeden bellekte tutulan `stop_times` satırı sayısı. Snapshot'ta geçen
+    /// seferlerle sınırlıdır; arşivin tamamı değil.
+    indexed_stop_times: usize,
     vehicle_trips: usize,
     notices: Vec<NoticeReport>,
 }
@@ -117,13 +121,22 @@ fn build_report(bytes: &[u8], schedule_zip: Option<&[u8]>) -> Report {
 
     let (consistency, schedule_error) = match schedule_zip {
         None => (None, None),
-        Some(zip) => match StaticFeed::from_zip_bytes(zip) {
-            Ok(feed) => {
-                let report = check_snapshot(&feed, &decoded.message);
-                (Some(consistency_section(&feed, report)), None)
+        Some(zip) => {
+            // Sıra kasıtlı: önce realtime çözülür, sonra tarife YALNIZCA orada geçen
+            // seferler için indekslenir.
+            //
+            // ÖLÇÜM (MBTA): arşivde 168.145 sefer / 4.494.139 stop_times satırı var,
+            // snapshot bunların 883'üne (%0,5) atıfta bulunuyor. Tamamını okumak
+            // 2,27 GB tepe bellek ve tarayıcıda ~20 saniye demekti.
+            let wanted = referenced_trip_ids(&decoded.message);
+            match StaticFeed::from_zip_bytes_filtered(zip, TripFilter::Only(&wanted)) {
+                Ok(feed) => {
+                    let report = check_snapshot(&feed, &decoded.message);
+                    (Some(consistency_section(&feed, report)), None)
+                }
+                Err(error) => (None, Some(format!("{error:?}"))),
             }
-            Err(error) => (None, Some(format!("{error:?}"))),
-        },
+        }
     };
 
     Report {
@@ -141,6 +154,37 @@ fn build_report(bytes: &[u8], schedule_zip: Option<&[u8]>) -> Report {
     }
 }
 
+/// Snapshot'ın atıfta bulunduğu bütün sefer kimlikleri.
+///
+/// Üç yerden gelir: `TripUpdate`, `VehiclePosition` ve `Alert.informed_entity`.
+/// Kümenin fazla geniş olması zararsız (biraz fazla satır tutulur), fazla dar olması
+/// ise bulguyu kaybettirir — o yüzden `schedule_relationship`'e bakılmadan hepsi alınır.
+fn referenced_trip_ids(message: &FeedMessage) -> BTreeSet<String> {
+    let mut ids = BTreeSet::new();
+    let mut add = |trip: Option<&gtfs_rt_model::model::TripDescriptor>| {
+        if let Some(id) = trip.and_then(|trip| trip.trip_id.as_ref()) {
+            ids.insert(id.clone());
+        }
+    };
+
+    for entity in &message.entity {
+        add(entity
+            .trip_update
+            .as_ref()
+            .and_then(|update| update.trip.as_ref()));
+        add(entity
+            .vehicle
+            .as_ref()
+            .and_then(|vehicle| vehicle.trip.as_ref()));
+        if let Some(alert) = &entity.alert {
+            for selector in &alert.informed_entity {
+                add(selector.trip.as_ref());
+            }
+        }
+    }
+    ids
+}
+
 fn consistency_section(feed: &StaticFeed, report: ConsistencyReport) -> ConsistencySection {
     ConsistencySection {
         schedule: ScheduleSummary {
@@ -152,6 +196,7 @@ fn consistency_section(feed: &StaticFeed, report: ConsistencyReport) -> Consiste
         checked_trip_references: report.checked_trip_references,
         checked_stop_time_updates: report.checked_stop_time_updates,
         skipped_dynamic_trips: report.skipped_dynamic_trips,
+        indexed_stop_times: feed.stop_time_count(),
         vehicle_trips: report.vehicle_trips,
         notices: report
             .notices
@@ -298,6 +343,44 @@ mod tests {
         assert!(json.contains(r#""consistency""#), "{json}");
         assert!(json.contains(r#""notices":[]"#), "{json}");
         assert!(json.contains(r#""trips":1"#), "{json}");
+    }
+
+    /// Snapshot'ta bir sefer ve onun ilk durağı için güncelleme taşıyan payload.
+    fn realtime_with_stop_update(trip_id: &str, stop_id: &str, sequence: u8) -> Vec<u8> {
+        fn field(number: u8, payload: &[u8]) -> Vec<u8> {
+            let mut out = vec![(number << 3) | 2, payload.len() as u8];
+            out.extend_from_slice(payload);
+            out
+        }
+        let mut header = vec![0x0a, 3];
+        header.extend_from_slice(b"2.0");
+
+        let trip_descriptor = field(1, &field(1, trip_id.as_bytes()));
+        // StopTimeUpdate: stop_sequence (1, varint) + stop_id (4, string)
+        let mut stop_update = vec![0x08, sequence];
+        stop_update.extend_from_slice(&field(4, stop_id.as_bytes()));
+
+        let mut trip_update = trip_descriptor;
+        trip_update.extend_from_slice(&field(2, &stop_update));
+
+        let mut entity = field(1, b"e1");
+        entity.extend_from_slice(&field(3, &trip_update));
+
+        let mut out = field(1, &header);
+        out.extend_from_slice(&field(2, &entity));
+        out
+    }
+
+    #[test]
+    fn a_referenced_trip_keeps_its_stop_times_through_the_filter() {
+        // Tarife yalnızca snapshot'ta geçen seferler için indekslenir. Filtre fazla
+        // dar olursa geçerli bir durak güncellemesi "statikte yok" diye YANLIŞ
+        // raporlanır — bu testin koruduğu regresyon budur.
+        let json =
+            analyze_feed_with_schedule(&realtime_with_stop_update("T1", "S1", 1), &schedule_zip());
+        assert!(json.contains(r#""notices":[]"#), "{json}");
+        assert!(json.contains(r#""indexed_stop_times":1"#), "{json}");
+        assert!(json.contains(r#""checked_stop_time_updates":1"#), "{json}");
     }
 
     #[test]

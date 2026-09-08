@@ -36,6 +36,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   broken stop times silently hid unknown stops.
 - New `RT_TIME_ON_NON_STOPPING_UPDATE`: a stop marked `SKIPPED` or `NO_DATA` that still
   carries an arrival or departure prediction.
+- The static reader indexes only the trips a snapshot actually references, and streams
+  `stop_times.txt` instead of holding it in memory. Measured on MBTA (33 MB archive,
+  168.145 trips, 4.494.139 stop-time rows, of which a snapshot referenced 883): peak memory
+  fell from 2.27 GB to 174 MB and parsing from 2504 ms to 468 ms. In the browser the combined
+  analysis went from 19.9 s to 6.1 s, producing an identical report.
+- `StopTime` no longer carries `trip_id`; the records are only ever reached through the
+  per-trip index, so storing the key on every row cost 4.5 million redundant allocations.
 - The consistency rules are reachable from the browser. `analyze_feed_with_schedule` takes a
   realtime payload and a static GTFS archive and returns the consistency report alongside the
   realtime one; the UI accepts a schedule and renders it.
