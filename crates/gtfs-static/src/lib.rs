@@ -71,20 +71,21 @@ pub struct StaticFeedSummary {
 
 /// Akıtılan `stop_times.txt` için satır tavanı.
 ///
-/// ÖLÇÜM: MBTA arşivi 4.494.139 satır taşıyor; bilinen en büyük feed'ler (VBB ölçeği)
-/// bunun bir katı daha fazlası. 16 milyon, gerçek feed'lerin üç katı üstünde kalır.
+/// ÖLÇÜM (2026-09-08): MBTA 4.494.139 · VBB 5.719.111 · **Hollanda ülke feed'i
+/// 19.818.045** satır. İlk konan 16 milyonluk tavan Hollanda'yı REDDEDİYORDU — gerçek
+/// bir feed'i kesen tavan koruma değil arızadır. 64 milyon, ölçülen en büyüğün üç katı.
 ///
 /// Tavan CPU içindir, bellek için değil — filtre sayesinde satırlar zaten tutulmuyor.
 /// ÖLÇÜLDÜ: 2 MB'lık bir zip bomb (686x oran, 1,5 GB açılmış, 187 milyon satır)
 /// filtreli yolda yalnızca 4,2 MB bellek harcıyor ama 3,3 saniye CPU yakıyor. Tavan
 /// o işi %9'unda kesiyor.
-pub const MAX_STOP_TIME_ROWS: usize = 16_000_000;
+pub const MAX_STOP_TIME_ROWS: usize = 64_000_000;
 
 /// Akıtılmayan tablolar için açılmış bayt tavanı.
 ///
-/// `stop_times.txt` akıtılır ve bu tavana girmez. Kalan tablolar küçüktür — MBTA'da
-/// en büyüğü `trips.txt`, 14 MB. 256 MB fazlasıyla pay bırakırken, bir bombanın
-/// `trips.txt` üzerinden belleği doldurmasını engeller.
+/// `stop_times.txt` akıtılır ve bu tavana girmez. Kalan tabloların en büyüğü
+/// `trips.txt`: MBTA'da 14 MB, VBB'de 18 MB, Hollanda'da **71 MB**. 256 MB pay bırakırken
+/// bir bombanın `trips.txt` üzerinden belleği doldurmasını engeller.
 pub const MAX_ENTRY_BYTES: u64 = 256 * 1024 * 1024;
 
 /// Ölçülen gerçek feed büyüklükleri — tavanların bunları rahatça geçirmesi gerekir.
@@ -92,11 +93,13 @@ pub const MAX_ENTRY_BYTES: u64 = 256 * 1024 * 1024;
 /// Asıl risk tavanın fazla GENİŞ olması değil, fazla DAR olması: gerçek bir feed'i
 /// reddeden tavan koruma değil arızadır. Bu yüzden kontrol testte değil, **derleme
 /// zamanında** yapılır — tavanı daraltan bir değişiklik derlenmez.
-const MEASURED_MBTA_STOP_TIME_ROWS: usize = 4_494_139;
-const MEASURED_LARGEST_TABLE_BYTES: u64 = 15 * 1024 * 1024;
+/// Ölçülen en büyük gerçek feed: Hollanda ülke arşivi (2026-09-08).
+const MEASURED_LARGEST_STOP_TIME_ROWS: usize = 19_818_045;
+/// Aynı arşivde akıtılmayan en büyük tablo: `trips.txt`, 71 MB.
+const MEASURED_LARGEST_TABLE_BYTES: u64 = 71 * 1024 * 1024;
 
-const _: () = assert!(MAX_STOP_TIME_ROWS >= MEASURED_MBTA_STOP_TIME_ROWS * 3);
-const _: () = assert!(MAX_ENTRY_BYTES >= MEASURED_LARGEST_TABLE_BYTES * 8);
+const _: () = assert!(MAX_STOP_TIME_ROWS >= MEASURED_LARGEST_STOP_TIME_ROWS * 3);
+const _: () = assert!(MAX_ENTRY_BYTES >= MEASURED_LARGEST_TABLE_BYTES * 3);
 
 /// `stop_times.txt` okunurken hangi seferlerin tutulacağı.
 ///
