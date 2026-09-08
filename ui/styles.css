@@ -126,20 +126,3 @@ summary { cursor: pointer; color: #3b4b59; font-weight: 750; }
 .history-row small { color: var(--muted); }
 
 footer { display: flex; justify-content: space-between; gap: 16px; padding: 20px 0 36px; color: var(--muted); font-size: 12px; }
-
-@media (max-width: 850px) {
-  .topbar { padding-top: 30px; }
-  .layout { grid-template-columns: 1fr; grid-template-rows: auto; }
-  .feed-map, .feed-list { flex: 0 0 460px; height: 460px; }
-  .report { grid-column: auto; }
-}
-
-@media (max-width: 560px) {
-  .topbar { display: block; }
-  .status-pill { margin-top: 18px; }
-  .control-grid, .metric-grid { grid-template-columns: 1fr 1fr; }
-  .control-grid { grid-template-columns: 1fr; }
-  .button-row { grid-template-columns: 1fr; }
-  footer { display: block; }
-  footer span { display: block; margin-top: 6px; }
-}
