@@ -69,6 +69,35 @@ pub struct StaticFeedSummary {
     pub calendars: usize,
 }
 
+/// Akıtılan `stop_times.txt` için satır tavanı.
+///
+/// ÖLÇÜM: MBTA arşivi 4.494.139 satır taşıyor; bilinen en büyük feed'ler (VBB ölçeği)
+/// bunun bir katı daha fazlası. 16 milyon, gerçek feed'lerin üç katı üstünde kalır.
+///
+/// Tavan CPU içindir, bellek için değil — filtre sayesinde satırlar zaten tutulmuyor.
+/// ÖLÇÜLDÜ: 2 MB'lık bir zip bomb (686x oran, 1,5 GB açılmış, 187 milyon satır)
+/// filtreli yolda yalnızca 4,2 MB bellek harcıyor ama 3,3 saniye CPU yakıyor. Tavan
+/// o işi %9'unda kesiyor.
+pub const MAX_STOP_TIME_ROWS: usize = 16_000_000;
+
+/// Akıtılmayan tablolar için açılmış bayt tavanı.
+///
+/// `stop_times.txt` akıtılır ve bu tavana girmez. Kalan tablolar küçüktür — MBTA'da
+/// en büyüğü `trips.txt`, 14 MB. 256 MB fazlasıyla pay bırakırken, bir bombanın
+/// `trips.txt` üzerinden belleği doldurmasını engeller.
+pub const MAX_ENTRY_BYTES: u64 = 256 * 1024 * 1024;
+
+/// Ölçülen gerçek feed büyüklükleri — tavanların bunları rahatça geçirmesi gerekir.
+///
+/// Asıl risk tavanın fazla GENİŞ olması değil, fazla DAR olması: gerçek bir feed'i
+/// reddeden tavan koruma değil arızadır. Bu yüzden kontrol testte değil, **derleme
+/// zamanında** yapılır — tavanı daraltan bir değişiklik derlenmez.
+const MEASURED_MBTA_STOP_TIME_ROWS: usize = 4_494_139;
+const MEASURED_LARGEST_TABLE_BYTES: u64 = 15 * 1024 * 1024;
+
+const _: () = assert!(MAX_STOP_TIME_ROWS >= MEASURED_MBTA_STOP_TIME_ROWS * 3);
+const _: () = assert!(MAX_ENTRY_BYTES >= MEASURED_LARGEST_TABLE_BYTES * 8);
+
 /// `stop_times.txt` okunurken hangi seferlerin tutulacağı.
 ///
 /// ÖLÇÜM (MBTA, 2026-09-08): arşivde 168.145 sefer ve 4.494.139 `stop_times` satırı var;
@@ -180,6 +209,11 @@ pub enum StaticFeedError {
     Zip {
         detail: String,
     },
+    /// Bir tablo, açılma tavanını aştı. Bozuk ya da kötü niyetli arşivlerde görülür.
+    TooLarge {
+        file: &'static str,
+        limit: u64,
+    },
     MissingFile {
         file: &'static str,
     },
@@ -213,6 +247,9 @@ impl fmt::Display for StaticFeedError {
         match self {
             Self::Zip { detail } => write!(f, "GTFS ZIP okunamadı: {detail}"),
             Self::MissingFile { file } => write!(f, "GTFS tablosu eksik: {file}"),
+            Self::TooLarge { file, limit } => {
+                write!(f, "{file} açılma tavanını aştı ({limit} birim)")
+            }
             Self::Csv { file, detail } => write!(f, "{file} CSV okunamadı: {detail}"),
             Self::MissingColumn { file, column } => {
                 write!(f, "{file} zorunlu sütunu eksik: {column}")
@@ -263,12 +300,23 @@ fn read_optional<R: Read + std::io::Seek>(
         .map_err(|source| StaticFeedError::Zip {
             detail: source.to_string(),
         })?;
+    // Bildirilen boyuta GÜVENİLMEZ — bir bomb tam da orada yalan söyler. Tavan,
+    // okunan bayt sayılarak uygulanır; `+1` okunur ki "tam sınırda" ile "aştı"
+    // ayırt edilebilsin.
     let mut bytes = Vec::new();
-    entry
+    let read = entry
+        .by_ref()
+        .take(MAX_ENTRY_BYTES.saturating_add(1))
         .read_to_end(&mut bytes)
         .map_err(|source| StaticFeedError::Zip {
             detail: source.to_string(),
-        })?;
+        })? as u64;
+    if read > MAX_ENTRY_BYTES {
+        return Err(StaticFeedError::TooLarge {
+            file: wanted,
+            limit: MAX_ENTRY_BYTES,
+        });
+    }
     Ok(Some(bytes))
 }
 
@@ -520,6 +568,12 @@ fn parse_stop_times_streaming<R: Read>(
         })?
     {
         row += 1;
+        if row - 1 > MAX_STOP_TIME_ROWS {
+            return Err(StaticFeedError::TooLarge {
+                file: FILE,
+                limit: MAX_STOP_TIME_ROWS as u64,
+            });
+        }
 
         let trip = field(&record, trip_at, FILE, "trip_id", row)?;
         // Filtre, herhangi bir ayırma yapılmadan ÖNCE uygulanır.

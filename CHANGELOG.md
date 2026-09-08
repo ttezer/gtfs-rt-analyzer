@@ -36,6 +36,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   broken stop times silently hid unknown stops.
 - New `RT_TIME_ON_NON_STOPPING_UPDATE`: a stop marked `SKIPPED` or `NO_DATA` that still
   carries an arrival or departure prediction.
+- Caps on the static reader: a row ceiling for the streamed `stop_times.txt` and a size
+  ceiling for the tables read whole. Calibrated against measurement — a 2 MB archive
+  expanding to 1.5 GB cost 3.82 GB on the unfiltered path before the caps and 1.03 GB after,
+  while a real MBTA feed passes untouched. The ceilings are checked at compile time against
+  measured feed sizes, so narrowing one below a real feed fails the build.
+- Fuzzing covers the ZIP and CSV path of the static reader and the full production sequence,
+  alongside the existing protobuf target. Seeds and crash artifacts are tracked; the
+  generated corpus is not.
 - The static reader indexes only the trips a snapshot actually references, and streams
   `stop_times.txt` instead of holding it in memory. Measured on MBTA (33 MB archive,
   168.145 trips, 4.494.139 stop-time rows, of which a snapshot referenced 883): peak memory

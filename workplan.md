@@ -58,3 +58,18 @@ A byte-comparison gate was measured first and rejected. The build is reproducibl
 machine, but `wasm-opt` comes from the local toolchain (Homebrew v130 here) while CI would
 use the one `wasm-pack` fetches — so identical sources would produce different bytes and the
 gate would fail for the wrong reason. Removing the committed copy makes the question moot.
+
+## 5. Fuzzing and input limits — added after review
+
+- [x] Fuzz targets for the ZIP/CSV path (`read_schedule`) and the production sequence
+  (`analyze_with_schedule`), alongside the existing `decode_feed`. The fuzz crate moved from
+  `crates/rt-model/fuzz` to the repository root, since it now covers three crates.
+- [x] Fuzz runs in CI, time-boxed to 60 s per target with memory and timeout limits — a
+  decoder that never panics but exhausts memory or spins forever fails the same contract.
+- [x] Seeds tracked, generated corpus not. Measured at 24 MB after one session.
+- [x] Caps on the static reader, calibrated by measuring a real zip bomb rather than guessing.
+
+Measured along the way: fuzzing will not generate a zip bomb on its own, so that case was
+constructed by hand. The production path turned out to be nearly immune already — filtering
+means the rows are never retained — but the unfiltered entry point was not, and the cost in
+CPU remained either way.

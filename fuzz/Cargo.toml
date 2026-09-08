@@ -1,0 +1,39 @@
+[package]
+name = "gtfs-rt-fuzz"
+version = "0.0.0"
+publish = false
+edition = "2021"
+
+[package.metadata]
+cargo-fuzz = true
+
+# Fuzz crate'i workspace'in DIŞINDA tutulur: nightly ve libfuzzer gerektirir,
+# normal `cargo test`/`clippy` koşumlarına girmemelidir.
+[workspace]
+
+[dependencies]
+libfuzzer-sys = "0.4"
+gtfs-rt-model = { path = "../crates/rt-model" }
+gtfs-rt-rules = { path = "../crates/rt-rules" }
+gtfs-static = { path = "../crates/gtfs-static" }
+
+[[bin]]
+name = "decode_feed"
+path = "fuzz_targets/decode_feed.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "read_schedule"
+path = "fuzz_targets/read_schedule.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "analyze_with_schedule"
+path = "fuzz_targets/analyze_with_schedule.rs"
+test = false
+doc = false
+bench = false
