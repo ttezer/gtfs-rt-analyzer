@@ -47,6 +47,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fuzzing covers the ZIP and CSV path of the static reader and the full production sequence,
   alongside the existing protobuf target. Seeds and crash artifacts are tracked; the
   generated corpus is not.
+- A schedule can be loaded once and reused across snapshots. Periodic monitoring re-parsed
+  the same archive every 60 seconds; on the Dutch national feed that was 21.6 s per round.
+  Loading once costs 26.8 s and every round after it takes 21 ms. The cached schedule holds
+  all 19,818,045 stop-time rows in wasm32 without trouble.
 - The static reader indexes only the trips a snapshot actually references, and streams
   `stop_times.txt` instead of holding it in memory. Measured on MBTA (33 MB archive,
   168.145 trips, 4.494.139 stop-time rows, of which a snapshot referenced 883): peak memory

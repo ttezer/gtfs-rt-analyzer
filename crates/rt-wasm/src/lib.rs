@@ -110,6 +110,64 @@ pub fn analyze_feed_with_schedule(bytes: &[u8], schedule_zip: &[u8]) -> String {
     render(build_report(bytes, Some(schedule_zip)))
 }
 
+/// Bir kez okunup birden çok snapshot için yeniden kullanılan tarife.
+///
+/// Periyodik izlemede aynı arşiv 60 saniyede bir yeniden çözülüyordu. ÖLÇÜM (Hollanda
+/// ülke feed'i, 229 MB): her tur 21,6 saniye. Bir kez okunup tutulduğunda yalnızca ilk
+/// tur o bedeli öder.
+///
+/// Burada tarife **filtresiz** okunur: hangi seferlerin sorulacağı ancak snapshot
+/// geldiğinde bilinir, dolayısıyla önbellek tam olmak zorunda. Bu, tek atışlık yolun
+/// tersi bir takas — orada bellek küçük tutulur, burada süre.
+#[wasm_bindgen]
+pub struct LoadedSchedule {
+    feed: StaticFeed,
+}
+
+#[wasm_bindgen]
+impl LoadedSchedule {
+    /// Arşivi çözer. Başarısız olursa hata mesajı döner; çağıran tek atışlık yola
+    /// düşebilir.
+    #[wasm_bindgen(constructor)]
+    pub fn new(schedule_zip: &[u8]) -> Result<LoadedSchedule, JsValue> {
+        Self::load(schedule_zip).map_err(|error| JsValue::from_str(&error))
+    }
+
+    /// Bu tarifeye karşı bir realtime snapshot'ı inceler.
+    pub fn analyze(&self, bytes: &[u8]) -> String {
+        let decoded = decode_feed_message(bytes);
+        let consistency = check_snapshot(&self.feed, &decoded.message);
+        render(base_report(
+            bytes,
+            &decoded,
+            Some(consistency_section(&self.feed, consistency)),
+            None,
+        ))
+    }
+
+    /// Tarifedeki sefer sayısı — UI'ın ne yüklendiğini gösterebilmesi için.
+    #[wasm_bindgen(getter)]
+    pub fn trips(&self) -> usize {
+        self.feed.trips().len()
+    }
+
+    /// Bellekte tutulan `stop_times` satırı.
+    #[wasm_bindgen(getter, js_name = stopTimes)]
+    pub fn stop_times(&self) -> usize {
+        self.feed.stop_time_count()
+    }
+}
+
+impl LoadedSchedule {
+    /// `JsValue` içermeyen iç kurucu: `JsValue` yalnızca WASM içinde kurulabildiği
+    /// için hata yolu ancak böyle test edilebilir.
+    fn load(schedule_zip: &[u8]) -> Result<Self, String> {
+        StaticFeed::from_zip_bytes(schedule_zip)
+            .map(|feed| LoadedSchedule { feed })
+            .map_err(|error| format!("{error:?}"))
+    }
+}
+
 fn render(report: Report) -> String {
     serde_json::to_string(&report).unwrap_or_else(|_| {
         r#"{"schema_version":1,"error":"report_serialization_failed"}"#.to_owned()
@@ -139,6 +197,16 @@ fn build_report(bytes: &[u8], schedule_zip: Option<&[u8]>) -> Report {
         }
     };
 
+    base_report(bytes, &decoded, consistency, schedule_error)
+}
+
+/// Rapor gövdesi — tek atışlık ve önbellekli yolların ortak parçası.
+fn base_report(
+    bytes: &[u8],
+    decoded: &gtfs_rt_model::DecodedFeed,
+    consistency: Option<ConsistencySection>,
+    schedule_error: Option<String>,
+) -> Report {
     Report {
         schema_version: 1,
         bytes: bytes.len(),
@@ -273,11 +341,11 @@ fn anomaly_report(anomaly: &Anomaly) -> AnomalyReport {
 
 #[cfg(test)]
 mod tests {
-    use super::{analyze_feed, analyze_feed_with_schedule};
+    use super::{analyze_feed, analyze_feed_with_schedule, LoadedSchedule};
     use std::io::{Cursor, Write};
 
     /// Tek seferli, tek duraklı asgari bir GTFS arşivi kurar.
-    fn schedule_zip() -> Vec<u8> {
+    pub(super) fn schedule_zip() -> Vec<u8> {
         let files = [
             ("routes.txt", "route_id\nR1\n"),
             ("trips.txt", "route_id,service_id,trip_id\nR1,S1,T1\n"),
@@ -297,7 +365,7 @@ mod tests {
     }
 
     /// `trip_id` taşıyan tek entity'li geçerli bir realtime payload'ı kodlar.
-    fn realtime_with_trip(trip_id: &str) -> Vec<u8> {
+    pub(super) fn realtime_with_trip(trip_id: &str) -> Vec<u8> {
         fn field(number: u8, payload: &[u8]) -> Vec<u8> {
             let mut out = vec![(number << 3) | 2, payload.len() as u8];
             out.extend_from_slice(payload);
@@ -346,7 +414,7 @@ mod tests {
     }
 
     /// Snapshot'ta bir sefer ve onun ilk durağı için güncelleme taşıyan payload.
-    fn realtime_with_stop_update(trip_id: &str, stop_id: &str, sequence: u8) -> Vec<u8> {
+    pub(super) fn realtime_with_stop_update(trip_id: &str, stop_id: &str, sequence: u8) -> Vec<u8> {
         fn field(number: u8, payload: &[u8]) -> Vec<u8> {
             let mut out = vec![(number << 3) | 2, payload.len() as u8];
             out.extend_from_slice(payload);
@@ -387,6 +455,50 @@ mod tests {
     fn a_trip_missing_from_the_schedule_is_reported() {
         let json = analyze_feed_with_schedule(&realtime_with_trip("GHOST"), &schedule_zip());
         assert!(json.contains("RT_TRIP_NOT_IN_STATIC"), "{json}");
+    }
+
+    #[test]
+    fn the_cached_and_one_shot_paths_agree() {
+        // Önbellekli yol tarifeyi FİLTRESİZ tutar, tek atışlık yol snapshot'a göre
+        // filtreler. Filtre bir başarım tercihidir; iki yolun raporu AYNI olmalı,
+        // aksi halde hangi yolu seçtiğimiz sonucu değiştiriyor demektir.
+        let zip = schedule_zip();
+        for rt in [
+            realtime_with_trip("T1"),
+            realtime_with_trip("GHOST"),
+            realtime_with_stop_update("T1", "S1", 1),
+            realtime_with_stop_update("T1", "GHOST", 9),
+        ] {
+            let one_shot = analyze_feed_with_schedule(&rt, &zip);
+            let cached = LoadedSchedule::load(&zip).unwrap().analyze(&rt);
+
+            // Tek meşru fark `indexed_stop_times`: önbellek filtresizdir, tek atışlık
+            // yol snapshot'a göre daraltır. Bulgular ve denetim sayaçları AYNI olmalı.
+            let strip = |json: &str| {
+                let mut value: serde_json::Value = serde_json::from_str(json).unwrap();
+                if let Some(section) = value.get_mut("consistency") {
+                    section
+                        .as_object_mut()
+                        .unwrap()
+                        .remove("indexed_stop_times");
+                }
+                value
+            };
+            assert_eq!(strip(&one_shot), strip(&cached), "yollar ayrıştı");
+        }
+    }
+
+    #[test]
+    fn a_cached_schedule_reports_what_it_holds() {
+        let schedule = LoadedSchedule::load(&schedule_zip()).unwrap();
+        assert_eq!(schedule.trips(), 1);
+        // Önbellek filtresizdir: tek atışlık yolun aksine satırları tutar.
+        assert_eq!(schedule.stop_times(), 1);
+    }
+
+    #[test]
+    fn a_broken_archive_is_rejected_by_the_cache() {
+        assert!(LoadedSchedule::load(b"not a zip").is_err());
     }
 
     #[test]

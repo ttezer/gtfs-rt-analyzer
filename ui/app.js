@@ -1,10 +1,11 @@
-import init, { analyze_feed, analyze_feed_with_schedule } from "./pkg/gtfs_rt_wasm.js";
+import init, { analyze_feed, LoadedSchedule } from "./pkg/gtfs_rt_wasm.js";
 
 const $ = (id) => document.getElementById(id);
 const state = {
   ready: false,
-  /// Yüklenmiş statik GTFS arşivi; yoksa tutarlılık kuralları hiç koşmaz.
-  scheduleBytes: null,
+  /// Bir kez çözülüp saklanan tarife. Periyodik izlemede arşivi her turda yeniden
+  /// çözmek, ölçülen en büyük feed'de tur başına 21,6 saniye demekti.
+  schedule: null,
   timer: null,
   inFlight: false,
   history: [],
@@ -412,9 +413,7 @@ function reportBytes(bytes) {
   // Statik tarife yüklüyse tutarlılık kuralları da koşar. Yüklü değilse hiçbir
   // tutarlılık iddiası üretilmez — karşılaştıracak bir tarife olmadan o iddia
   // kurulamaz.
-  const json = state.scheduleBytes
-    ? analyze_feed_with_schedule(bytes, state.scheduleBytes)
-    : analyze_feed(bytes);
+  const json = state.schedule ? state.schedule.analyze(bytes) : analyze_feed(bytes);
   return JSON.parse(json);
 }
 
@@ -462,19 +461,34 @@ function renderConsistency(report) {
   }
 }
 
+function releaseSchedule() {
+  // WASM tarafındaki tarife elle serbest bırakılır; aksi halde her yüklemede
+  // öncekinin belleği tutulmaya devam eder.
+  state.schedule?.free();
+  state.schedule = null;
+}
+
 async function loadSchedule() {
   const file = elements.scheduleInput.files?.[0];
+  releaseSchedule();
+
   if (!file) {
-    state.scheduleBytes = null;
     elements.scheduleState.textContent = "Statik feed yüklenirse her rapora tutarlılık bölümü eklenir.";
     return;
   }
+
+  elements.scheduleState.textContent = `${file.name} çözümleniyor…`;
   try {
-    state.scheduleBytes = new Uint8Array(await file.arrayBuffer());
-    elements.scheduleState.textContent = `${file.name} · ${Math.round(file.size / 1024)} KB yüklendi`;
+    const bytes = new Uint8Array(await file.arrayBuffer());
+    const started = performance.now();
+    state.schedule = new LoadedSchedule(bytes);
+    const ms = Math.round(performance.now() - started);
+    const mb = Math.round(file.size / 1048576);
+    elements.scheduleState.textContent =
+      `${file.name} · ${mb} MB · ${state.schedule.trips.toLocaleString("tr")} sefer · ${ms} ms`;
   } catch (error) {
-    state.scheduleBytes = null;
-    elements.scheduleState.textContent = `Okunamadı: ${error.message}`;
+    releaseSchedule();
+    elements.scheduleState.textContent = `Okunamadı: ${error}`;
   }
 }
 
