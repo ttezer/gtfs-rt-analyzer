@@ -1,11 +1,42 @@
-import init, { analyze_feed, LoadedSchedule } from "./pkg/gtfs_rt_wasm.js";
+// WASM ana iş parçacığında YÜKLENMEZ. Tarife çözümlemesi ölçülen en büyük feed'de
+// 26,8 saniye sürüyor; burada koşsaydı arayüz o süre boyunca donardı.
+const worker = new Worker(new URL("./worker.js", import.meta.url), { type: "module" });
+
+/// Bekleyen istekler: her mesaj bir kimlikle gider, yanıtı o kimliğe döner.
+const pending = new Map();
+let nextRequestId = 0;
+
+worker.addEventListener("message", (event) => {
+  const { id, type, error } = event.data ?? {};
+  const entry = pending.get(id);
+  if (!entry) return;
+  pending.delete(id);
+  if (type === "error") entry.reject(new Error(error));
+  else entry.resolve(event.data);
+});
+
+worker.addEventListener("error", (event) => {
+  const failure = new Error(event.message || "worker hatası");
+  for (const entry of pending.values()) entry.reject(failure);
+  pending.clear();
+  setWasmStatus("Çözümleyici çöktü", "error");
+});
+
+/// Worker'a istek gönderir. `transfer` verilirse tampon KOPYALANMAZ — 229 MB'lık bir
+/// arşivi kopyalamak tek başına kayda değer bir gecikme.
+function ask(type, payload = {}, transfer = []) {
+  const id = nextRequestId++;
+  return new Promise((resolve, reject) => {
+    pending.set(id, { resolve, reject });
+    worker.postMessage({ id, type, ...payload }, transfer);
+  });
+}
 
 const $ = (id) => document.getElementById(id);
 const state = {
   ready: false,
-  /// Bir kez çözülüp saklanan tarife. Periyodik izlemede arşivi her turda yeniden
-  /// çözmek, ölçülen en büyük feed'de tur başına 21,6 saniye demekti.
-  schedule: null,
+  /// Tarife worker'da tutulur; burada yalnızca yüklü olup olmadığı bilinir.
+  scheduleLoaded: false,
   timer: null,
   inFlight: false,
   history: [],
@@ -409,11 +440,11 @@ async function fetchBytes(url) {
   }
 }
 
-function reportBytes(bytes) {
-  // Statik tarife yüklüyse tutarlılık kuralları da koşar. Yüklü değilse hiçbir
-  // tutarlılık iddiası üretilmez — karşılaştıracak bir tarife olmadan o iddia
-  // kurulamaz.
-  const json = state.schedule ? state.schedule.analyze(bytes) : analyze_feed(bytes);
+async function reportBytes(bytes) {
+  // Tarife worker'da yaşar; buradan yalnızca payload gönderilir. Tutarlılık kuralları
+  // orada bir tarife yüklüyse koşar, yoksa yalnız protobuf çözülür.
+  const copy = bytes.slice();
+  const { json } = await ask("analyze", { bytes: copy.buffer }, [copy.buffer]);
   return JSON.parse(json);
 }
 
@@ -461,34 +492,32 @@ function renderConsistency(report) {
   }
 }
 
-function releaseSchedule() {
-  // WASM tarafındaki tarife elle serbest bırakılır; aksi halde her yüklemede
-  // öncekinin belleği tutulmaya devam eder.
-  state.schedule?.free();
-  state.schedule = null;
-}
-
 async function loadSchedule() {
   const file = elements.scheduleInput.files?.[0];
-  releaseSchedule();
 
   if (!file) {
+    state.scheduleLoaded = false;
+    await ask("clear-schedule").catch(() => {});
     elements.scheduleState.textContent = "Statik feed yüklenirse her rapora tutarlılık bölümü eklenir.";
     return;
   }
 
+  // Büyük arşivlerde bu adım uzun sürer; arayüz donmadığı için ilerleme görünür kalır.
+  state.scheduleLoaded = false;
   elements.scheduleState.textContent = `${file.name} çözümleniyor…`;
+  elements.scheduleInput.disabled = true;
+
   try {
-    const bytes = new Uint8Array(await file.arrayBuffer());
-    const started = performance.now();
-    state.schedule = new LoadedSchedule(bytes);
-    const ms = Math.round(performance.now() - started);
+    const buffer = await file.arrayBuffer();
+    const { trips, ms } = await ask("load-schedule", { bytes: buffer }, [buffer]);
+    state.scheduleLoaded = true;
     const mb = Math.round(file.size / 1048576);
     elements.scheduleState.textContent =
-      `${file.name} · ${mb} MB · ${state.schedule.trips.toLocaleString("tr")} sefer · ${ms} ms`;
+      `${file.name} · ${mb} MB · ${trips.toLocaleString("tr")} sefer · ${ms} ms`;
   } catch (error) {
-    releaseSchedule();
-    elements.scheduleState.textContent = `Okunamadı: ${error}`;
+    elements.scheduleState.textContent = `Okunamadı: ${error.message}`;
+  } finally {
+    elements.scheduleInput.disabled = false;
   }
 }
 
@@ -612,7 +641,7 @@ async function requestFeed() {
       ? null
       : Math.round((startedAt - state.lastStartedAt) / 1000);
     state.lastStartedAt = startedAt;
-    const report = reportBytes(bytes);
+    const report = await reportBytes(bytes);
     renderReport(report, source, completedAt, actualInterval);
     setNotice(elements.requestStatus, `${source === "direct" ? "Direct" : "Proxy"} başarılı · ${bytes.byteLength} bayt`, "success");
   } catch (error) {
@@ -649,7 +678,7 @@ async function analyzeFile() {
   if (!file || !state.ready) return;
   try {
     const bytes = new Uint8Array(await file.arrayBuffer());
-    const report = reportBytes(bytes);
+    const report = await reportBytes(bytes);
     const completedAt = Date.now();
     renderReport(report, "file", completedAt, null);
     setNotice(elements.requestStatus, `Dosya analiz edildi · ${file.name} · ${bytes.byteLength} bayt`, "success");
@@ -675,7 +704,8 @@ elements.clearCatalogSelection.addEventListener("click", clearCatalogSelection);
 void initCatalog();
 
 try {
-  await init();
+  // Worker'ın WASM'ı yüklediğini doğrular: boş bir payload çözmek ucuz bir yoklama.
+  await ask("analyze", { bytes: new ArrayBuffer(0) });
   state.ready = true;
   elements.analyzeFile.disabled = !elements.fileInput.files?.length;
   setWasmStatus("WASM hazır", "ready");

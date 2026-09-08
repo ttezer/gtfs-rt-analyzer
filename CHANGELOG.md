@@ -47,6 +47,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fuzzing covers the ZIP and CSV path of the static reader and the full production sequence,
   alongside the existing protobuf target. Seeds and crash artifacts are tracked; the
   generated corpus is not.
+- Analysis runs in a Web Worker. Loading a large schedule takes tens of seconds and froze
+  the interface while it ran; the work now happens off the main thread, and the schedule
+  lives there rather than being shipped back and forth.
 - A schedule can be loaded once and reused across snapshots. Periodic monitoring re-parsed
   the same archive every 60 seconds; on the Dutch national feed that was 21.6 s per round.
   Loading once costs 26.8 s and every round after it takes 21 ms. The cached schedule holds
