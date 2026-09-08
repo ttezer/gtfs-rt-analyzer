@@ -86,8 +86,8 @@ const TYPE_LABELS = {
   alerts: "Uyarı",
 };
 
-const DEFAULT_MAP_CENTER = [25, 10];
-const DEFAULT_MAP_ZOOM = 2;
+const DEFAULT_MAP_CENTER = [20, 0];
+const DEFAULT_MAP_ZOOM = 1;
 
 function escapeHtml(value) {
   return String(value ?? "")
