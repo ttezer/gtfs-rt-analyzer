@@ -355,20 +355,29 @@ impl<'a> Table<'a> {
         )
     }
 
-    fn records(&self) -> Result<Vec<(usize, csv::StringRecord)>, StaticFeedError> {
-        let mut reader = csv::ReaderBuilder::new()
+    /// Satırları **akıtır**, biriktirmez.
+    ///
+    /// Eskiden bütün satırlar bir `Vec<(usize, StringRecord)>`'e toplanıyordu. Hollanda
+    /// ülke feed'inde `trips.txt` 973.468 satır taşıyor; hepsini ayrılmış kayıtlar
+    /// olarak tutmak, yalnızca üzerinden bir kez geçmek için ödenen bir bedeldi.
+    fn records(
+        &self,
+    ) -> impl Iterator<Item = Result<(usize, csv::StringRecord), StaticFeedError>> + '_ {
+        let file = self.file;
+        csv::ReaderBuilder::new()
             .flexible(true)
-            .from_reader(self.bytes);
-        let mut rows = Vec::new();
-        for (index, result) in reader.records().enumerate() {
-            let row = index + 2;
-            let record = result.map_err(|source| StaticFeedError::Csv {
-                file: self.file,
-                detail: format!("satır {row}: {source}"),
-            })?;
-            rows.push((row, record));
-        }
-        Ok(rows)
+            .from_reader(self.bytes)
+            .into_records()
+            .enumerate()
+            .map(move |(index, result)| {
+                let row = index + 2;
+                result
+                    .map(|record| (row, record))
+                    .map_err(|source| StaticFeedError::Csv {
+                        file,
+                        detail: format!("satır {row}: {source}"),
+                    })
+            })
     }
 
     fn value(
@@ -406,7 +415,8 @@ fn parse_routes(bytes: &[u8]) -> Result<BTreeMap<String, Route>, StaticFeedError
     let route_type = table.column("route_type").ok();
     let mut routes = BTreeMap::new();
 
-    for (row, record) in table.records()? {
+    for item in table.records() {
+        let (row, record) = item?;
         let id = table.value(&record, route_id, row, "route_id")?;
         if routes.contains_key(&id) {
             return Err(StaticFeedError::DuplicateId {
@@ -440,7 +450,8 @@ fn parse_trips(bytes: &[u8]) -> Result<BTreeMap<String, Trip>, StaticFeedError> 
     let direction = table.column("direction_id").ok();
     let mut trips = BTreeMap::new();
 
-    for (row, record) in table.records()? {
+    for item in table.records() {
+        let (row, record) = item?;
         let id = table.value(&record, trip_id, row, "trip_id")?;
         if trips.contains_key(&id) {
             return Err(StaticFeedError::DuplicateId {
@@ -474,7 +485,8 @@ fn parse_stops(bytes: &[u8]) -> Result<BTreeMap<String, Stop>, StaticFeedError> 
     let lon = table.column("stop_lon").ok();
     let mut stops = BTreeMap::new();
 
-    for (row, record) in table.records()? {
+    for item in table.records() {
+        let (row, record) = item?;
         let id = table.value(&record, stop_id, row, "stop_id")?;
         if stops.contains_key(&id) {
             return Err(StaticFeedError::DuplicateId {
@@ -662,7 +674,8 @@ fn parse_calendars(bytes: &[u8]) -> Result<BTreeMap<String, Calendar>, StaticFee
     let end_date = table.column("end_date")?;
     let mut calendars = BTreeMap::new();
 
-    for (row, record) in table.records()? {
+    for item in table.records() {
+        let (row, record) = item?;
         let id = table.value(&record, service_id, row, "service_id")?;
         if calendars.contains_key(&id) {
             return Err(StaticFeedError::DuplicateId {
