@@ -25,22 +25,34 @@
     </header>
 
     <main class="layout">
-      <section class="panel catalog-panel" aria-labelledby="catalog-title">
+      <section class="panel map-panel" aria-labelledby="map-title">
         <div class="panel-heading">
           <div>
             <p class="eyebrow">FEED KATALOĞU</p>
-            <h2 id="catalog-title">Haritadan feed seç</h2>
+            <h2 id="map-title">Harita</h2>
             <p class="catalog-description">
               MobilityDatabase snapshot'ındaki çalıştırılabilir GTFS-Realtime kaynakları.
             </p>
+          </div>
+        </div>
+        <div id="feed-map" class="feed-map" aria-label="GTFS-Realtime feed haritası"></div>
+        <p class="map-note">Noktaya tıklayarak feed seçin. Boş alana tıklamak seçimi ve görünümü sıfırlar.</p>
+      </section>
+
+      <section class="panel selection-panel" aria-labelledby="catalog-title">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">FEED SEÇİMİ</p>
+            <h2 id="catalog-title">Feed seç</h2>
           </div>
           <span id="catalog-count" class="muted">Katalog yükleniyor…</span>
         </div>
 
         <div class="catalog-controls">
+          <button id="clear-catalog-selection" class="filter-clear" type="button" hidden>Temizle</button>
           <label>
             Ara
-            <input id="catalog-search" type="search" placeholder="Kurum, şehir veya feed adı" />
+            <input id="catalog-search" type="search" placeholder="Kurum veya şehir" />
           </label>
           <label>
             Tür
@@ -70,29 +82,18 @@
             </select>
           </label>
         </div>
-        <div class="button-row compact catalog-selection-actions">
-          <button id="clear-catalog-selection" type="button" hidden>Seçimi temizle</button>
-        </div>
 
-        <div class="catalog-grid">
-          <div>
-            <div id="feed-map" class="feed-map" aria-label="GTFS-Realtime feed haritası"></div>
-            <p class="map-note">Nokta yaklaşık feed konumunu gösterir.</p>
-          </div>
-          <div>
-            <div id="catalog-status" class="notice neutral">Katalog yükleniyor…</div>
-            <div id="schedule-score" class="notice neutral" role="status">
-              Hazır Schedule skoru için feed seçin.
-            </div>
-            <div id="feed-list" class="feed-list"></div>
-          </div>
+        <div id="catalog-status" class="notice neutral">Katalog yükleniyor…</div>
+        <div id="schedule-score" class="notice neutral" role="status">
+          Hazır Schedule skoru için feed seçin.
         </div>
+        <div id="feed-list" class="feed-list"></div>
       </section>
 
-      <section class="panel controls" aria-labelledby="controls-title">
+      <section class="panel controls source-panel" aria-labelledby="controls-title">
         <div class="panel-heading">
           <div>
-            <p class="eyebrow">KAYNAK</p>
+            <p class="eyebrow">KAYNAK FEED</p>
             <h2 id="controls-title">Feed izle</h2>
           </div>
           <span id="monitor-state" class="muted">Durduruldu</span>
