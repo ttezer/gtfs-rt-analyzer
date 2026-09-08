@@ -14,6 +14,7 @@ const catalogState = {
   markers: [],
   map: null,
   scores: new Map(),
+  selectedFeed: null,
 };
 
 const elements = {
@@ -45,6 +46,7 @@ const elements = {
   catalogCount: $("catalog-count"),
   catalogNotice: $("catalog-status"),
   scheduleScore: $("schedule-score"),
+  clearCatalogSelection: $("clear-catalog-selection"),
   feedMap: $("feed-map"),
   feedList: $("feed-list"),
 };
@@ -125,7 +127,10 @@ function renderScheduleScore(feed) {
     return;
   }
   if (!score || score.publish_score === null || score.overall_score === null) {
-    setScheduleNotice("Bağlı Schedule var; bu katalog snapshot'ında hazır skor yok.", "neutral");
+    setScheduleNotice(
+      "Bağlı Schedule var; bu snapshot'ta hazır skor yok. Haftalık Actions yenilemesinde hesaplanacak.",
+      "neutral",
+    );
     return;
   }
 
@@ -172,10 +177,12 @@ function feedMatches(feed) {
     || feed.status === elements.catalogStatus.value;
   const provenanceMatches = elements.catalogProvenance.value === "all"
     || feedProvenance(feed) === elements.catalogProvenance.value;
-  return searchMatches && typeMatches && statusMatches && provenanceMatches;
+  const selectionMatches = !catalogState.selectedFeed || feed.id === catalogState.selectedFeed.id;
+  return searchMatches && typeMatches && statusMatches && provenanceMatches && selectionMatches;
 }
 
 function selectCatalogFeed(feed) {
+  catalogState.selectedFeed = feed;
   elements.feedUrl.value = feed.url;
   if (!elements.proxyUrl.value.trim()) {
     elements.proxyUrl.value = "https://gtfs-rt-proxy.ttezer.workers.dev";
@@ -185,8 +192,15 @@ function selectCatalogFeed(feed) {
     `${feedTitle(feed)} seçildi. Şimdi çek düğmesine basın.`,
     "neutral",
   );
+  renderCatalog();
   elements.feedUrl.focus();
   renderScheduleScore(feed);
+}
+
+function clearCatalogSelection() {
+  catalogState.selectedFeed = null;
+  renderCatalog();
+  setScheduleNotice("Hazır Schedule skoru için feed seçin.", "neutral");
 }
 
 function popupForFeed(feed) {
@@ -212,6 +226,7 @@ function renderCatalog() {
     ? "Bir feed seçin; URL izleme formuna doldurulur."
     : "Bu filtrelerle feed bulunamadı.";
   elements.catalogNotice.className = "notice neutral";
+  elements.clearCatalogSelection.hidden = !catalogState.selectedFeed;
 
   if (catalogState.map) {
     clearMapMarkers();
@@ -322,6 +337,7 @@ async function initCatalog() {
         const scorePayload = await scoreResponse.json();
         const scores = Array.isArray(scorePayload.scores) ? scorePayload.scores : [];
         catalogState.scores = new Map(scores.map((score) => [score.static_reference, score]));
+        if (catalogState.selectedFeed) renderScheduleScore(catalogState.selectedFeed);
       }
     } catch (scoreError) {
       console.warn("Schedule score snapshot yüklenemedi", scoreError);
@@ -556,6 +572,7 @@ elements.catalogSearch.addEventListener("input", renderCatalog);
 elements.catalogType.addEventListener("change", renderCatalog);
 elements.catalogStatus.addEventListener("change", renderCatalog);
 elements.catalogProvenance.addEventListener("change", renderCatalog);
+elements.clearCatalogSelection.addEventListener("click", clearCatalogSelection);
 
 void initCatalog();
 

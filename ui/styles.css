@@ -64,6 +64,7 @@ h2 { font-size: 21px; }
 
 .catalog-description { max-width: 660px; margin: 8px 0 0; color: var(--muted); font-size: 13px; }
 .catalog-controls { display: grid; grid-template-columns: minmax(220px, 2fr) repeat(3, minmax(130px, 1fr)); gap: 12px; margin-bottom: 18px; }
+.catalog-selection-actions { justify-content: flex-start; margin-bottom: 12px; }
 .catalog-controls label { margin: 0; }
 .catalog-grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(300px, .75fr); gap: 18px; }
 .feed-map { height: 460px; border: 1px solid var(--line); background: #eef2f4; }
