@@ -12,7 +12,11 @@ regression reaches the published site without anything turning red.
 This comes first: the changes below alter the rule layer and the WebAssembly boundary, and
 a gate added afterwards would not have covered them.
 
-- [ ] Workflow running `cargo test --workspace`, `cargo clippy --workspace --all-targets -D warnings`, the proxy's `vitest` suite and `tsc --noEmit`
+- [x] Workflow running `cargo test --workspace`, `cargo clippy --workspace --all-targets -D warnings`, the proxy's `vitest` suite and `tsc --noEmit`
+
+`cargo fmt --check` is deliberately not a gate yet: the tree does not currently satisfy
+rustfmt, and adding the gate would require reformatting files this work does not otherwise
+touch. Worth doing as its own change.
 
 ## 2. Correct the consistency rules
 
