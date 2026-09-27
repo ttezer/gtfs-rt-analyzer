@@ -2,7 +2,7 @@
   "source": "gtfs-analyzer",
   "source_url": "https://github.com/ttezer/gtfs-analyzer",
   "engine_version": "0.12.0",
-  "updated_at": "2026-09-20",
+  "updated_at": "2026-09-27",
   "scores": [
     {
       "static_reference": "jbda-chitacity-chita-aiaibus",
@@ -139,38 +139,38 @@
     {
       "static_reference": "jbda-kuma-bus-kuma-bus",
       "schedule_url": "https://files.mobilitydatabase.org/jbda-kuma-bus-kuma-bus/latest.zip",
-      "etag": "\"2cc09f18a93f161dc5b3c05b25ba8d3c\"",
-      "last_modified": "Sun, 20 Sep 2026 01:03:45 GMT",
-      "content_length": 778002,
-      "sha256": "d75412e957451f7c8ab2b27a65221eebd0c73bba3f5144035e1bb66643a9ea11",
+      "etag": "\"b63127d8fe718a0bb082ff9cd55b59ba\"",
+      "last_modified": "Sun, 27 Sep 2026 01:32:47 GMT",
+      "content_length": 1329429,
+      "sha256": "49f0f9fa6692edb821d31e8690118bb2ab20198f1efc31af2b04b89f28797dbd",
       "publish_score": 92.6,
-      "overall_score": 87.1,
+      "overall_score": 85.7,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:18:08.591Z"
+      "analyzed_at": "2026-09-27T19:59:12.413Z"
     },
     {
       "static_reference": "jbda-kumamoto-toshibus-kumamoto-toshibus",
       "schedule_url": "https://files.mobilitydatabase.org/jbda-kumamoto-toshibus-kumamoto-toshibus/latest.zip",
-      "etag": "\"61a09bfed5a8c0ca10aaf8e6433e0b47\"",
-      "last_modified": "Sun, 20 Sep 2026 00:32:33 GMT",
-      "content_length": 964213,
-      "sha256": "2e31fb0923ea908224487e3694ac309aef0160a674f0a55438f73b71d495f0ae",
+      "etag": "\"e4de40f01f9b7817e75c07e035ecf43c\"",
+      "last_modified": "Sun, 27 Sep 2026 00:14:57 GMT",
+      "content_length": 964214,
+      "sha256": "56f7454dec6620faeaf43c213f88bf857495107cd8bea621222b985fd8b21bfa",
       "publish_score": 92.6,
       "overall_score": 86.4,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:18:10.313Z"
+      "analyzed_at": "2026-09-27T19:59:13.437Z"
     },
     {
       "static_reference": "jbda-kumamotodentetsu-kumamotodentetsu-bus",
       "schedule_url": "https://files.mobilitydatabase.org/jbda-kumamotodentetsu-kumamotodentetsu-bus/latest.zip",
-      "etag": "\"459997b40df747f96ecbd0fd4fea9a0d\"",
-      "last_modified": "Sun, 20 Sep 2026 00:49:38 GMT",
-      "content_length": 986850,
-      "sha256": "57c5f4d037162628dc82c73ea3758fcf128763d99327e506ecea598e9a29a8a5",
+      "etag": "\"698eb865da65133067d9b5d48b04421f\"",
+      "last_modified": "Sun, 27 Sep 2026 00:27:05 GMT",
+      "content_length": 986851,
+      "sha256": "1626f565c3f9e763d8089321eca8e0c55d7b7ddc49276e790d0bd7c32b954f18",
       "publish_score": 92.6,
-      "overall_score": 86.5,
+      "overall_score": 86.7,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:18:12.071Z"
+      "analyzed_at": "2026-09-27T19:59:14.500Z"
     },
     {
       "static_reference": "jbda-kurobecity-ishida-aimoto",
@@ -223,74 +223,74 @@
     {
       "static_reference": "jbda-mie-kotsu-sancoiga",
       "schedule_url": "https://files.mobilitydatabase.org/jbda-mie-kotsu-sancoiga/latest.zip",
-      "etag": "\"8eaefecdd035f495968e0eb30173a39e\"",
-      "last_modified": "Sun, 20 Sep 2026 01:44:14 GMT",
-      "content_length": 297136,
-      "sha256": "fe9746bee7380fd43d699b980b9b938ebdfb21705c18ec818bbd60716163ccb2",
+      "etag": "\"7b68d905ee37e069a3b96b3b3f7c8142\"",
+      "last_modified": "Sun, 27 Sep 2026 00:44:18 GMT",
+      "content_length": 297137,
+      "sha256": "144b50c6a86c423cefff7ccd48155df036940e2a16b33f4f7352797d4bf7bfe3",
       "publish_score": 89.3,
       "overall_score": 85.7,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:18:14.267Z"
+      "analyzed_at": "2026-09-27T19:59:15.839Z"
     },
     {
       "static_reference": "jbda-mie-kotsu-sancoise",
       "schedule_url": "https://files.mobilitydatabase.org/jbda-mie-kotsu-sancoise/latest.zip",
-      "etag": "\"c7f5d4a6e2531e0c83a7cb535ed7d78e\"",
-      "last_modified": "Sun, 20 Sep 2026 00:05:26 GMT",
-      "content_length": 327408,
-      "sha256": "fe4e6876b0c213055246b916486c71f1692de20d545f7c5dc622bd2857b9901c",
+      "etag": "\"00dfa53c4c9425b79c93d903f182e274\"",
+      "last_modified": "Sun, 27 Sep 2026 00:40:55 GMT",
+      "content_length": 327409,
+      "sha256": "ba9bd91ad67cbfeb2f10a12007438bceabeed96a822b979cb2513f286f33b7b5",
       "publish_score": 89.3,
       "overall_score": 86.7,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:18:15.347Z"
+      "analyzed_at": "2026-09-27T19:59:16.558Z"
     },
     {
       "static_reference": "jbda-mie-kotsu-sancokuwana",
       "schedule_url": "https://files.mobilitydatabase.org/jbda-mie-kotsu-sancokuwana/latest.zip",
-      "etag": "\"957eb54d92686483e79e5272185db937\"",
-      "last_modified": "Sun, 20 Sep 2026 01:19:15 GMT",
+      "etag": "\"6da3c1dbb2a68abc957aa7824e313985\"",
+      "last_modified": "Sun, 27 Sep 2026 01:02:11 GMT",
       "content_length": 629966,
-      "sha256": "970b99bae6a0a9557a84abf06b708decc5a801e7ee76edd71617a8d36d947fda",
+      "sha256": "516f33b377c61961f485e4dac1cda558a4c97774d6fcb74c54e61f71f60d84d1",
       "publish_score": 89.3,
       "overall_score": 86.4,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:18:16.642Z"
+      "analyzed_at": "2026-09-27T19:59:17.494Z"
     },
     {
       "static_reference": "jbda-mie-kotsu-sancomatsusaka",
       "schedule_url": "https://files.mobilitydatabase.org/jbda-mie-kotsu-sancomatsusaka/latest.zip",
-      "etag": "\"354c223fafc76c5695e0d773815c156a\"",
-      "last_modified": "Sun, 20 Sep 2026 01:39:33 GMT",
-      "content_length": 252575,
-      "sha256": "a26bedeaa877182002049e33f676ace5453379b5701caa948021928f67dad00e",
+      "etag": "\"9260be2848fca3c47fb5ea10323e4ccf\"",
+      "last_modified": "Sun, 27 Sep 2026 00:15:03 GMT",
+      "content_length": 252576,
+      "sha256": "2ee128b68c0a463c761bad90ff178c7e13f355b16b7d75fa506e00ca9f6fd2bc",
       "publish_score": 89.3,
       "overall_score": 87.1,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:18:17.544Z"
+      "analyzed_at": "2026-09-27T19:59:18.059Z"
     },
     {
       "static_reference": "jbda-mie-kotsu-sancoshima",
       "schedule_url": "https://files.mobilitydatabase.org/jbda-mie-kotsu-sancoshima/latest.zip",
-      "etag": "\"db1827ea8006411ba3d52b8c028b67ec\"",
-      "last_modified": "Sun, 20 Sep 2026 01:06:22 GMT",
-      "content_length": 674428,
-      "sha256": "a9a0cc601084db6588e4f0eee0d9f5bc92290cb02ae29e1567a35fb1b5c60472",
+      "etag": "\"02fc457ce649a3c92bd2bbd837c4faec\"",
+      "last_modified": "Sun, 27 Sep 2026 00:05:51 GMT",
+      "content_length": 674429,
+      "sha256": "83e30f12cac4a725e17735d6e0e9cd3543f43b538c16ff9ac83d3c0d82bdfcdc",
       "publish_score": 89.3,
       "overall_score": 82.5,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:18:18.409Z"
+      "analyzed_at": "2026-09-27T19:59:18.860Z"
     },
     {
       "static_reference": "jbda-mie-kotsu-sancoyokkaichi",
       "schedule_url": "https://files.mobilitydatabase.org/jbda-mie-kotsu-sancoyokkaichi/latest.zip",
-      "etag": "\"d1c293da9a2dddc46450380711fbb863\"",
-      "last_modified": "Sun, 20 Sep 2026 01:51:31 GMT",
+      "etag": "\"4d1bb11507446c076afc480cfd72acf0\"",
+      "last_modified": "Sun, 27 Sep 2026 01:09:23 GMT",
       "content_length": 437780,
-      "sha256": "56f87bdb829e5ab3c9c08169369c5c9e0e24c89e17a35b87d5219b233f465311",
+      "sha256": "c2fff39f96c3fd9e78703d9b46ec44919047513f603f1efcbeb861891eb621c7",
       "publish_score": 89.3,
       "overall_score": 87.7,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:18:19.438Z"
+      "analyzed_at": "2026-09-27T19:59:19.776Z"
     },
     {
       "static_reference": "jbda-nagai-unyu-Nagaibus",
@@ -367,14 +367,14 @@
     {
       "static_reference": "jbda-sankobus-sankobus",
       "schedule_url": "https://files.mobilitydatabase.org/jbda-sankobus-sankobus/latest.zip",
-      "etag": "\"7a48258185b22c250ffd0d73e4274c7c\"",
-      "last_modified": "Sun, 20 Sep 2026 01:50:49 GMT",
+      "etag": "\"cb891a45e3ec5d9e0ab326d360d16f0e\"",
+      "last_modified": "Sun, 27 Sep 2026 01:44:35 GMT",
       "content_length": 5838087,
-      "sha256": "302b3f26c7fab46e3baf537ad0c2be65eb75132a46e762e1acdfea0a352ab4b8",
+      "sha256": "2e47604232fe40ad4964911a5611932612a2bee716dac6da40409924a3737f4e",
       "publish_score": 92.6,
-      "overall_score": 84.9,
+      "overall_score": 85,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:18:27.991Z"
+      "analyzed_at": "2026-09-27T19:59:27.035Z"
     },
     {
       "static_reference": "jbda-takaokacity-koueibus",
@@ -631,26 +631,26 @@
     {
       "static_reference": "mdb-1042",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-1042/latest.zip",
-      "etag": "\"82ec9ecc4ad010dd07c41f738d42d5fc\"",
-      "last_modified": "Sat, 19 Sep 2026 00:02:54 GMT",
-      "content_length": 1343420,
-      "sha256": "efe0acb5a2962ad1480095e5dd3bb5b8e8c954e86130239f92ee528eb789264f",
+      "etag": "\"852b27e8fdae6050a1f7e8b01fe288e6\"",
+      "last_modified": "Mon, 21 Sep 2026 01:19:52 GMT",
+      "content_length": 1255963,
+      "sha256": "c020b7d96d0ecdd4cc2b59b3a31b44d49ed6a4f48a45cc64245182fdda224f76",
       "publish_score": 100,
-      "overall_score": 90.7,
+      "overall_score": 91.1,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:18:35.201Z"
+      "analyzed_at": "2026-09-27T19:59:30.926Z"
     },
     {
       "static_reference": "mdb-1044",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-1044/latest.zip",
-      "etag": "\"8ef91689240ee54d713d4689c1c4aaa6\"",
-      "last_modified": "Sun, 20 Sep 2026 00:24:37 GMT",
-      "content_length": 3859795,
-      "sha256": "844ba08acfef4e69372670d6e7ab67d5981ffd06c067e550cafd394b2e972253",
+      "etag": "\"93625ebf89c9ff0791a27da8ae2c50de\"",
+      "last_modified": "Sat, 26 Sep 2026 00:44:18 GMT",
+      "content_length": 3573127,
+      "sha256": "fcd9f66db2be9213fbae1fc2ecd656790c7b20a39b831e46a30684bfb7e8f5ff",
       "publish_score": 100,
-      "overall_score": 90.4,
+      "overall_score": 91.1,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:18:39.272Z"
+      "analyzed_at": "2026-09-27T19:59:34.034Z"
     },
     {
       "static_reference": "mdb-1060",
@@ -667,26 +667,26 @@
     {
       "static_reference": "mdb-1063",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-1063/latest.zip",
-      "etag": "\"77f6abe96e1cb71c474900e89840a943\"",
-      "last_modified": "Tue, 15 Sep 2026 00:07:59 GMT",
-      "content_length": 2623893,
-      "sha256": "f24fd11ebc24fc5d25954b5517e9089006be288329e8b2adaa650579e4b40956",
+      "etag": "\"b2d4b24ac1eaea7c1d4d0ab9e0d84fbf\"",
+      "last_modified": "Sat, 26 Sep 2026 00:12:27 GMT",
+      "content_length": 3026455,
+      "sha256": "ad417846930ed7696adc7515f24bbc60222db21b85cc5b920c64cb34d71b9a49",
       "publish_score": 100,
-      "overall_score": 92.5,
+      "overall_score": 92.4,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:18:41.924Z"
+      "analyzed_at": "2026-09-27T19:59:36.566Z"
     },
     {
       "static_reference": "mdb-1078",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-1078/latest.zip",
-      "etag": "\"31cd86a0770ccf989bcf81ab7a778567\"",
-      "last_modified": "Sun, 20 Sep 2026 01:40:41 GMT",
-      "content_length": 570726848,
+      "etag": "\"71af7047fb52ffce6f70f22a9afe29c7\"",
+      "last_modified": "Sun, 27 Sep 2026 00:35:45 GMT",
+      "content_length": 566383568,
       "publish_score": null,
       "overall_score": null,
       "validation_status": "ERROR",
       "error": "GTFS ZIP exceeds the 536870912 byte SDK safety limit.",
-      "analyzed_at": "2026-09-20T19:18:57.420Z"
+      "analyzed_at": "2026-09-27T19:59:41.294Z"
     },
     {
       "static_reference": "mdb-1089|mdb-768|mdb-1090",
@@ -698,7 +698,7 @@
       "overall_score": null,
       "validation_status": "ERROR",
       "error": "403 Forbidden",
-      "analyzed_at": "2026-09-20T19:18:58.143Z"
+      "analyzed_at": "2026-09-27T19:59:41.641Z"
     },
     {
       "static_reference": "mdb-1201",
@@ -710,7 +710,7 @@
       "overall_score": null,
       "validation_status": "ERROR",
       "error": "403 Forbidden",
-      "analyzed_at": "2026-09-20T19:18:58.435Z"
+      "analyzed_at": "2026-09-27T19:59:41.850Z"
     },
     {
       "static_reference": "mdb-1246",
@@ -727,26 +727,26 @@
     {
       "static_reference": "mdb-1270",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-1270/latest.zip",
-      "etag": "\"620a04201d9fb650e93bb2bcad40b596\"",
-      "last_modified": "Fri, 18 Sep 2026 00:07:52 GMT",
-      "content_length": 4962957,
-      "sha256": "5ff6df4a4d4f16ef9b0826d8e6d393c8198dac03294f3277f27dfd7d3573be0e",
+      "etag": "\"8471744cd6b701e2f9345bb4f2260427\"",
+      "last_modified": "Sat, 26 Sep 2026 01:17:27 GMT",
+      "content_length": 4836046,
+      "sha256": "8229cc7bbd577de1374fc678c1d53b9410b00688ad22dbd748a5e6b51a1e9878",
       "publish_score": 100,
-      "overall_score": 93.3,
+      "overall_score": 92.7,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:19:02.200Z"
+      "analyzed_at": "2026-09-27T19:59:45.000Z"
     },
     {
       "static_reference": "mdb-1294",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-1294/latest.zip",
-      "etag": "\"60e08cb31b71f44c4691ceb0a2fc36b3\"",
-      "last_modified": "Sun, 20 Sep 2026 00:01:48 GMT",
-      "content_length": 47395138,
-      "sha256": "9be2d479e15767f51ef50f6c2314601a9cdc4431d7013e68aef8c52b7ffc9763",
+      "etag": "\"126f2fdb9d91ecac38e2daa9bd741251\"",
+      "last_modified": "Sun, 27 Sep 2026 01:05:39 GMT",
+      "content_length": 46265581,
+      "sha256": "8b633fa8d1de6b72504eaaee6a0cd6fc8b4aa40b6f3839ba16c4283cb4030c52",
       "publish_score": 100,
-      "overall_score": 89.1,
+      "overall_score": 87.7,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:19:25.850Z"
+      "analyzed_at": "2026-09-27T20:00:06.917Z"
     },
     {
       "static_reference": "mdb-1304",
@@ -782,7 +782,7 @@
       "overall_score": null,
       "validation_status": "ERROR",
       "error": "403 Forbidden",
-      "analyzed_at": "2026-09-20T19:19:26.655Z"
+      "analyzed_at": "2026-09-27T20:00:07.403Z"
     },
     {
       "static_reference": "mdb-1330",
@@ -847,26 +847,26 @@
     {
       "static_reference": "mdb-178",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-178/latest.zip",
-      "etag": "\"0fd8bb97d896711d24cdab5166090645\"",
-      "last_modified": "Thu, 20 Aug 2026 01:26:44 GMT",
-      "content_length": 8334973,
-      "sha256": "1f5a5fe0402047861a7d750f779b83a9a9525786c4de3d96953da62dfc8a0579",
+      "etag": "\"8bb9a96e61f666c58698f9e1035df1e2\"",
+      "last_modified": "Sat, 26 Sep 2026 01:25:33 GMT",
+      "content_length": 19799228,
+      "sha256": "d86b041a5e8d53fdbfeb2fd13e0561fef88be3a31a5d6a3a87d80a51ac0fb4e8",
       "publish_score": 100,
-      "overall_score": 89.3,
+      "overall_score": 90,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-08T07:43:33.444Z"
+      "analyzed_at": "2026-09-27T20:00:19.008Z"
     },
     {
       "static_reference": "mdb-1784",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-1784/latest.zip",
-      "etag": "\"aa612d86ea894d6b7f5cca0abbf05a4e\"",
-      "last_modified": "Sun, 20 Sep 2026 01:23:05 GMT",
-      "content_length": 42647,
-      "sha256": "157f2d135be8d283ee06caf2b6269573bfd4fbe79b9fa83369e03b044a363102",
+      "etag": "\"491a17017ef88f73e69369b3c122a34c\"",
+      "last_modified": "Sun, 27 Sep 2026 00:35:10 GMT",
+      "content_length": 47378,
+      "sha256": "e9ff5150800c53054c9c66559617f92711cbb1f0f96306a71e248eba00eba184",
       "publish_score": 100,
       "overall_score": 95,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:19:34.503Z"
+      "analyzed_at": "2026-09-27T20:00:19.393Z"
     },
     {
       "static_reference": "mdb-1840",
@@ -931,26 +931,26 @@
     {
       "static_reference": "mdb-1979",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-1979/latest.zip",
-      "etag": "\"213c16a857503e2678da904dd7b5a621\"",
-      "last_modified": "Sun, 20 Sep 2026 00:37:20 GMT",
-      "content_length": 326685,
-      "sha256": "9181b12c7621f7904e2639fd15fbaf55ca6bb9f789b41b1ce0eb397859b55a7f",
+      "etag": "\"345dd1844026a9656facb5bb860832f6\"",
+      "last_modified": "Sun, 27 Sep 2026 00:38:38 GMT",
+      "content_length": 326684,
+      "sha256": "1920c3af2f1ad6c1d50f54becca5d64e8f133bd7a85f5c6e5a7dd1dad419e4d3",
       "publish_score": 100,
       "overall_score": 92.9,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:19:36.509Z"
+      "analyzed_at": "2026-09-27T20:00:20.809Z"
     },
     {
       "static_reference": "mdb-1991",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-1991/latest.zip",
-      "etag": "\"a0a5f34985c44a5e9de523f2a4971783\"",
-      "last_modified": "Sun, 20 Sep 2026 01:24:02 GMT",
-      "content_length": 1012072,
-      "sha256": "caaade52e1d30450581002f42f0ee5c05e71a6abbd397f5a50930a90a72be2e4",
+      "etag": "\"e9106577c4b5222532b2a2bee1c6659e\"",
+      "last_modified": "Sun, 27 Sep 2026 00:29:35 GMT",
+      "content_length": 1012055,
+      "sha256": "826959f581b7a780769b2eb50665a53a30addb93ac725f2f235893d70101a746",
       "publish_score": 100,
       "overall_score": 91.5,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:19:37.926Z"
+      "analyzed_at": "2026-09-27T20:00:21.643Z"
     },
     {
       "static_reference": "mdb-1996",
@@ -967,14 +967,14 @@
     {
       "static_reference": "mdb-2000",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2000/latest.zip",
-      "etag": "\"fb2a26397827df68316a6e681d28862d\"",
-      "last_modified": "Sat, 12 Sep 2026 01:03:56 GMT",
-      "content_length": 1398486,
-      "sha256": "76edb74bb636036fc4a7617ff70f3ba54728ff9764f9e38ff77edac94c369dd7",
+      "etag": "\"c763ce2e948fc18e55e39f111c61ff27\"",
+      "last_modified": "Sat, 26 Sep 2026 00:01:10 GMT",
+      "content_length": 1357719,
+      "sha256": "0ffeafce6d8994400990059022b0a46286788622d253a109811d46732ed80dca",
       "publish_score": 100,
-      "overall_score": 89.2,
+      "overall_score": 92,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-13T19:15:50.880Z"
+      "analyzed_at": "2026-09-27T20:00:23.088Z"
     },
     {
       "static_reference": "mdb-2025",
@@ -991,26 +991,26 @@
     {
       "static_reference": "mdb-2027",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2027/latest.zip",
-      "etag": "\"a3e6bec4280ea7a6a870856558823d60\"",
-      "last_modified": "Sat, 19 Sep 2026 00:01:35 GMT",
-      "content_length": 86477966,
-      "sha256": "cfe38c4306c1a84de061b146b7db425a0d3f19e07e5ff7281560bf1a422d43a5",
-      "publish_score": 86.2,
-      "overall_score": 72.8,
+      "etag": "\"6c64509fcc5ac8a3876d9864f6a0e74a\"",
+      "last_modified": "Fri, 25 Sep 2026 01:31:08 GMT",
+      "content_length": 71976485,
+      "sha256": "1da8d85f4382a8ff3bb2975fe964016f61246df12089975948a46ffa982d8eb8",
+      "publish_score": 92.6,
+      "overall_score": 75.3,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:20:37.290Z"
+      "analyzed_at": "2026-09-27T20:01:14.022Z"
     },
     {
       "static_reference": "mdb-205",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-205/latest.zip",
-      "etag": "\"b085f3e26ea4105667208705e70563a2\"",
-      "last_modified": "Sun, 20 Sep 2026 00:14:46 GMT",
-      "content_length": 19562910,
-      "sha256": "cf79b133dcab326a220f1bbba8b357c55ceb68cf6d10868b0ced3983b1e83599",
+      "etag": "\"1e30c0b46696d00da1ecc68d342cf6b3\"",
+      "last_modified": "Sun, 27 Sep 2026 00:39:57 GMT",
+      "content_length": 19427739,
+      "sha256": "2cfc4a1b6efd7e860cbc0ee4bc90487fb8a5eb3f7946b35df021569d032ee23b",
       "publish_score": 100,
-      "overall_score": 91.1,
+      "overall_score": 91.2,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:20:43.792Z"
+      "analyzed_at": "2026-09-27T20:01:20.514Z"
     },
     {
       "static_reference": "mdb-206",
@@ -1051,14 +1051,14 @@
     {
       "static_reference": "mdb-2066",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2066/latest.zip",
-      "etag": "\"31ac4d6f33dd29b488fcc5b1b8697de6\"",
-      "last_modified": "Sun, 20 Sep 2026 01:22:24 GMT",
-      "content_length": 485322,
-      "sha256": "0306595b8dc6177381ac28fe660cf3b6f300ea739690e599199963d7a5bd1715",
+      "etag": "\"0d0c4209100ba41473adbbd574332681\"",
+      "last_modified": "Fri, 25 Sep 2026 01:20:05 GMT",
+      "content_length": 483104,
+      "sha256": "cb6b1e7b05e7b36c25631a2157c587707bf5d4bca6d6df7c5f29a7c1419faa6e",
       "publish_score": 100,
       "overall_score": 92.4,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:20:45.472Z"
+      "analyzed_at": "2026-09-27T20:01:21.394Z"
     },
     {
       "static_reference": "mdb-2071",
@@ -1087,14 +1087,14 @@
     {
       "static_reference": "mdb-2086",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2086/latest.zip",
-      "etag": "\"cdaa22d245ef7b8b20ea19a4f9bc1106\"",
-      "last_modified": "Sun, 20 Sep 2026 00:26:15 GMT",
-      "content_length": 613849,
-      "sha256": "e7476f55021ec192ef97f7a95ce8c7db6ba085b807d083f5d9a6562026b5576e",
+      "etag": "\"d734b6485d4ed7db0a84203db8b3614a\"",
+      "last_modified": "Sun, 27 Sep 2026 01:29:28 GMT",
+      "content_length": 678702,
+      "sha256": "da360f433190223a761ccd090bec98a5fe24dbbc194c38b9ec3bf01ef3117334",
       "publish_score": 100,
-      "overall_score": 93.9,
+      "overall_score": 93.6,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:20:47.182Z"
+      "analyzed_at": "2026-09-27T20:01:22.429Z"
     },
     {
       "static_reference": "mdb-2088",
@@ -1111,26 +1111,26 @@
     {
       "static_reference": "mdb-2091",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2091/latest.zip",
-      "etag": "\"479baffb4543a27736cb079d159e84ae\"",
-      "last_modified": "Sun, 20 Sep 2026 00:57:04 GMT",
+      "etag": "\"994a03603176758c0c545b1385ef6a9b\"",
+      "last_modified": "Sun, 27 Sep 2026 00:27:10 GMT",
       "content_length": 501213,
-      "sha256": "ec3e61e733bec4d13ba58af046769c03fa6e831e13325dc881db5d05aedc795f",
+      "sha256": "6a0e286665d656454fdb87ba67557a3ba49cd9c8d67bbd091df1f68989fdddd5",
       "publish_score": 100,
       "overall_score": 92.8,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:20:48.668Z"
+      "analyzed_at": "2026-09-27T20:01:23.233Z"
     },
     {
       "static_reference": "mdb-2092",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2092/latest.zip",
-      "etag": "\"28ef9e11426a904effd56e8163bfda6b\"",
-      "last_modified": "Sun, 20 Sep 2026 00:56:17 GMT",
-      "content_length": 103694398,
-      "sha256": "78a089f7b84a115b41194413497e2ac3e8b58e98ef2cdec73384b515bffee520",
+      "etag": "\"9106386f802c33c0d03af1171477da58\"",
+      "last_modified": "Sun, 27 Sep 2026 00:50:43 GMT",
+      "content_length": 103527266,
+      "sha256": "56ae1638aead03d39ceb4e50173f745e154417e8aeed6872a1636ab4bd1b79b2",
       "publish_score": 92.6,
-      "overall_score": 81.6,
+      "overall_score": 80.9,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:21:28.643Z"
+      "analyzed_at": "2026-09-27T20:02:01.655Z"
     },
     {
       "static_reference": "mdb-2098",
@@ -1243,14 +1243,14 @@
     {
       "static_reference": "mdb-2202",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2202/latest.zip",
-      "etag": "\"2cb30d950450deeefd4a5883a3720a44\"",
-      "last_modified": "Sun, 20 Sep 2026 00:44:29 GMT",
-      "content_length": 34989,
-      "sha256": "26882294473cde3f34d6f4297308390d0bb25f0caba5a6c9ebb4987dc5204ee0",
+      "etag": "\"bf535f578b6b6067d26cae40374e1de6\"",
+      "last_modified": "Sun, 27 Sep 2026 00:24:24 GMT",
+      "content_length": 34988,
+      "sha256": "9b39e4d1b949f59b8d9eef886a3bc091305ba5b9037c026a41ecdab4db9ea60d",
       "publish_score": 100,
       "overall_score": 91.9,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:21:35.889Z"
+      "analyzed_at": "2026-09-27T20:02:03.356Z"
     },
     {
       "static_reference": "mdb-2208",
@@ -1267,14 +1267,14 @@
     {
       "static_reference": "mdb-2212",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2212/latest.zip",
-      "etag": "\"aedbe2b8efa59c7a7b23a20aabcb74bf\"",
-      "last_modified": "Fri, 04 Sep 2026 01:10:03 GMT",
-      "content_length": 3684925,
-      "sha256": "31c7d2cb0979bc42375965f4a3d641d64b838faee217ce71e7b727492616fb43",
+      "etag": "\"3a8908cfb816772ac07444a1fd068bf2\"",
+      "last_modified": "Sat, 26 Sep 2026 00:03:57 GMT",
+      "content_length": 6053425,
+      "sha256": "d34e56511432c50108b39a5c787bdf312946150f9971afd3dbda4fabcaad5185",
       "publish_score": 100,
-      "overall_score": 92.3,
+      "overall_score": 92.2,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-08T07:46:34.532Z"
+      "analyzed_at": "2026-09-27T20:02:07.007Z"
     },
     {
       "static_reference": "mdb-2224",
@@ -1303,38 +1303,38 @@
     {
       "static_reference": "mdb-2242",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2242/latest.zip",
-      "etag": "\"d0fa2bb87a0885b7fbe7f37c64a76fb5\"",
-      "last_modified": "Fri, 03 Jul 2026 01:42:12 GMT",
-      "content_length": 513970,
-      "sha256": "1aaa32b9be0f74511e697183fd93591cc18b06300f30ed044b5daa022cc4ca35",
+      "etag": "\"5492fb870ab5a4eb3024c8f8641624c6\"",
+      "last_modified": "Sat, 26 Sep 2026 00:32:44 GMT",
+      "content_length": 521840,
+      "sha256": "6f8fb9203d52b14934a63bfccc6001c29e6ab81e8e1d049e902d885fdfb1f121",
       "publish_score": 100,
       "overall_score": 94.9,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-08T07:46:37.021Z"
+      "analyzed_at": "2026-09-27T20:02:07.568Z"
     },
     {
       "static_reference": "mdb-2244",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2244/latest.zip",
-      "etag": "\"aa54f727b69829b0506c6d0aed739d3a\"",
-      "last_modified": "Sun, 20 Sep 2026 01:12:37 GMT",
-      "content_length": 170893,
-      "sha256": "a50ce1e2492581012161f9f8415fbc6a9b742e2f86e769cd07724999c17fb64c",
+      "etag": "\"3fb55e9580c790e461e7b0aa094b7463\"",
+      "last_modified": "Sun, 27 Sep 2026 01:16:11 GMT",
+      "content_length": 170892,
+      "sha256": "9bf7c98168655ee632bd9e5fef9d20e2cea57597d53a52006a9f0d2ca77c32db",
       "publish_score": 100,
       "overall_score": 94.4,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:21:38.020Z"
+      "analyzed_at": "2026-09-27T20:02:08.019Z"
     },
     {
       "static_reference": "mdb-2245",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2245/latest.zip",
-      "etag": "\"2384705933bc61f0ae97becde7172179\"",
-      "last_modified": "Sun, 20 Sep 2026 01:40:08 GMT",
-      "content_length": 222459,
-      "sha256": "cdc036c2399bc0526de8fded6b43554ba0e7a31bbbe6b4c1be9d98f71eca32f6",
+      "etag": "\"9be60669c81e48ad0aba9431779f9057\"",
+      "last_modified": "Sun, 27 Sep 2026 01:11:17 GMT",
+      "content_length": 223670,
+      "sha256": "68c3f1fdabffd4a97a7214cf39e8c801b9bc333d64fad07613726dbdb56216f0",
       "publish_score": 100,
-      "overall_score": 91.7,
+      "overall_score": 92.1,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:21:38.490Z"
+      "analyzed_at": "2026-09-27T20:02:08.401Z"
     },
     {
       "static_reference": "mdb-2246",
@@ -1423,14 +1423,14 @@
     {
       "static_reference": "mdb-2280",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2280/latest.zip",
-      "etag": "\"4b64ebe9e6243910c89848b65b7bd64e\"",
-      "last_modified": "Thu, 17 Sep 2026 01:23:14 GMT",
-      "content_length": 938467,
-      "sha256": "0da84c2ec557cbb971927ca1b4b7bd2196510d1f68c783514cb102b63215c744",
-      "publish_score": 56.8,
-      "overall_score": 73.4,
+      "etag": "\"b708d23857c3fd3dd842a8fe1da3b0ab\"",
+      "last_modified": "Sat, 26 Sep 2026 01:06:48 GMT",
+      "content_length": 1774718,
+      "sha256": "2530750762355ca6b55017f7c1719ee7dd7408ec1f3ff154fd07f78790b49389",
+      "publish_score": 100,
+      "overall_score": 91.8,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:21:41.786Z"
+      "analyzed_at": "2026-09-27T20:02:10.393Z"
     },
     {
       "static_reference": "mdb-2341",
@@ -1447,50 +1447,50 @@
     {
       "static_reference": "mdb-2374",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2374/latest.zip",
-      "etag": "\"96d42086f673e1888dd8e74d5e43ff62\"",
-      "last_modified": "Fri, 04 Sep 2026 01:40:07 GMT",
-      "content_length": 3832152,
-      "sha256": "7111a53b98eb20db1b2e7c8f4a4b00dfb492c086526058013f54fe8d6b78528b",
+      "etag": "\"48ae2bbcd67c1a68fdd4b28a65e51464\"",
+      "last_modified": "Sat, 26 Sep 2026 00:50:12 GMT",
+      "content_length": 3787152,
+      "sha256": "1231e9f9f54ea78f740a8b080bb7f47a3be56a701b849527c6e93eb3a460718d",
       "publish_score": 100,
       "overall_score": 79.2,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-08T07:47:16.237Z"
+      "analyzed_at": "2026-09-27T20:02:12.863Z"
     },
     {
       "static_reference": "mdb-2379",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2379/latest.zip",
-      "etag": "\"baf7a2d2f14fcde9b9070a9e265ef62f\"",
-      "last_modified": "Sun, 20 Sep 2026 00:07:09 GMT",
+      "etag": "\"d38edf885118ca9d8c6ff6eb3505139b\"",
+      "last_modified": "Sun, 27 Sep 2026 01:32:51 GMT",
       "content_length": 115080,
-      "sha256": "20026db9a9df0ad8f421c0a070cddb53094401978ee009f8633da2597a2d0a2d",
+      "sha256": "fbcfcffbbb7569b17d39209313dcee02f99ba65e813b20a894aa5fd6638443b1",
       "publish_score": 100,
       "overall_score": 94.7,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:21:42.779Z"
+      "analyzed_at": "2026-09-27T20:02:13.209Z"
     },
     {
       "static_reference": "mdb-2395",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2395/latest.zip",
-      "etag": "\"76f2dda89239cc16416576a0a950ee98\"",
-      "last_modified": "Sun, 20 Sep 2026 01:22:36 GMT",
-      "content_length": 217794,
-      "sha256": "fd05f873ec27c12321f23588b3755202a489d0ec9c7114ee3b23bcceaa1a5cb6",
+      "etag": "\"5eb99d2c5dcbb74b1e48df61525af446\"",
+      "last_modified": "Sun, 27 Sep 2026 01:28:03 GMT",
+      "content_length": 217793,
+      "sha256": "a725db576aa3c1b6b12a3742de3f279d93ed82763462b591f6f590c06d6ab409",
       "publish_score": 100,
       "overall_score": 89.6,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:21:43.453Z"
+      "analyzed_at": "2026-09-27T20:02:13.565Z"
     },
     {
       "static_reference": "mdb-2400",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2400/latest.zip",
-      "etag": "\"f20a0bd91d9ef88251f8665d39fe8f8b\"",
-      "last_modified": "Sun, 20 Sep 2026 01:24:00 GMT",
-      "content_length": 2102938,
-      "sha256": "740a4236ca0dcd27eeea2bde287a76a61ba69724d6089fadb416867c1453d97f",
+      "etag": "\"88cab735924f9209aa0a885a24fead1e\"",
+      "last_modified": "Sun, 27 Sep 2026 00:52:12 GMT",
+      "content_length": 2098428,
+      "sha256": "5301971396c417c87c8f0f131a033ba25c9758441afb55063640ae4af2690a3b",
       "publish_score": 100,
-      "overall_score": 94.2,
+      "overall_score": 94.4,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:21:45.016Z"
+      "analyzed_at": "2026-09-27T20:02:14.838Z"
     },
     {
       "static_reference": "mdb-2404",
@@ -1531,14 +1531,14 @@
     {
       "static_reference": "mdb-2432",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2432/latest.zip",
-      "etag": "\"6abefe32474974b09253867aeefad685\"",
-      "last_modified": "Sun, 20 Sep 2026 00:01:54 GMT",
-      "content_length": 359423,
-      "sha256": "e11487b4678620dea48fce6fcfa70c4c8487d6e0986abc50a15222c2f3788556",
+      "etag": "\"7662639606b397c984618b8018190b05\"",
+      "last_modified": "Sun, 27 Sep 2026 01:14:17 GMT",
+      "content_length": 359422,
+      "sha256": "ee6e90a5313891a1fafcbfbaaa990b1e02ef18ade335f487ae655d55e1cbe599",
       "publish_score": 100,
       "overall_score": 89.3,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:21:50.455Z"
+      "analyzed_at": "2026-09-27T20:02:15.968Z"
     },
     {
       "static_reference": "mdb-2458",
@@ -1555,134 +1555,134 @@
     {
       "static_reference": "mdb-2462",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2462/latest.zip",
-      "etag": "\"f1d65b337e5d2f8417c63a6a0a1020ee\"",
-      "last_modified": "Sun, 20 Sep 2026 00:38:48 GMT",
-      "content_length": 253802,
-      "sha256": "4dd697039987fc419399042eb120425fd8beb4580c4c516ffa0fb24e3a2a4a21",
+      "etag": "\"36d2aa02715a2962165db5d8d2f05769\"",
+      "last_modified": "Sun, 27 Sep 2026 01:18:39 GMT",
+      "content_length": 253777,
+      "sha256": "77194d2d793a7c80798c310f7f0c2db702c0dbdcf26846c691ad3c5f334ea31c",
       "publish_score": 100,
       "overall_score": 92.4,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:21:51.567Z"
+      "analyzed_at": "2026-09-27T20:02:16.636Z"
     },
     {
       "static_reference": "mdb-2463",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2463/latest.zip",
-      "etag": "\"562fbcdb2af1b30cd24d404a72d8ccbf\"",
-      "last_modified": "Sun, 20 Sep 2026 00:55:43 GMT",
-      "content_length": 84117,
-      "sha256": "129057bd62c3ee6471bf2e105b79981dc6f0883acb83f647bb8f7ec4165851ba",
+      "etag": "\"d95d869bdb791ca61ca8859b2bbacc59\"",
+      "last_modified": "Sun, 27 Sep 2026 01:05:59 GMT",
+      "content_length": 84098,
+      "sha256": "3ee6180da8a0646ebb37b80293bed37824347a23fd785e5bed4b1234a3d75e9b",
       "publish_score": 100,
       "overall_score": 92.5,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:21:52.183Z"
+      "analyzed_at": "2026-09-27T20:02:16.985Z"
     },
     {
       "static_reference": "mdb-2464",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2464/latest.zip",
-      "etag": "\"61403851691e71661d647ebba43ed112\"",
-      "last_modified": "Sun, 20 Sep 2026 00:38:21 GMT",
-      "content_length": 19069,
-      "sha256": "8127060c85083dc6e399d1d28d1381414f8c79c58863e4fd307931f62a35ac14",
+      "etag": "\"4234d8bf22df9b9d2848963da1aaccf5\"",
+      "last_modified": "Sun, 27 Sep 2026 01:49:00 GMT",
+      "content_length": 19138,
+      "sha256": "f77ae8c68ebf5bbdbbb96979839a3ea014af26f356b17927837f6bf1f1153789",
       "publish_score": 100,
       "overall_score": 96.6,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:21:52.685Z"
+      "analyzed_at": "2026-09-27T20:02:17.182Z"
     },
     {
       "static_reference": "mdb-2466",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2466/latest.zip",
-      "etag": "\"50cba17442b9c1c3dca4bd683ec87db1\"",
-      "last_modified": "Sun, 20 Sep 2026 00:34:42 GMT",
-      "content_length": 53772,
-      "sha256": "4a431f974311ef1a25259bafe37db46b33fe88fc37fd7c12a6a91c52911c643d",
+      "etag": "\"23198f680a2988bd5306bfc0b58dd39e\"",
+      "last_modified": "Sun, 27 Sep 2026 01:01:44 GMT",
+      "content_length": 53735,
+      "sha256": "4e92b88e18ad5435ba4bfcf18acdc3ffa19eec7f1b7e2dd96bb8b528c9230286",
       "publish_score": 100,
       "overall_score": 95.4,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:21:53.249Z"
+      "analyzed_at": "2026-09-27T20:02:17.470Z"
     },
     {
       "static_reference": "mdb-2467",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2467/latest.zip",
-      "etag": "\"ad801af999600fa607369c7818fb2185\"",
-      "last_modified": "Sun, 20 Sep 2026 01:40:26 GMT",
-      "content_length": 24149,
-      "sha256": "9850ff0b9bec637831ca2d252c3f0671532e6d8d9b6d02905861fc49e0f70990",
+      "etag": "\"db0c763a70a112b85a41f19189c2dce3\"",
+      "last_modified": "Sun, 27 Sep 2026 00:53:10 GMT",
+      "content_length": 24134,
+      "sha256": "8253044b06edfc94705cb425648c67118932bc73a835633bfa60abfabec6fe38",
       "publish_score": 100,
       "overall_score": 94.8,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:21:53.581Z"
+      "analyzed_at": "2026-09-27T20:02:17.702Z"
     },
     {
       "static_reference": "mdb-2468",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2468/latest.zip",
-      "etag": "\"5b50c15b45a595552525b4e27b2cf366\"",
-      "last_modified": "Sun, 20 Sep 2026 00:50:31 GMT",
-      "content_length": 6583,
-      "sha256": "d498ef0bdafb799a10e56fe911adf11cac77e5f9a1efe0331e1a1098708b4379",
+      "etag": "\"72f6da5892645c591b7b393f372b1bd0\"",
+      "last_modified": "Sun, 27 Sep 2026 01:28:02 GMT",
+      "content_length": 6579,
+      "sha256": "b1241523cff26b1464813e86c16064234aaf32a780c7b41ef6f48ba23fe2893d",
       "publish_score": 100,
       "overall_score": 97.2,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:21:54.088Z"
+      "analyzed_at": "2026-09-27T20:02:17.934Z"
     },
     {
       "static_reference": "mdb-2469",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2469/latest.zip",
-      "etag": "\"78c9ba9da1aca304663855f684ecfd1f\"",
-      "last_modified": "Sun, 20 Sep 2026 01:12:57 GMT",
-      "content_length": 14376,
-      "sha256": "4b8e209030244144302f73fd93b07b0fae2b22a7ef0475dd91280792f08e3c53",
+      "etag": "\"e8ead999a2dee5ce1c97ea7e8f31345c\"",
+      "last_modified": "Sun, 27 Sep 2026 00:16:19 GMT",
+      "content_length": 14366,
+      "sha256": "a8ed09ced4ed0243fef59e3c20c58c2b44e5954b12d4482681f32721cdbd1f49",
       "publish_score": 100,
       "overall_score": 95.6,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:21:54.397Z"
+      "analyzed_at": "2026-09-27T20:02:18.151Z"
     },
     {
       "static_reference": "mdb-2470",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2470/latest.zip",
-      "etag": "\"4a4c1dd89eaae3db80ac73e891e3972b\"",
-      "last_modified": "Sun, 20 Sep 2026 01:38:21 GMT",
-      "content_length": 18813,
-      "sha256": "201e44eab5de9ab543886319612faabb775cf3833658b35a4a8ff9a6df772ac6",
+      "etag": "\"af71b5458ea7e0d462c53519543beed8\"",
+      "last_modified": "Sun, 27 Sep 2026 01:02:30 GMT",
+      "content_length": 18802,
+      "sha256": "964c0dc2863539aa492a53354c50285e99b5e27a65b8e424a9491bfa3050996c",
       "publish_score": 100,
       "overall_score": 95.2,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:21:54.916Z"
+      "analyzed_at": "2026-09-27T20:02:18.394Z"
     },
     {
       "static_reference": "mdb-2471",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2471/latest.zip",
-      "etag": "\"e3af53c0ad7358cba4d37cdaeb8c129e\"",
-      "last_modified": "Sun, 20 Sep 2026 00:37:27 GMT",
-      "content_length": 25304,
-      "sha256": "227461b0bf7100a6dc7d3e07fdc759b14b502164e8c8c0191df462dd243c975f",
+      "etag": "\"5bba3ae94ac2ab5d54ecb6da1798655a\"",
+      "last_modified": "Sun, 27 Sep 2026 01:48:14 GMT",
+      "content_length": 25290,
+      "sha256": "3f930fa8ebc19923694bf860de5fcbc92e4580f3651e8af003157f8287c4fd10",
       "publish_score": 100,
       "overall_score": 95.7,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:21:55.448Z"
+      "analyzed_at": "2026-09-27T20:02:18.680Z"
     },
     {
       "static_reference": "mdb-2472",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2472/latest.zip",
-      "etag": "\"064bb012cf7a4aef06629f3ee56699eb\"",
-      "last_modified": "Sun, 20 Sep 2026 00:44:42 GMT",
-      "content_length": 11884,
-      "sha256": "4fae6df4727f0a840dd482cca6ba78604fd7a010e46063c6d7d248f19d50411b",
+      "etag": "\"65591f0d7bd053c4e38ee7318002529d\"",
+      "last_modified": "Sun, 27 Sep 2026 00:42:09 GMT",
+      "content_length": 11870,
+      "sha256": "44f98269734de8e8ef207302ea0a5a5bb684bc487783735c2dec711d7c32ebaa",
       "publish_score": 100,
       "overall_score": 97.9,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:21:55.759Z"
+      "analyzed_at": "2026-09-27T20:02:18.895Z"
     },
     {
       "static_reference": "mdb-2473",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2473/latest.zip",
-      "etag": "\"57dc5c1c57d6b5a5c0a76b04e274466d\"",
-      "last_modified": "Sun, 20 Sep 2026 00:02:33 GMT",
-      "content_length": 839496,
-      "sha256": "1968c98a8b85bab61bf58173d80516e752765a51236e15c4d84fb84cd4ec99f8",
+      "etag": "\"0d11db40657c5d3c04635faf18feca0d\"",
+      "last_modified": "Sun, 27 Sep 2026 01:22:06 GMT",
+      "content_length": 794834,
+      "sha256": "c24ad5525d5794b3ea3996ff77e75e801a1b602fa3b39721b34e7ab5b203ae25",
       "publish_score": 100,
-      "overall_score": 91.6,
+      "overall_score": 92.4,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:21:56.885Z"
+      "analyzed_at": "2026-09-27T20:02:19.475Z"
     },
     {
       "static_reference": "mdb-250",
@@ -1699,254 +1699,254 @@
     {
       "static_reference": "mdb-2508",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2508/latest.zip",
-      "etag": "\"8994a779a35b18d6acd043424eb4f63d\"",
-      "last_modified": "Sun, 20 Sep 2026 01:29:03 GMT",
-      "content_length": 309896,
-      "sha256": "02ec24c9f585f3e7aed45a4ca2bc6f41f4cf3a76e2484c730dbfc4ea7af4b906",
+      "etag": "\"8d457a5aa13f1bcff7eb671459e06907\"",
+      "last_modified": "Sun, 27 Sep 2026 01:11:11 GMT",
+      "content_length": 309872,
+      "sha256": "a50920efc5f7b368cacc91473def048b42298c41081b198ca82f9a47399b60e2",
       "publish_score": 100,
       "overall_score": 91.9,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:21:57.875Z"
+      "analyzed_at": "2026-09-27T20:02:20.114Z"
     },
     {
       "static_reference": "mdb-2510",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2510/latest.zip",
-      "etag": "\"fff1bba0581a09c7e0e70c4362f80ec1\"",
-      "last_modified": "Sun, 20 Sep 2026 01:44:56 GMT",
-      "content_length": 426065,
-      "sha256": "31448e38bcb20a66399583e28a48e5c3266025592db8bb71208b11eb7777916f",
+      "etag": "\"dd4214dd4e669c7f82add345621b3841\"",
+      "last_modified": "Sun, 27 Sep 2026 01:02:27 GMT",
+      "content_length": 1204909,
+      "sha256": "a80f6b95e8f1c5273a15ac7b92897060946c9613edc711c07e26371ebe183945",
       "publish_score": 100,
-      "overall_score": 92.6,
+      "overall_score": 92,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:21:58.479Z"
+      "analyzed_at": "2026-09-27T20:02:21.093Z"
     },
     {
       "static_reference": "mdb-2514",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2514/latest.zip",
-      "etag": "\"39ee76d5c987ce558e265abd79537231\"",
-      "last_modified": "Sun, 20 Sep 2026 01:46:09 GMT",
-      "content_length": 139494,
-      "sha256": "d787520bc8e7704984580fc2457164192776bf568f2b6ccd3ab28c513fc6ccff",
+      "etag": "\"d72d7e3fbe4701f587099cd7fa7cf195\"",
+      "last_modified": "Sun, 27 Sep 2026 00:44:48 GMT",
+      "content_length": 139480,
+      "sha256": "0e1d2586bdf4f9e3ce21297e7ade832d9cd02ddca4b36d9f9cc38f9a52da1fbe",
       "publish_score": 100,
       "overall_score": 92.9,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:21:59.148Z"
+      "analyzed_at": "2026-09-27T20:02:21.400Z"
     },
     {
       "static_reference": "mdb-2515",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2515/latest.zip",
-      "etag": "\"e71d82e5cfda4e95b53c90ce96de5aa8\"",
-      "last_modified": "Sun, 20 Sep 2026 01:22:18 GMT",
-      "content_length": 28537,
-      "sha256": "c6a4ac091860cbd0cfcd2694e34a593521294a5d0b71831842b59863e277fe80",
+      "etag": "\"822a44d79c398deefc5bb3b8fe8670be\"",
+      "last_modified": "Sun, 27 Sep 2026 01:09:52 GMT",
+      "content_length": 28513,
+      "sha256": "944358bed81f7686b4c462b82fc3bd430369344f9527636eca2c9bcbc05bc3b2",
       "publish_score": 100,
       "overall_score": 94.4,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:21:59.645Z"
+      "analyzed_at": "2026-09-27T20:02:21.770Z"
     },
     {
       "static_reference": "mdb-2520",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2520/latest.zip",
-      "etag": "\"4144afc933b0e30032bfabe7d51f3a4e\"",
-      "last_modified": "Sun, 20 Sep 2026 00:02:31 GMT",
-      "content_length": 133568,
-      "sha256": "b424c6b1733286a2573d1df4b82ba7e1c861630db2ff1ad103a8790c0703aac0",
+      "etag": "\"56d01939cf4a95727c4092e3d0206eb0\"",
+      "last_modified": "Sun, 27 Sep 2026 01:13:55 GMT",
+      "content_length": 133532,
+      "sha256": "ffecc9e1c8df4e377218131b50aa00a84956b8241e9f2eab4706fa9f180f4c80",
       "publish_score": 100,
       "overall_score": 93.1,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:22:00.286Z"
+      "analyzed_at": "2026-09-27T20:02:22.177Z"
     },
     {
       "static_reference": "mdb-2524",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2524/latest.zip",
-      "etag": "\"7d0f0e114641e15c09ab5a8d30bbd4d8\"",
-      "last_modified": "Sun, 20 Sep 2026 01:40:16 GMT",
-      "content_length": 175087,
-      "sha256": "ff689e0984de7fdd58d710d9197bf5278ce15c65d91306356dd83d030944842f",
+      "etag": "\"7c597872d3a29fb42797c9b9d6c6d0f8\"",
+      "last_modified": "Sun, 27 Sep 2026 01:41:16 GMT",
+      "content_length": 175049,
+      "sha256": "0b070ff6a7a65b18095e045e64e003b9b94ea799b76fd9a30e2ae2eec463949b",
       "publish_score": 100,
       "overall_score": 92.4,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:22:00.915Z"
+      "analyzed_at": "2026-09-27T20:02:22.569Z"
     },
     {
       "static_reference": "mdb-2528",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2528/latest.zip",
-      "etag": "\"ce537d18b6c08818826f4728c0448ea8\"",
-      "last_modified": "Sun, 20 Sep 2026 00:42:30 GMT",
-      "content_length": 274025,
-      "sha256": "0440e2a29a183beb1474b3ce96b0c7cc05b404e384c175cee8393507e69977dd",
+      "etag": "\"cb3c54694b119230259b80df69580e36\"",
+      "last_modified": "Sun, 27 Sep 2026 00:42:37 GMT",
+      "content_length": 274013,
+      "sha256": "53c96e1953a327331997d8d8189e90227d60a56d25403528b8889c475a2359da",
       "publish_score": 100,
       "overall_score": 93.7,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:22:01.400Z"
+      "analyzed_at": "2026-09-27T20:02:22.947Z"
     },
     {
       "static_reference": "mdb-2529",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2529/latest.zip",
-      "etag": "\"544b1b89d0904185919255690d0794fb\"",
-      "last_modified": "Sun, 20 Sep 2026 01:38:00 GMT",
-      "content_length": 128049,
-      "sha256": "1195e7888012e2b34ae9270205b752c74426ae457ce431425272ec3f9e6bdd49",
+      "etag": "\"165555385514b8ca80a64a7fc559b4b8\"",
+      "last_modified": "Sun, 27 Sep 2026 01:24:54 GMT",
+      "content_length": 128011,
+      "sha256": "673bb7b8e3b9ad4ea74053958eb1dff214e54c5bac044d00e8c10f6676e2748c",
       "publish_score": 100,
       "overall_score": 94.4,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:22:01.822Z"
+      "analyzed_at": "2026-09-27T20:02:23.310Z"
     },
     {
       "static_reference": "mdb-2532",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2532/latest.zip",
-      "etag": "\"f2e3d0f21ce738e26f1e10045299601c\"",
-      "last_modified": "Sun, 20 Sep 2026 01:10:49 GMT",
-      "content_length": 462686,
-      "sha256": "1addd80a13c503769d3fe95f0245c14611be5f62152264beeb031937dee69a7f",
+      "etag": "\"c6c88625d5ccff1d2f5585fd97a11b54\"",
+      "last_modified": "Sun, 27 Sep 2026 01:25:55 GMT",
+      "content_length": 462658,
+      "sha256": "300825cd928d7a08a3fabf7e5403a1aefc670a15a620c08f179fad924bdd15e4",
       "publish_score": 100,
       "overall_score": 92.2,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:22:02.668Z"
+      "analyzed_at": "2026-09-27T20:02:23.841Z"
     },
     {
       "static_reference": "mdb-2536",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2536/latest.zip",
-      "etag": "\"8dedcc25722a80db659cf83cdb3dc40e\"",
-      "last_modified": "Sun, 20 Sep 2026 00:09:28 GMT",
-      "content_length": 10909,
-      "sha256": "38d4aedcfef0095f24a3b0cb37b25aa3b54032253f2bcd65c0a7f5d3ecf45929",
+      "etag": "\"40cc2ee3b2375349db7f03d36898044f\"",
+      "last_modified": "Sun, 27 Sep 2026 00:50:41 GMT",
+      "content_length": 10897,
+      "sha256": "59c26251b9b28674a667a2a2cc461925ac963a8c26a8e1052521390b7230f89c",
       "publish_score": 100,
-      "overall_score": 95.5,
+      "overall_score": 95.2,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:22:02.993Z"
+      "analyzed_at": "2026-09-27T20:02:24.057Z"
     },
     {
       "static_reference": "mdb-2543",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2543/latest.zip",
-      "etag": "\"39415c379fe25b243591db6e7e7ac467\"",
-      "last_modified": "Sun, 20 Sep 2026 00:47:30 GMT",
-      "content_length": 74193,
-      "sha256": "fcd5ec542c0ee5933d9cc9c0b09fe7689932d4783ec15e367ee7828b64aafbec",
+      "etag": "\"d53805764f03de738912299e5522550a\"",
+      "last_modified": "Sun, 27 Sep 2026 01:27:53 GMT",
+      "content_length": 74179,
+      "sha256": "3d20bfa81aec8738ca6b845d681011da757a9341e79e54aa17f8f8d826183e18",
       "publish_score": 100,
       "overall_score": 93.5,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:22:03.519Z"
+      "analyzed_at": "2026-09-27T20:02:24.356Z"
     },
     {
       "static_reference": "mdb-2547",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2547/latest.zip",
-      "etag": "\"cec71afaf84ba5fe1e53fe8347f66194\"",
-      "last_modified": "Sun, 20 Sep 2026 01:37:11 GMT",
-      "content_length": 112194,
-      "sha256": "a9b3df73476823be4e49ffd370560a3fee71250e1e6de3322c728fda37f1521c",
+      "etag": "\"92dff45fcb4228a2cc6df75c79fd0f46\"",
+      "last_modified": "Sun, 27 Sep 2026 01:25:31 GMT",
+      "content_length": 112183,
+      "sha256": "564ea024ed3e63f38e2148ca885a23480d148df8b840f5b7752b98f9f9d81160",
       "publish_score": 100,
       "overall_score": 94.4,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:22:04.111Z"
+      "analyzed_at": "2026-09-27T20:02:24.709Z"
     },
     {
       "static_reference": "mdb-2551",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2551/latest.zip",
-      "etag": "\"55615d612df95dea5c4927e654c9e8e8\"",
-      "last_modified": "Sun, 20 Sep 2026 00:21:55 GMT",
-      "content_length": 940786,
-      "sha256": "5ea883e89d89e35b806a19fd7a61f0e7d13056104f051946820c4e9189d0497f",
+      "etag": "\"e95c08a3c3b2b3b45fdc49fff4e5da99\"",
+      "last_modified": "Sun, 27 Sep 2026 00:05:15 GMT",
+      "content_length": 940757,
+      "sha256": "0ef42b265f8e6b4fe76974cb371fa9844d9a83bbd549a2ef53ac8c7597b1ce5d",
       "publish_score": 100,
       "overall_score": 91.8,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:22:04.949Z"
+      "analyzed_at": "2026-09-27T20:02:25.406Z"
     },
     {
       "static_reference": "mdb-2555",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2555/latest.zip",
-      "etag": "\"3343fe21e5aa2fbec322ef4db5b56bb4\"",
-      "last_modified": "Sun, 20 Sep 2026 00:36:26 GMT",
-      "content_length": 963377,
-      "sha256": "e4f3af818fdea963c8784856982a6e0f250715f8b49dcfc6d9f9a3c18415ed25",
+      "etag": "\"63fc399665568a83bf3bc821005b5db9\"",
+      "last_modified": "Sun, 27 Sep 2026 01:07:03 GMT",
+      "content_length": 857909,
+      "sha256": "0724f8eb8f9e76991ea6b9984e52f33304c22c9ba6e4be8ad2a9cc69cac110b2",
       "publish_score": 100,
-      "overall_score": 90.7,
+      "overall_score": 91.3,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:22:05.952Z"
+      "analyzed_at": "2026-09-27T20:02:26.005Z"
     },
     {
       "static_reference": "mdb-2563",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2563/latest.zip",
-      "etag": "\"1de5d880a9a44ecbd4a840cc92fc8274\"",
-      "last_modified": "Sun, 20 Sep 2026 00:25:36 GMT",
-      "content_length": 111355,
-      "sha256": "edee2886cd03754e904c40fe9b40165ab189d0e724db75056c78ba59aacfebc2",
+      "etag": "\"7a3a64dedf851d2df03aa6a1434fc1f1\"",
+      "last_modified": "Sun, 27 Sep 2026 00:24:35 GMT",
+      "content_length": 111328,
+      "sha256": "b1dfdefd32d291094a8a9ef63b6e1892ed56ecb512c11456a66b599165dd5ee7",
       "publish_score": 100,
       "overall_score": 93.5,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:22:06.538Z"
+      "analyzed_at": "2026-09-27T20:02:26.334Z"
     },
     {
       "static_reference": "mdb-2567",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2567/latest.zip",
-      "etag": "\"6044e02278d80818eb265c21d6134c04\"",
-      "last_modified": "Sun, 20 Sep 2026 01:44:27 GMT",
-      "content_length": 354219,
-      "sha256": "e691703108981e4caac17114e7bf8da34c11f11c28d5ae8d2205969c18be63fd",
+      "etag": "\"a58e0703a36c44f6e19cf3ca710f4b79\"",
+      "last_modified": "Sun, 27 Sep 2026 00:04:58 GMT",
+      "content_length": 354191,
+      "sha256": "038e6b12c728a7b0523756bca24d223d56eb545ddd95330576e1261800d2b699",
       "publish_score": 100,
       "overall_score": 94,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:22:07.029Z"
+      "analyzed_at": "2026-09-27T20:02:26.779Z"
     },
     {
       "static_reference": "mdb-2571",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2571/latest.zip",
-      "etag": "\"1d5964d1b9051619a986e7c480ee8332\"",
-      "last_modified": "Sun, 20 Sep 2026 00:42:31 GMT",
-      "content_length": 16979249,
-      "sha256": "99fa39706a99fa9fd41d4b9c069ffa370ecb0dfa1610f26a34e95b64c5cddb84",
+      "etag": "\"8249cd21d8466a5fd7b184a1a70ea4f3\"",
+      "last_modified": "Sun, 27 Sep 2026 00:56:06 GMT",
+      "content_length": 16979218,
+      "sha256": "dd9b0a6d1936168c86f76626d7a92a2c3d56341c07fb17b70907f9e1594d552e",
       "publish_score": 100,
       "overall_score": 90.2,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:22:14.973Z"
+      "analyzed_at": "2026-09-27T20:02:34.539Z"
     },
     {
       "static_reference": "mdb-2575",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2575/latest.zip",
-      "etag": "\"95457f9ef9b2689246d9578fd7d33735\"",
-      "last_modified": "Sun, 20 Sep 2026 00:21:33 GMT",
-      "content_length": 27449,
-      "sha256": "1ba2812ee3d52f668cfbf48f8e2c55db009615ba9ec7074013710aa22ece0635",
+      "etag": "\"c3203bc998226afca7a4c537805236be\"",
+      "last_modified": "Sun, 27 Sep 2026 00:25:21 GMT",
+      "content_length": 27437,
+      "sha256": "15e7c5d35edb9c0c0bb9b7f46572c45bb7bf95c1489897ea340c904767adc827",
       "publish_score": 100,
       "overall_score": 96.6,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:22:15.290Z"
+      "analyzed_at": "2026-09-27T20:02:34.776Z"
     },
     {
       "static_reference": "mdb-2579",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2579/latest.zip",
-      "etag": "\"d63dc86d26612db7582c312501deff94\"",
-      "last_modified": "Sun, 20 Sep 2026 01:30:16 GMT",
-      "content_length": 486016,
-      "sha256": "e8e809e58434cbf2b6db8af4da7ae52baa2d2050f418b7475ef807d62b80d35d",
+      "etag": "\"c400cbf5e0c7e37b5e16d2fba19b61fd\"",
+      "last_modified": "Sun, 27 Sep 2026 01:49:13 GMT",
+      "content_length": 485958,
+      "sha256": "ac253dc03dd6a6ec81f116a83a8292d6c9dd6b86c30db7a4690c5d154c8bbabc",
       "publish_score": 100,
-      "overall_score": 91.3,
+      "overall_score": 91.7,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:22:15.777Z"
+      "analyzed_at": "2026-09-27T20:02:35.210Z"
     },
     {
       "static_reference": "mdb-2583",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2583/latest.zip",
-      "etag": "\"9324dcf68bd4e786f682e7469c2a049b\"",
-      "last_modified": "Sun, 20 Sep 2026 01:19:33 GMT",
-      "content_length": 126030,
-      "sha256": "33c6bfca4597129d49934c49b99e7b8fa4d0295570a66fb5c03b3b5dd4b3cbe7",
+      "etag": "\"4cf812b517f2d2bce93054ee412453db\"",
+      "last_modified": "Sun, 27 Sep 2026 01:32:29 GMT",
+      "content_length": 126019,
+      "sha256": "d292ec8c1acf58ac15fbfc528a5a4c3249a36ed45a9e7530e5e99c7252a3f52a",
       "publish_score": 100,
-      "overall_score": 93.2,
+      "overall_score": 93.6,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:22:16.149Z"
+      "analyzed_at": "2026-09-27T20:02:35.555Z"
     },
     {
       "static_reference": "mdb-2587",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2587/latest.zip",
-      "etag": "\"5141b671b66d20153a3b624b5bcc6d63\"",
-      "last_modified": "Sun, 20 Sep 2026 01:21:58 GMT",
-      "content_length": 21267,
-      "sha256": "3329caa7464be0f33dc93c9d4adb90190ae376986b2b7f0fc75ccca41ce1dc63",
+      "etag": "\"a9f53b0feb4d92fd53b945dcf0066e3d\"",
+      "last_modified": "Sun, 27 Sep 2026 00:43:01 GMT",
+      "content_length": 21243,
+      "sha256": "26779b902d3e28bee3c25e9529b114bd8b0f530b5c19b7d59289813bc4978919",
       "publish_score": 100,
       "overall_score": 94.5,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:22:16.493Z"
+      "analyzed_at": "2026-09-27T20:02:35.786Z"
     },
     {
       "static_reference": "mdb-2598|mdb-1270|mdb-1326",
@@ -1958,7 +1958,7 @@
       "overall_score": null,
       "validation_status": "ERROR",
       "error": "403 Forbidden",
-      "analyzed_at": "2026-09-20T19:22:16.765Z"
+      "analyzed_at": "2026-09-27T20:02:35.989Z"
     },
     {
       "static_reference": "mdb-2598|mdb-1326|mdb-1270",
@@ -1970,7 +1970,7 @@
       "overall_score": null,
       "validation_status": "ERROR",
       "error": "403 Forbidden",
-      "analyzed_at": "2026-09-20T19:22:17.240Z"
+      "analyzed_at": "2026-09-27T20:02:36.173Z"
     },
     {
       "static_reference": "mdb-2618",
@@ -1999,38 +1999,38 @@
     {
       "static_reference": "mdb-2642",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2642/latest.zip",
-      "etag": "\"a705ef21bc05838b27919e88a864baaa\"",
-      "last_modified": "Sun, 20 Sep 2026 00:45:14 GMT",
-      "content_length": 1596545,
-      "sha256": "0986f16c689be129a7221002b4af6cfc308ea3dd67347cebdbdc389aea8a4f6f",
+      "etag": "\"6aeaf94a599d018130cf486031338785\"",
+      "last_modified": "Sun, 27 Sep 2026 00:16:13 GMT",
+      "content_length": 1596543,
+      "sha256": "9dae1c058765d0936fadebf86c208d8c0e3c4ef429121e38fb0d3e8a60224561",
       "publish_score": 100,
       "overall_score": 94.5,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:22:18.960Z"
+      "analyzed_at": "2026-09-27T20:02:37.070Z"
     },
     {
       "static_reference": "mdb-2653",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2653/latest.zip",
-      "etag": "\"5452df59fa5e0d057f125dc19bf0f98f\"",
-      "last_modified": "Sun, 20 Sep 2026 01:38:28 GMT",
-      "content_length": 16086566,
-      "sha256": "11d9fc7686636cf9f4c4e65dc5eb0ed5386ba7be296098ad6c1639a63cc569ee",
+      "etag": "\"2a2c2a10f25a35007a5b0029398a3c6f\"",
+      "last_modified": "Fri, 25 Sep 2026 00:29:12 GMT",
+      "content_length": 14056338,
+      "sha256": "72355fad13b80eb94d8007a432ebe59286ba2324a0d646072154e8a63c2505fe",
       "publish_score": 80.6,
-      "overall_score": 72.2,
+      "overall_score": 70.8,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:22:32.866Z"
+      "analyzed_at": "2026-09-27T20:02:48.434Z"
     },
     {
       "static_reference": "mdb-266",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-266/latest.zip",
-      "etag": "\"6374092bc0d05d24428a20921b696ee0\"",
-      "last_modified": "Fri, 04 Sep 2026 01:34:46 GMT",
-      "content_length": 5428447,
-      "sha256": "e0128cdf7dcfa8b14434b450665552c8a3dab8d6cceaf66d6ff18cc426ab159f",
+      "etag": "\"d6b96d46615bb291a9a3068460c140e7\"",
+      "last_modified": "Mon, 21 Sep 2026 00:25:15 GMT",
+      "content_length": 4355020,
+      "sha256": "a0874229a73977757dabcd0890d2913967d45a642f059834a84ff9dd45e30f41",
       "publish_score": 100,
-      "overall_score": 93.2,
+      "overall_score": 96.3,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-08T07:48:16.656Z"
+      "analyzed_at": "2026-09-27T20:02:51.705Z"
     },
     {
       "static_reference": "mdb-2662",
@@ -2047,38 +2047,38 @@
     {
       "static_reference": "mdb-2681",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2681/latest.zip",
-      "etag": "\"36b679d3000d5cc3e1df1ec9c31cdfec\"",
-      "last_modified": "Sun, 20 Sep 2026 01:20:04 GMT",
+      "etag": "\"f922e7023970cc6dfc3d6947a4cb52fd\"",
+      "last_modified": "Sun, 27 Sep 2026 01:48:49 GMT",
       "content_length": 2959894,
-      "sha256": "85bf8fbc73b24c94dfc111a3c3f93c0c94076ac5d8085052baa6732f32447302",
+      "sha256": "cad685d210beb0c3ad4748af0cfbaa071c84e09fac653590c6211c7a86c2124d",
       "publish_score": 100,
       "overall_score": 85.2,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:22:35.733Z"
+      "analyzed_at": "2026-09-27T20:02:53.649Z"
     },
     {
       "static_reference": "mdb-2682",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2682/latest.zip",
-      "etag": "\"2507e38e7b61ce68da8bd2c6134e6216\"",
-      "last_modified": "Tue, 15 Sep 2026 00:13:14 GMT",
-      "content_length": 2657032,
-      "sha256": "6b85829bbc2e681342c64599209ed6ca3af7b015ad5dd9169d9ee7f6c13325e5",
+      "etag": "\"a4c555da88b3feab6eafdd8fa05c7b00\"",
+      "last_modified": "Tue, 22 Sep 2026 00:10:32 GMT",
+      "content_length": 2643733,
+      "sha256": "1dd5f76a1ac3802ef66b7b04b9c692d21c96d95f9b53d00d1b6145f2d6a63249",
       "publish_score": 100,
-      "overall_score": 91.4,
+      "overall_score": 91.8,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:22:37.858Z"
+      "analyzed_at": "2026-09-27T20:02:55.455Z"
     },
     {
       "static_reference": "mdb-2687",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2687/latest.zip",
-      "etag": "\"9a0837d739996be1f429626e8b9ea570\"",
-      "last_modified": "Sat, 19 Sep 2026 01:32:31 GMT",
-      "content_length": 15792349,
-      "sha256": "c898f72ee27fd5c8102c2c8c5cb5ef32ad20124661dd46dad83f48cd2c11db2e",
+      "etag": "\"800ea8d16207fc1b0692a6c46af66c3b\"",
+      "last_modified": "Wed, 23 Sep 2026 00:18:49 GMT",
+      "content_length": 15832063,
+      "sha256": "df8981d8883bbf56fb4436e46e178706597f71dda41e08730c65d856f398811b",
       "publish_score": 100,
-      "overall_score": 88.9,
+      "overall_score": 89.3,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:22:45.815Z"
+      "analyzed_at": "2026-09-27T20:03:03.620Z"
     },
     {
       "static_reference": "mdb-2691",
@@ -2095,74 +2095,74 @@
     {
       "static_reference": "mdb-2706",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2706/latest.zip",
-      "etag": "\"d1789c553b8821c1c8f9916ac21124a2\"",
-      "last_modified": "Sun, 20 Sep 2026 00:45:18 GMT",
+      "etag": "\"1fc1230918e7f5b6afa6985d2eeccf55\"",
+      "last_modified": "Sun, 27 Sep 2026 00:16:14 GMT",
       "content_length": 157056,
-      "sha256": "aa737b39f424ce1f77514a89555ace607dd34c95fc165dd6c957dc79738984d7",
+      "sha256": "17651ddf6f72af7d52b10b0b41f5257d1a8beb1439f1ce6883828a4a8d525e00",
       "publish_score": 100,
       "overall_score": 93.1,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:22:46.504Z"
+      "analyzed_at": "2026-09-27T20:03:04.122Z"
     },
     {
       "static_reference": "mdb-2739",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2739/latest.zip",
-      "etag": "\"de9f5efca702b19face8b552b81ca8cb\"",
-      "last_modified": "Sun, 20 Sep 2026 01:38:07 GMT",
-      "content_length": 201489,
-      "sha256": "0d4db92bf79f71b2deb35d7d2eb1b7da49daa7f722c5b10178a46ce742279a7b",
+      "etag": "\"b981eff7a1cda9f85a9a4bbe08ce7525\"",
+      "last_modified": "Sun, 27 Sep 2026 01:23:06 GMT",
+      "content_length": 201488,
+      "sha256": "c1b304aadd4666d094380e6bb5574b4d7b7b191cd8b6ed75182f6cf5bb9b1267",
       "publish_score": 100,
       "overall_score": 86.2,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:22:47.024Z"
+      "analyzed_at": "2026-09-27T20:03:04.633Z"
     },
     {
       "static_reference": "mdb-2740",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2740/latest.zip",
-      "etag": "\"dee1b80a896c580246e81d93547716ad\"",
-      "last_modified": "Sun, 20 Sep 2026 01:19:39 GMT",
-      "content_length": 102694,
-      "sha256": "c719b3e5dd6d6eee61c84a5301b0e0f24287c630d8045d7d1d36e1d42081e964",
+      "etag": "\"f8aa0ddc106f25349598c9d437f265f5\"",
+      "last_modified": "Sun, 27 Sep 2026 01:29:09 GMT",
+      "content_length": 102693,
+      "sha256": "da1ecbc1e37dcf11c5e4b70d55ca89cd32b09e4bde62ab29928818ffc223e065",
       "publish_score": 100,
       "overall_score": 93.7,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:22:47.459Z"
+      "analyzed_at": "2026-09-27T20:03:04.872Z"
     },
     {
       "static_reference": "mdb-275",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-275/latest.zip",
-      "etag": "\"518d1b3506f581c080b9fc820ab0c7c6\"",
-      "last_modified": "Sat, 19 Sep 2026 00:58:53 GMT",
-      "content_length": 1294518,
-      "sha256": "ab9cd6b10f2d5be31eb3e048cf6bf01b539537dfbacfdf4d593663539829c488",
+      "etag": "\"fe16dbcba6734a820586d679e75c3f84\"",
+      "last_modified": "Sat, 26 Sep 2026 00:41:58 GMT",
+      "content_length": 1294648,
+      "sha256": "3938ff4b2ea30a723a8a03153d08fa58a6a0cad7a21f6e49c1f4292b662bdcd2",
       "publish_score": 100,
-      "overall_score": 93.8,
+      "overall_score": 94.1,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:22:48.751Z"
+      "analyzed_at": "2026-09-27T20:03:05.815Z"
     },
     {
       "static_reference": "mdb-284",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-284/latest.zip",
-      "etag": "\"94d74e9b2c1345035cf260e1cc330499\"",
-      "last_modified": "Sat, 05 Sep 2026 00:32:53 GMT",
-      "content_length": 3488787,
-      "sha256": "7b425fdb7424e19eedfcff88cd713e2638e3dab6f7c59b8f2aaddc6780e609e6",
+      "etag": "\"9c958805be6bfbbbc7f6be57d4deeeb3\"",
+      "last_modified": "Mon, 21 Sep 2026 00:04:32 GMT",
+      "content_length": 2206593,
+      "sha256": "45133ca3e15199256d510c1c13ef83bfaa0c1d37f1804f6cfb188367e666b1c0",
       "publish_score": 100,
-      "overall_score": 93.7,
+      "overall_score": 94.5,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-08T07:48:40.401Z"
+      "analyzed_at": "2026-09-27T20:03:06.899Z"
     },
     {
       "static_reference": "mdb-2848",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2848/latest.zip",
-      "etag": "\"fc15a1bc5979237242d6e28da2f9d013\"",
-      "last_modified": "Sun, 20 Sep 2026 01:08:12 GMT",
-      "content_length": 18804608,
-      "sha256": "d9432a75a8208f3cd2e9a667340459a073dfe5382f22e95156e0010cf8c9f2b9",
+      "etag": "\"1592d35ceb48a16fa6e60a16a63eebeb\"",
+      "last_modified": "Sun, 27 Sep 2026 01:01:54 GMT",
+      "content_length": 18922909,
+      "sha256": "9d3add30302d55311992089660fa043dd482fa61a7fba5c6ba9133730d7d29c9",
       "publish_score": 86.2,
-      "overall_score": 80,
+      "overall_score": 79.8,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:22:57.119Z"
+      "analyzed_at": "2026-09-27T20:03:14.721Z"
     },
     {
       "static_reference": "mdb-287",
@@ -2179,14 +2179,14 @@
     {
       "static_reference": "mdb-2894",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2894/latest.zip",
-      "etag": "\"4766cb1adc2a7c93f9725f66e80b15a6\"",
-      "last_modified": "Sun, 20 Sep 2026 01:48:04 GMT",
-      "content_length": 61134,
-      "sha256": "238753bbe5e10281014867cc0bb6b409007dfe83c45ad0ab83da0ffed96c632a",
+      "etag": "\"665b4f209d0330f03cc0b5e79ee6521c\"",
+      "last_modified": "Sun, 27 Sep 2026 01:47:13 GMT",
+      "content_length": 61133,
+      "sha256": "47888d659cb82d82e6fc7a50f0b78bb8507dc484517f0264c695c507ae4963cc",
       "publish_score": 100,
       "overall_score": 91.9,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:22:57.653Z"
+      "analyzed_at": "2026-09-27T20:03:15.156Z"
     },
     {
       "static_reference": "mdb-29",
@@ -2203,14 +2203,14 @@
     {
       "static_reference": "mdb-290",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-290/latest.zip",
-      "etag": "\"fce4965eff81a343475e531d2b5cf635\"",
-      "last_modified": "Wed, 22 Jul 2026 00:00:58 GMT",
-      "content_length": 5093434,
-      "sha256": "ea122e1c1eb4e1a52b72a22e962627aa7e764693b77d972d58dba25324190533",
+      "etag": "\"804c10081d77b981d782b35c2d01ac26\"",
+      "last_modified": "Tue, 22 Sep 2026 00:57:34 GMT",
+      "content_length": 2382257,
+      "sha256": "e67632989d7897f763824f854fd24583d76243dbd2390949ce0e7574c1a566b1",
       "publish_score": 100,
-      "overall_score": 86.9,
+      "overall_score": 87.4,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-08T07:49:10.218Z"
+      "analyzed_at": "2026-09-27T20:03:17.072Z"
     },
     {
       "static_reference": "mdb-292",
@@ -2227,14 +2227,14 @@
     {
       "static_reference": "mdb-2929",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-2929/latest.zip",
-      "etag": "\"5f5f68b3182bff4509d6c86d7ef486cf\"",
-      "last_modified": "Sun, 20 Sep 2026 00:48:53 GMT",
-      "content_length": 47230036,
-      "sha256": "d2391c247ccaaeeb0ac67133d47ce81f202cfaa6e13520f0ab77335ad0a552d8",
+      "etag": "\"c6d6af204eb51cbb5727ed70d3206ade\"",
+      "last_modified": "Sun, 27 Sep 2026 01:44:22 GMT",
+      "content_length": 47206655,
+      "sha256": "2521214f05ba7d21778ab1aa6ce9f92a45e3230eb6bc580c723dada8ee5d6e12",
       "publish_score": 100,
-      "overall_score": 87.9,
+      "overall_score": 87.6,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:23:30.078Z"
+      "analyzed_at": "2026-09-27T20:03:32.816Z"
     },
     {
       "static_reference": "mdb-2937",
@@ -2287,26 +2287,26 @@
     {
       "static_reference": "mdb-3045",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-3045/latest.zip",
-      "etag": "\"deb6c715ce1c5fdfe8edd729c70a2b0c\"",
-      "last_modified": "Sun, 20 Sep 2026 01:39:29 GMT",
-      "content_length": 810973,
-      "sha256": "0af4558178bf6949da25cf4c3c558838a3a9fe748184f4f53042d60269004d49",
+      "etag": "\"2f43a19836f5816b69b7c994d2bb93bc\"",
+      "last_modified": "Sun, 27 Sep 2026 01:08:22 GMT",
+      "content_length": 799999,
+      "sha256": "8782813a782a56bf254ee2294d591fa7ac405ea0f08fc024256fde9ff1fab175",
       "publish_score": 100,
       "overall_score": 87.2,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:23:34.031Z"
+      "analyzed_at": "2026-09-27T20:03:34.244Z"
     },
     {
       "static_reference": "mdb-3052",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-3052/latest.zip",
-      "etag": "\"743c7583583f1ea7499ee7098f6b0e1e\"",
-      "last_modified": "Wed, 16 Sep 2026 01:42:11 GMT",
-      "content_length": 1749829,
-      "sha256": "a6b2e6fae3224efc08a21bb10347ec18970c96e99327065f79e8e17c3b0e8628",
+      "etag": "\"5a91df7cdc2c9357bfa2f4f7093429bb\"",
+      "last_modified": "Sun, 27 Sep 2026 01:48:46 GMT",
+      "content_length": 2148483,
+      "sha256": "4a69c9bb75ad5623047255fc3b285510a268359f144f652b3290dd247ab6eb80",
       "publish_score": 100,
-      "overall_score": 92.2,
+      "overall_score": 92.5,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:23:35.384Z"
+      "analyzed_at": "2026-09-27T20:03:35.362Z"
     },
     {
       "static_reference": "mdb-307",
@@ -2323,14 +2323,14 @@
     {
       "static_reference": "mdb-3098",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-3098/latest.zip",
-      "etag": "\"a5f9eefa67a831688fc90f100cce7c81\"",
-      "last_modified": "Sun, 20 Sep 2026 00:34:46 GMT",
-      "content_length": 27634,
-      "sha256": "c1425eb8d28f745f76eb2b515a38af8af904bcea98532f68077b9992654aa402",
+      "etag": "\"97370c7b47aae58324ba59b6f1b39c74\"",
+      "last_modified": "Sun, 27 Sep 2026 00:26:15 GMT",
+      "content_length": 27633,
+      "sha256": "7fa893697791bfc63bf1446f609e7ce1c8cc883bb3b477d80295e5a1208bfead",
       "publish_score": 100,
       "overall_score": 94.6,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:23:35.930Z"
+      "analyzed_at": "2026-09-27T20:03:35.824Z"
     },
     {
       "static_reference": "mdb-3149",
@@ -2354,67 +2354,67 @@
       "overall_score": null,
       "validation_status": "ERROR",
       "error": "403 Forbidden",
-      "analyzed_at": "2026-09-20T19:23:36.358Z"
+      "analyzed_at": "2026-09-27T20:03:36.305Z"
     },
     {
       "static_reference": "mdb-3153",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-3153/latest.zip",
-      "etag": "\"24e2f269eed77312a1c89b1c9f1d87ed\"",
-      "last_modified": "Sat, 12 Sep 2026 01:35:55 GMT",
-      "content_length": 1296841,
-      "sha256": "6d416c67d09b087b2d0c541c79a1bfdf974a5883edaa809fb0da1bd84af59b0b",
+      "etag": "\"6b8b76410c37309929ca731371f18b8d\"",
+      "last_modified": "Sat, 26 Sep 2026 00:50:53 GMT",
+      "content_length": 1291428,
+      "sha256": "dcc95e734909892940e9bd2d6156fad83a1cd9912fba6cb538ece30d29b95775",
       "publish_score": 100,
       "overall_score": 91.2,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-13T19:20:36.335Z"
+      "analyzed_at": "2026-09-27T20:03:37.398Z"
     },
     {
       "static_reference": "mdb-3156",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-3156/latest.zip",
-      "etag": "\"a15d515e9ebee8da05e11a9db1cb7fa7\"",
-      "last_modified": "Tue, 15 Sep 2026 00:28:32 GMT",
-      "content_length": 4205986,
-      "sha256": "e9b3e64360d97b6d77e2174ba3cb27bb7305863472135dcd592fd0fed2d20b3e",
+      "etag": "\"82233b316690ac028c025655f013e89b\"",
+      "last_modified": "Tue, 22 Sep 2026 00:01:52 GMT",
+      "content_length": 4202936,
+      "sha256": "ab9f9a0abf5902e718600202bb9d87cd287c03cac4ee8ddda03064f15bb3171f",
       "publish_score": 100,
       "overall_score": 90.7,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:23:38.747Z"
+      "analyzed_at": "2026-09-27T20:03:39.279Z"
     },
     {
       "static_reference": "mdb-3180",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-3180/latest.zip",
-      "etag": "\"e7a1ff91a4a9a9bc84698e3577161a1c\"",
-      "last_modified": "Sun, 20 Sep 2026 00:42:39 GMT",
-      "content_length": 4598379,
-      "sha256": "549b93df5cedce98878bb160abbb55ac4eafc3e8cad5e9ba21fcf5525f4e15c4",
+      "etag": "\"ba31ab37a534a8f3531560dfb705c00f\"",
+      "last_modified": "Sun, 27 Sep 2026 01:08:08 GMT",
+      "content_length": 4602855,
+      "sha256": "fafdd7b205aee03a57accf831d3e18c1647e6fb8225bf13fc334e83fbb61836b",
       "publish_score": 100,
       "overall_score": 89.4,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:23:41.374Z"
+      "analyzed_at": "2026-09-27T20:03:41.435Z"
     },
     {
       "static_reference": "mdb-3192",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-3192/latest.zip",
-      "etag": "\"40622fce210f261720c49127b1c19d5b\"",
-      "last_modified": "Sun, 20 Sep 2026 01:17:42 GMT",
-      "content_length": 26829,
-      "sha256": "7ed86e9956bd80a01405bcf2737766c9ca1e4106d50abf4528d6f07869f9cf6f",
+      "etag": "\"a8a4dcfb06594232ef4e41c487d6811e\"",
+      "last_modified": "Thu, 24 Sep 2026 00:31:04 GMT",
+      "content_length": 26740,
+      "sha256": "7e7867ce694a32b4c17d1a213e7dfc4c720a690bfffabb05fb752f18e44b9958",
       "publish_score": 100,
       "overall_score": 95.9,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:23:41.938Z"
+      "analyzed_at": "2026-09-27T20:03:41.722Z"
     },
     {
       "static_reference": "mdb-3193",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-3193/latest.zip",
-      "etag": "\"76b13593ef6cdd1cfc18598ab3b8f7bc\"",
-      "last_modified": "Thu, 02 Jul 2026 01:58:54 GMT",
-      "content_length": 956043,
-      "sha256": "90f838d2022d49a6bf8932e76b12fb5f7c970bb9ac8f5ab8d9ecf25dc706c6c8",
+      "etag": "\"a3793ec0080327d4b9137cb8f2f0dad8\"",
+      "last_modified": "Fri, 25 Sep 2026 01:12:00 GMT",
+      "content_length": 957462,
+      "sha256": "9c4f0ab216c19d68a72761dd96f79615076748c702c50aed2909cf0a7c31d0c3",
       "publish_score": 100,
       "overall_score": 99.2,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-08T07:49:46.071Z"
+      "analyzed_at": "2026-09-27T20:03:42.302Z"
     },
     {
       "static_reference": "mdb-3202",
@@ -2431,14 +2431,14 @@
     {
       "static_reference": "mdb-3219",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-3219/latest.zip",
-      "etag": "\"ede113719880fcffe306f2bffc4e390c\"",
-      "last_modified": "Sun, 20 Sep 2026 00:47:44 GMT",
-      "content_length": 185276,
-      "sha256": "7f96fb28909ea00a39f17739a73823988c353f84935069745bcb8c1487b4912b",
+      "etag": "\"31c8e4c0a1b7f765b413946fc8d09f77\"",
+      "last_modified": "Sun, 27 Sep 2026 00:27:21 GMT",
+      "content_length": 185275,
+      "sha256": "44e69e6f2eae78cf08f08e1b0d06fea20d16a0800542b30b074bec4a10b916dd",
       "publish_score": 100,
       "overall_score": 96.2,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:23:43.175Z"
+      "analyzed_at": "2026-09-27T20:03:42.772Z"
     },
     {
       "static_reference": "mdb-330",
@@ -2455,38 +2455,38 @@
     {
       "static_reference": "mdb-332",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-332/latest.zip",
-      "etag": "\"84a5ea90d9cb02f1bc78bc4a0b7e6026\"",
-      "last_modified": "Thu, 30 Jul 2026 00:29:48 GMT",
-      "content_length": 5279274,
-      "sha256": "feb7c1fdbe112f0f21f41ffdf48ef544cf98f575317a0c0d77023109f0df227e",
+      "etag": "\"7e50844b13e3ae50f75e5f7b5757006c\"",
+      "last_modified": "Mon, 21 Sep 2026 01:30:25 GMT",
+      "content_length": 6291762,
+      "sha256": "438b67fcf0d534c947762bcd0e31f924d44fec00c46ac4ebf868304cc8754295",
       "publish_score": 100,
-      "overall_score": 91.9,
+      "overall_score": 92.7,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-08T07:49:51.952Z"
+      "analyzed_at": "2026-09-27T20:03:45.115Z"
     },
     {
       "static_reference": "mdb-3386",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-3386/latest.zip",
-      "etag": "\"8e35069f880b6cfa8bb57bb9f43a9b1f\"",
-      "last_modified": "Sat, 19 Sep 2026 01:53:11 GMT",
-      "content_length": 58958378,
-      "sha256": "5a3620ceb201d541f652e66442fd9c9ac2604d48643ec9db20518002fa9a519e",
+      "etag": "\"aae1647a9ec5a8c635fd5c34b5ff293f\"",
+      "last_modified": "Sat, 26 Sep 2026 01:02:47 GMT",
+      "content_length": 58831567,
+      "sha256": "51c8833660ddd17b061e697b8e77faafe988601ace1c32a1a75284c9ca21ab22",
       "publish_score": 100,
-      "overall_score": 84.5,
+      "overall_score": 86.2,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:24:07.843Z"
+      "analyzed_at": "2026-09-27T20:04:07.955Z"
     },
     {
       "static_reference": "mdb-3412",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-3412/latest.zip",
-      "etag": "\"76c344b9949594cb81a0075318581995\"",
-      "last_modified": "Sun, 20 Sep 2026 01:48:46 GMT",
-      "content_length": 71969986,
-      "sha256": "c7efc88c9f2646f2e1b450f855cec3a65a779de4967b7a9d77697d03c0623c75",
-      "publish_score": 67.6,
-      "overall_score": 60.1,
+      "etag": "\"02f2d65c981875f38f42ab77efc1e7c5\"",
+      "last_modified": "Fri, 25 Sep 2026 01:07:35 GMT",
+      "content_length": 72094018,
+      "sha256": "dc7aa0df2a8d7e6a5e3b0aaace5ba46a8a4788d96689b162bf2d4a7388c6245b",
+      "publish_score": 92.6,
+      "overall_score": 75.2,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:24:58.432Z"
+      "analyzed_at": "2026-09-27T20:04:59.122Z"
     },
     {
       "static_reference": "mdb-3460",
@@ -2515,26 +2515,26 @@
     {
       "static_reference": "mdb-3482",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-3482/latest.zip",
-      "etag": "\"31dd2440c9c4fbe76bf47834925b4981\"",
-      "last_modified": "Sun, 20 Sep 2026 00:49:14 GMT",
-      "content_length": 25788,
-      "sha256": "74f9d229eb5f8b21831635279d922ffc5ff3cc5914e9c01c042689562d18ce26",
+      "etag": "\"e5ef66b5a69fbf93e68d3021cfcea768\"",
+      "last_modified": "Sun, 27 Sep 2026 01:01:41 GMT",
+      "content_length": 25785,
+      "sha256": "c18a77f9b3d1d9ae51357ac847925f9e4829a25641d3c027572c1a5c81c60c54",
       "publish_score": 100,
       "overall_score": 95.3,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:24:59.455Z"
+      "analyzed_at": "2026-09-27T20:04:59.607Z"
     },
     {
       "static_reference": "mdb-3490",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-3490/latest.zip",
-      "etag": "\"a9865220337a76b7b9202b3c153a2b20\"",
-      "last_modified": "Sun, 20 Sep 2026 01:34:38 GMT",
+      "etag": "\"0293392e86994c5cb74e439e5a836a0e\"",
+      "last_modified": "Sun, 27 Sep 2026 01:05:46 GMT",
       "content_length": 197163,
-      "sha256": "3a1445d35716967fa90cdd16679f0ead08b09963cc11183821a9803b5404899e",
+      "sha256": "da5db7b91419c1b0238dd37c08c85e510a5e7fa900e530d75678949f6d2fbc31",
       "publish_score": 100,
       "overall_score": 94.6,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:25:00.168Z"
+      "analyzed_at": "2026-09-27T20:04:59.933Z"
     },
     {
       "static_reference": "mdb-3508",
@@ -2635,14 +2635,14 @@
     {
       "static_reference": "mdb-437",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-437/latest.zip",
-      "etag": "\"a60e9731c7201af2288c8c000b6789ed\"",
-      "last_modified": "Fri, 18 Sep 2026 00:53:45 GMT",
-      "content_length": 24938477,
-      "sha256": "94d12a7645402990f8e246759e5d97e5a65416baa3e201eacba132a1010c0c1e",
+      "etag": "\"99836362f75f3ecfc76fcd6c59abc05e\"",
+      "last_modified": "Fri, 25 Sep 2026 01:27:44 GMT",
+      "content_length": 24836992,
+      "sha256": "e3fdffe291bbe715d09356c1f2ceb58c8fc0781478e4041ba46160d964723133",
       "publish_score": 100,
-      "overall_score": 76,
+      "overall_score": 76.1,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:25:27.642Z"
+      "analyzed_at": "2026-09-27T20:05:16.162Z"
     },
     {
       "static_reference": "mdb-468",
@@ -2695,38 +2695,38 @@
     {
       "static_reference": "mdb-502",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-502/latest.zip",
-      "etag": "\"28d2f906cb56dab4a01166a52c4bdd4a\"",
-      "last_modified": "Sat, 12 Sep 2026 00:19:18 GMT",
-      "content_length": 20918311,
-      "sha256": "d7545c22c8f8ec7e9f88d0f6b1ec1382d7771600e233a50383433eddfff27a7d",
+      "etag": "\"f8348d4a3f92f4ea405eed1d241d5e6c\"",
+      "last_modified": "Sat, 26 Sep 2026 00:01:29 GMT",
+      "content_length": 21287033,
+      "sha256": "9e7c6c30ec43c2954eaa2ebda6a7717c71e5bdef033b22a308ac893fffb0e785",
       "publish_score": 100,
-      "overall_score": 85.2,
+      "overall_score": 85.4,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-13T19:23:07.879Z"
+      "analyzed_at": "2026-09-27T20:05:28.022Z"
     },
     {
       "static_reference": "mdb-503",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-503/latest.zip",
-      "etag": "\"b21ecdb41b15a008a0580629e8077e3d\"",
-      "last_modified": "Sat, 12 Sep 2026 00:03:42 GMT",
-      "content_length": 757262,
-      "sha256": "f437e84a5d02caf47428f005160097561c4217123c20d3c685e2df583e09f34e",
+      "etag": "\"138fd0ef063a261bb12783eea7f192d8\"",
+      "last_modified": "Sat, 26 Sep 2026 00:01:48 GMT",
+      "content_length": 767543,
+      "sha256": "920a30e237afe8f4568cb889c35854a17685eaf62e2e17c5b77eaeb5bf1040af",
       "publish_score": 100,
-      "overall_score": 92,
+      "overall_score": 90.9,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-13T19:23:08.711Z"
+      "analyzed_at": "2026-09-27T20:05:28.725Z"
     },
     {
       "static_reference": "mdb-507",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-507/latest.zip",
-      "etag": "\"d82bb4bd911c605c81f64af908ae327a\"",
-      "last_modified": "Sat, 19 Sep 2026 00:28:08 GMT",
-      "content_length": 1992545,
-      "sha256": "c825c5050b738814bc9b7bb76069072c82b9d051fae3a326eb02f33451ffeb87",
+      "etag": "\"dfa01e8b0ea47dca02abf59087c973d1\"",
+      "last_modified": "Fri, 25 Sep 2026 00:19:53 GMT",
+      "content_length": 1910297,
+      "sha256": "0fa41dfe7d996f52e00df08f53890f140b86510a291eb220666adf86c1d6c42b",
       "publish_score": 100,
       "overall_score": 95.7,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:25:31.397Z"
+      "analyzed_at": "2026-09-27T20:05:29.536Z"
     },
     {
       "static_reference": "mdb-510",
@@ -2755,26 +2755,26 @@
     {
       "static_reference": "mdb-524",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-524/latest.zip",
-      "etag": "\"52916bcddae9ca5369e72bb7b8b360ba\"",
-      "last_modified": "Sat, 19 Sep 2026 01:16:35 GMT",
-      "content_length": 5792977,
-      "sha256": "2510d5d10305420ec489be99f6226a2ff6c086b489b3560d6fb4e72cfff466df",
+      "etag": "\"8ef42e8855ba301abe01af3bef632b53\"",
+      "last_modified": "Sun, 27 Sep 2026 01:32:38 GMT",
+      "content_length": 5826236,
+      "sha256": "06203d733abbc5e856470f914befae57af67e08b842b3b21d8ef0b79465f046e",
       "publish_score": 100,
       "overall_score": 93.1,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:25:37.308Z"
+      "analyzed_at": "2026-09-27T20:05:34.406Z"
     },
     {
       "static_reference": "mdb-535",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-535/latest.zip",
-      "etag": "\"43969fa37e6863101f20e5037dd8e6b4\"",
-      "last_modified": "Tue, 08 Sep 2026 00:03:12 GMT",
-      "content_length": 1557256,
-      "sha256": "f610beabc5afffeca72519b8cf2c6957955c29e47dce98f5114769fac6838f5b",
+      "etag": "\"d35b43769d588245e156a241d8714a5c\"",
+      "last_modified": "Wed, 23 Sep 2026 00:18:44 GMT",
+      "content_length": 1502273,
+      "sha256": "1bc0f1d37ba55b41c0f2dd3ba45c73f955e4076759391df7706925bd2eb5efbe",
       "publish_score": 100,
-      "overall_score": 96.2,
+      "overall_score": 95.9,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-08T07:52:47.947Z"
+      "analyzed_at": "2026-09-27T20:05:35.391Z"
     },
     {
       "static_reference": "mdb-538",
@@ -2839,38 +2839,38 @@
     {
       "static_reference": "mdb-651",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-651/latest.zip",
-      "etag": "\"71fcc0a6444c97eb8dc04e918b4dde2c\"",
-      "last_modified": "Sat, 19 Sep 2026 01:56:36 GMT",
-      "content_length": 270430,
-      "sha256": "6f8fa38a8e0497a78ddfea64424f9749c21ed8baef86c1a45eca91fe340687e6",
+      "etag": "\"a1800b6c953dba773a446cd692ad08b2\"",
+      "last_modified": "Sat, 26 Sep 2026 01:16:58 GMT",
+      "content_length": 270429,
+      "sha256": "065d988e108ef4ac700eb9c30d67b5429c03f3e4b3fcf3a862754654cb4f3e5a",
       "publish_score": 100,
       "overall_score": 92.5,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:25:40.727Z"
+      "analyzed_at": "2026-09-27T20:05:36.482Z"
     },
     {
       "static_reference": "mdb-652",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-652/latest.zip",
-      "etag": "\"00ca144e6cd67807fa9f7a1773e99445\"",
-      "last_modified": "Sat, 19 Sep 2026 01:19:57 GMT",
-      "content_length": 50405,
-      "sha256": "6368fee48644ff7c8754f6edc048881c3716ad8cd38bffde898a7dadc38a19c1",
+      "etag": "\"a46b891d4aa4186e32a30d4b0b9c4eb6\"",
+      "last_modified": "Sat, 26 Sep 2026 01:02:49 GMT",
+      "content_length": 50404,
+      "sha256": "7675b28011164c3ed1598f479b0e03fded3fa727a3d0d93d1c261176f799d3af",
       "publish_score": 100,
       "overall_score": 95.5,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:25:41.140Z"
+      "analyzed_at": "2026-09-27T20:05:36.743Z"
     },
     {
       "static_reference": "mdb-660",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-660/latest.zip",
-      "etag": "\"736c37b07bae7bf3664c383a556d9a73\"",
-      "last_modified": "Wed, 16 Sep 2026 01:45:20 GMT",
-      "content_length": 16561584,
-      "sha256": "17cd31eeb39777bbc00ff0f5eb30a9221275de9ff7487a92e4d0b69ea8b109ab",
+      "etag": "\"34c785534e2a12330d2248d309a8daa7\"",
+      "last_modified": "Sat, 26 Sep 2026 00:01:09 GMT",
+      "content_length": 15084931,
+      "sha256": "2e9ac496cb11206126b233b725da88d5c04f1d1aa6e8d7495c73d492c9d566b7",
       "publish_score": 100,
-      "overall_score": 84.2,
+      "overall_score": 85.8,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:25:49.198Z"
+      "analyzed_at": "2026-09-27T20:05:43.548Z"
     },
     {
       "static_reference": "mdb-668",
@@ -2887,38 +2887,38 @@
     {
       "static_reference": "mdb-673",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-673/latest.zip",
-      "etag": "\"e37f526a4371d1a3be7aff4551b9a3ee\"",
-      "last_modified": "Sat, 19 Sep 2026 01:59:04 GMT",
+      "etag": "\"36f99735df78ca68e89e013b45c7d933\"",
+      "last_modified": "Sat, 26 Sep 2026 00:40:29 GMT",
       "content_length": 16852,
-      "sha256": "03b4f6435d9c6996b4dbfdf33d47b537d2d39ba602952976286254a42fdc589f",
+      "sha256": "e6a35c433216932b65f13738b4cee92d31acf106ae059d65d40a9c75a39fdf2d",
       "publish_score": 100,
-      "overall_score": 95.2,
+      "overall_score": 94.8,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:25:49.773Z"
+      "analyzed_at": "2026-09-27T20:05:43.957Z"
     },
     {
       "static_reference": "mdb-674",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-674/latest.zip",
-      "etag": "\"ba03adc5d8e0f858c23e3b649a74d9fe\"",
-      "last_modified": "Sat, 19 Sep 2026 01:13:07 GMT",
-      "content_length": 686097,
-      "sha256": "168a015366f7b578e6a77dc9e2c80f2afb2dd35b184016a257969a7dc8b646ed",
+      "etag": "\"089eb3e0a4ef9ce592864ecde80b1906\"",
+      "last_modified": "Sat, 26 Sep 2026 01:40:52 GMT",
+      "content_length": 686124,
+      "sha256": "1a0a7642cfa6b666b0007b12acd304febec4bdadbd7a21a7b239fa8a1dbf0120",
       "publish_score": 100,
       "overall_score": 92.2,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:25:51.008Z"
+      "analyzed_at": "2026-09-27T20:05:44.650Z"
     },
     {
       "static_reference": "mdb-675",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-675/latest.zip",
-      "etag": "\"4bdfa9c45e73b8ed0ebd62930948c20a\"",
-      "last_modified": "Sat, 19 Sep 2026 01:21:41 GMT",
+      "etag": "\"2ce8e68cdd43b1b77714c05775d306fc\"",
+      "last_modified": "Sat, 26 Sep 2026 01:02:13 GMT",
       "content_length": 17229,
-      "sha256": "185be2aa58c8c79c89f5ee38ade26d20010250cf61dc16b8e531beec8f7c1678",
+      "sha256": "54480a0a508b7a126710b50399a9f86463ff0ddc56e7bb8353492db9a440da54",
       "publish_score": 100,
-      "overall_score": 95.1,
+      "overall_score": 94.7,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:25:51.549Z"
+      "analyzed_at": "2026-09-27T20:05:44.896Z"
     },
     {
       "static_reference": "mdb-693",
@@ -2935,14 +2935,14 @@
     {
       "static_reference": "mdb-710",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-710/latest.zip",
-      "etag": "\"60d982f34149fb94d4274b86b2c544b0\"",
-      "last_modified": "Sun, 20 Sep 2026 01:09:25 GMT",
-      "content_length": 15118,
-      "sha256": "e5e4094d56772f3200eb5733565c561552484803ccbfa12b87208cc14ba1ac98",
+      "etag": "\"6751181fe98c0340271c5da74f78edf3\"",
+      "last_modified": "Sun, 27 Sep 2026 01:12:04 GMT",
+      "content_length": 15108,
+      "sha256": "a342e19610c7b8248e8681d7e4c6ecb8ea0b01cc4f261cfc2415d635fea8bdbd",
       "publish_score": 100,
       "overall_score": 96,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:25:52.009Z"
+      "analyzed_at": "2026-09-27T20:05:45.313Z"
     },
     {
       "static_reference": "mdb-726",
@@ -2983,26 +2983,26 @@
     {
       "static_reference": "mdb-761",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-761/latest.zip",
-      "etag": "\"1d8c917daa0eb65084c290ff3bde68f7\"",
-      "last_modified": "Sun, 20 Sep 2026 00:26:34 GMT",
-      "content_length": 63517,
-      "sha256": "13ae72d769ea19e40c725b0120d411909ae96d7939467e1438e06a2fcb6811ef",
+      "etag": "\"af93af2c09a6e32d7c252aa281382b7a\"",
+      "last_modified": "Sun, 27 Sep 2026 00:21:25 GMT",
+      "content_length": 63501,
+      "sha256": "e5d9c552a50e7f5f36b2f09a80800d3f7fe65dbfddf68f9a218364a6a92d459f",
       "publish_score": 100,
       "overall_score": 94.3,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:25:56.389Z"
+      "analyzed_at": "2026-09-27T20:05:45.941Z"
     },
     {
       "static_reference": "mdb-767",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-767/latest.zip",
-      "etag": "\"e0c727f7e25b3b4aa4dd9f0ddba045c7\"",
-      "last_modified": "Sun, 20 Sep 2026 00:56:14 GMT",
-      "content_length": 48237120,
-      "sha256": "2edd2ef4b9676b64c27afbdff0bb9059ed368f67bc1d2228661ea9e6c815f117",
+      "etag": "\"2dc6b47ea7f5517f5abe5045ba2582ca\"",
+      "last_modified": "Sun, 27 Sep 2026 00:40:23 GMT",
+      "content_length": 50673696,
+      "sha256": "96f9772b8b2279840dfa2dd84f3c001efda40ec9f5842d8dae5da56673ef87fb",
       "publish_score": 92.6,
-      "overall_score": 74.3,
+      "overall_score": 77,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:26:15.470Z"
+      "analyzed_at": "2026-09-27T20:06:05.076Z"
     },
     {
       "static_reference": "mdb-782|mdb-3234|mdb-3233",
@@ -3014,19 +3014,19 @@
       "overall_score": null,
       "validation_status": "ERROR",
       "error": "403 Forbidden",
-      "analyzed_at": "2026-09-20T19:26:15.942Z"
+      "analyzed_at": "2026-09-27T20:06:05.274Z"
     },
     {
       "static_reference": "mdb-793",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-793/latest.zip",
-      "etag": "\"f7bcae8178689a09501d014b060a6c1c\"",
-      "last_modified": "Thu, 17 Sep 2026 00:26:42 GMT",
-      "content_length": 17635674,
-      "sha256": "db5142837c1d939025953c0dd7c5cc36072c9cf725bddceea4d8014458aa6c0a",
+      "etag": "\"db67a2c5f6bd66d36c5faac42463d0f3\"",
+      "last_modified": "Wed, 23 Sep 2026 00:05:37 GMT",
+      "content_length": 17601288,
+      "sha256": "a150676b42edd973c9dc6e059bde4a489b537fb21b0340963192bb4157bbdd71",
       "publish_score": 92.6,
-      "overall_score": 90.7,
+      "overall_score": 91,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:26:26.097Z"
+      "analyzed_at": "2026-09-27T20:06:15.424Z"
     },
     {
       "static_reference": "mdb-803",
@@ -3038,7 +3038,7 @@
       "overall_score": null,
       "validation_status": "ERROR",
       "error": "403 Forbidden",
-      "analyzed_at": "2026-09-20T19:26:26.391Z"
+      "analyzed_at": "2026-09-27T20:06:15.632Z"
     },
     {
       "static_reference": "mdb-86",
@@ -3055,26 +3055,26 @@
     {
       "static_reference": "mdb-865",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-865/latest.zip",
-      "etag": "\"c0ce06fd74f05e4dcf717d0bbf46de4c\"",
-      "last_modified": "Sun, 20 Sep 2026 01:32:59 GMT",
-      "content_length": 85663938,
-      "sha256": "73d253ce621fb24b7a14bd3c1707495eb755eaddcc533523b90a48d5331dd258",
+      "etag": "\"2b47dda89c84aec5e526ad9ef0d7bc5e\"",
+      "last_modified": "Sun, 27 Sep 2026 00:32:41 GMT",
+      "content_length": 81055960,
+      "sha256": "baca5225c9b737750338c3fe8e8036b0010c7a794c4ed38bc9de4c37e6430e07",
       "publish_score": 83.3,
-      "overall_score": 75.2,
+      "overall_score": 75.1,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:27:42.709Z"
+      "analyzed_at": "2026-09-27T20:07:29.447Z"
     },
     {
       "static_reference": "mdb-892",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-892/latest.zip",
-      "etag": "\"cecd6b0655e7ac5b56fd6b877d5c6550\"",
-      "last_modified": "Sun, 20 Sep 2026 00:59:18 GMT",
-      "content_length": 7843670,
-      "sha256": "83311e8ac1df50812e1b3b8f8d6e38ae7127610a485bc50a38fa64182940771f",
+      "etag": "\"ce232a5f0d923bbb0547c0f06a085177\"",
+      "last_modified": "Sun, 27 Sep 2026 00:49:54 GMT",
+      "content_length": 7845941,
+      "sha256": "681de29674955da67ea6bc1c776ae9633559c560f9e14ef0b222715c6cc07830",
       "publish_score": 100,
-      "overall_score": 76.8,
+      "overall_score": 77.2,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:27:48.333Z"
+      "analyzed_at": "2026-09-27T20:07:34.577Z"
     },
     {
       "static_reference": "mdb-90",
@@ -3115,38 +3115,38 @@
     {
       "static_reference": "mdb-981",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-981/latest.zip",
-      "etag": "\"070874976c65619b13e45444b2a7ad6b\"",
-      "last_modified": "Thu, 17 Sep 2026 01:29:19 GMT",
-      "content_length": 4039519,
-      "sha256": "71edaf864a2b498e2d8164c6c85d407a7d602783ead8be0183925dbad0ea2be7",
+      "etag": "\"e975b0a78002c79d51b130fc0fe630ef\"",
+      "last_modified": "Thu, 24 Sep 2026 00:04:37 GMT",
+      "content_length": 3891345,
+      "sha256": "9bcc8660f6c4a6096bc44dd3bf4c53f95ba55198b77389b81cd2afbed01d466a",
       "publish_score": 100,
-      "overall_score": 90.8,
+      "overall_score": 91.2,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:27:56.250Z"
+      "analyzed_at": "2026-09-27T20:07:37.670Z"
     },
     {
       "static_reference": "mdb-982",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-982/latest.zip",
-      "etag": "\"fc7c03c71ff5864c93c09ca7ce7e7f52\"",
-      "last_modified": "Fri, 18 Sep 2026 01:34:26 GMT",
-      "content_length": 11437572,
-      "sha256": "fa1e3a044b8e68aefbfa63427b75e87f83135cbbf5f28c0a478ecdec39e0e895",
+      "etag": "\"691e6565bed5db0c467e28143963f5c0\"",
+      "last_modified": "Fri, 25 Sep 2026 01:44:25 GMT",
+      "content_length": 10464851,
+      "sha256": "5827f3261c6aa0f4d68ae87ae52361da5e5f1405b9e02fd2b27c703dc7a1581e",
       "publish_score": 100,
       "overall_score": 87.6,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:28:03.828Z"
+      "analyzed_at": "2026-09-27T20:07:45.096Z"
     },
     {
       "static_reference": "mdb-994",
       "schedule_url": "https://files.mobilitydatabase.org/mdb-994/latest.zip",
-      "etag": "\"4ba662aedbf5e5292d66b38067fab484\"",
-      "last_modified": "Sun, 20 Sep 2026 01:17:00 GMT",
+      "etag": "\"fde99925e82d4cc72b6f4b623ca38b03\"",
+      "last_modified": "Sun, 27 Sep 2026 01:03:13 GMT",
       "content_length": 77625,
-      "sha256": "b196d0f7953b4b56279a0bb9b7331d5c44e8107aebb83bc8c980fc7870994acf",
+      "sha256": "cee48535c513c58b181a74ff930808a0395bb45665b2f552a9aea319e0ba9f44",
       "publish_score": 100,
       "overall_score": 95.2,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:28:04.178Z"
+      "analyzed_at": "2026-09-27T20:07:45.421Z"
     },
     {
       "static_reference": "ntd-50060",
@@ -3187,62 +3187,62 @@
     {
       "static_reference": "tdg-10230",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-10230/latest.zip",
-      "etag": "\"144f1e3ac362cd3c59298aa203df519c\"",
-      "last_modified": "Sun, 20 Sep 2026 01:36:56 GMT",
+      "etag": "\"e6690efed999a4da7dfd726cfd1ed71d\"",
+      "last_modified": "Sun, 27 Sep 2026 00:00:46 GMT",
       "content_length": 15154,
-      "sha256": "3f101af0373cbd9961e897ab6dcb002a8811d54937a926b28ea54a39dbaf9199",
+      "sha256": "ca91d4c3108bcbf06839ebe2a00a3a0a30251ba54278f3aac4e98c1f6dae0efc",
       "publish_score": 100,
       "overall_score": 97,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:28:05.205Z"
+      "analyzed_at": "2026-09-27T20:07:46.150Z"
     },
     {
       "static_reference": "tdg-11725",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-11725/latest.zip",
-      "etag": "\"4d32efbe904309e6441aba833b2d058c\"",
-      "last_modified": "Sun, 20 Sep 2026 00:41:02 GMT",
+      "etag": "\"09d31ef22cc234c1fe3d183d226e6ebf\"",
+      "last_modified": "Sun, 27 Sep 2026 00:27:58 GMT",
       "content_length": 102831,
-      "sha256": "20487e020cbb61b8a9f86195697d4babbbe24b1f828f005c1b742589b2627827",
+      "sha256": "575b3d6afa28fb9fa76f45377640b7adde2461ba4c70b0a4b387216c27094f96",
       "publish_score": 100,
       "overall_score": 94.2,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:28:05.654Z"
+      "analyzed_at": "2026-09-27T20:07:46.439Z"
     },
     {
       "static_reference": "tdg-12601",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-12601/latest.zip",
-      "etag": "\"1d4160021516d011ed4869978766015d\"",
-      "last_modified": "Sun, 20 Sep 2026 01:06:35 GMT",
+      "etag": "\"25a6afadf9cfb00c47a08c9222acd225\"",
+      "last_modified": "Sun, 27 Sep 2026 01:34:35 GMT",
       "content_length": 575499,
-      "sha256": "e999d5d9d16035f7421bd3f0b271eed4e2ae9c152205123efbe6b21fda761542",
+      "sha256": "5f2e91955c59f232e0a9b0bbb76257381199527a1077fbb11a6e6c9f69bff314",
       "publish_score": 100,
       "overall_score": 92,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:28:06.506Z"
+      "analyzed_at": "2026-09-27T20:07:47.018Z"
     },
     {
       "static_reference": "tdg-12608",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-12608/latest.zip",
-      "etag": "\"9760dff638b08064f69e54ab9f6a3dca\"",
-      "last_modified": "Sun, 20 Sep 2026 01:37:04 GMT",
+      "etag": "\"1c946792eb27f9e95a34f135c54e13b2\"",
+      "last_modified": "Sun, 27 Sep 2026 00:17:14 GMT",
       "content_length": 24053,
-      "sha256": "1251bbfb6499e4f7aa6fe1b5ca5c99b45888dc03fbf29f6915c81e966abb00da",
+      "sha256": "33272a70fb1debf119ecb8e436280aa2c9ced4837a9a10e853ecd3ca0e38194c",
       "publish_score": 100,
       "overall_score": 97.2,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:28:06.857Z"
+      "analyzed_at": "2026-09-27T20:07:47.281Z"
     },
     {
       "static_reference": "tdg-12616",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-12616/latest.zip",
-      "etag": "\"e4ae5471782660086eaca24b0bce2b2a\"",
-      "last_modified": "Sun, 20 Sep 2026 00:51:15 GMT",
+      "etag": "\"638a9f9a8af0b638ecfffee1e0b3410b\"",
+      "last_modified": "Sun, 27 Sep 2026 01:17:24 GMT",
       "content_length": 2218,
-      "sha256": "7e29ac6f3a6cb26a0ce3378185b0114f356431d0a556b7f291d7331a05309a3c",
+      "sha256": "06038463d67658fb230570ce3d94d906084243e3adb5bb9f6f237a54d6da492c",
       "publish_score": 80.6,
       "overall_score": 91.9,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:28:07.196Z"
+      "analyzed_at": "2026-09-27T20:07:47.537Z"
     },
     {
       "static_reference": "tdg-14826",
@@ -3259,14 +3259,14 @@
     {
       "static_reference": "tdg-34265",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-34265/latest.zip",
-      "etag": "\"23dd795b913ce4a25e63c0193f925de2\"",
-      "last_modified": "Sun, 20 Sep 2026 00:49:54 GMT",
+      "etag": "\"2c4a20934eff552cdc0179548e14e96d\"",
+      "last_modified": "Sun, 27 Sep 2026 00:40:03 GMT",
       "content_length": 163814,
-      "sha256": "389deb2c631f3832f6defebf93ef1a3449c79c901bec78ebb21921816024f2ea",
+      "sha256": "14f333fc923a7040137265b037e379633bb6c024da729d2c2463591cd53bdd2b",
       "publish_score": 100,
       "overall_score": 94.2,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:28:07.997Z"
+      "analyzed_at": "2026-09-27T20:07:48.091Z"
     },
     {
       "static_reference": "tdg-39595|tdg-39599|tdg-39603|tdg-39602|tdg-80736|tdg-39597|tdg-39601|tdg-39591|tdg-39592|tdg-39596|tdg-39589|tdg-81969|tdg-39594|tdg-39598|tdg-39593",
@@ -3278,19 +3278,19 @@
       "overall_score": null,
       "validation_status": "ERROR",
       "error": "403 Forbidden",
-      "analyzed_at": "2026-09-20T19:28:08.343Z"
+      "analyzed_at": "2026-09-27T20:07:48.296Z"
     },
     {
       "static_reference": "tdg-40287",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-40287/latest.zip",
-      "etag": "\"a514b54706fdc32f8399a396fc508dd7\"",
-      "last_modified": "Sat, 12 Sep 2026 00:53:47 GMT",
-      "content_length": 28069323,
-      "sha256": "4c22b028adf72bd6ad700fd9b5f1baaef058793c2765d8a16112649bd72449da",
+      "etag": "\"f1634438c7c926e784cb4ecb2107a993\"",
+      "last_modified": "Sat, 26 Sep 2026 00:00:43 GMT",
+      "content_length": 28258434,
+      "sha256": "3b4a3911d6ad04157cfda3c0297f3acf752da85ec242f422419f166f3f121d94",
       "publish_score": 100,
       "overall_score": 86.4,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-13T19:25:48.963Z"
+      "analyzed_at": "2026-09-27T20:07:54.088Z"
     },
     {
       "static_reference": "tdg-43186",
@@ -3307,38 +3307,38 @@
     {
       "static_reference": "tdg-52917",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-52917/latest.zip",
-      "etag": "\"0455b399fef62fcc31efd168a9bad75c\"",
-      "last_modified": "Fri, 28 Aug 2026 00:50:01 GMT",
-      "content_length": 2597568,
-      "sha256": "b48a8f70b97c818c719be78113f0460d836c1d9c0a7df81b60fae52ddd385a4c",
+      "etag": "\"397a6a8ba61dd4366c5cc8a77e0bffe0\"",
+      "last_modified": "Fri, 25 Sep 2026 01:26:20 GMT",
+      "content_length": 1754416,
+      "sha256": "63e6d72adff29b68118e3cbc64ea3adfd047f62e7779bb8279e20abf34929ead",
       "publish_score": 92.6,
-      "overall_score": 85.4,
+      "overall_score": 86.1,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-08T07:55:56.272Z"
+      "analyzed_at": "2026-09-27T20:07:55.331Z"
     },
     {
       "static_reference": "tdg-52937",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-52937/latest.zip",
-      "etag": "\"693ab32a110cd02aca17c59e44d31062\"",
-      "last_modified": "Sun, 20 Sep 2026 00:24:24 GMT",
+      "etag": "\"1eab7deed2afe85538efc75997963700\"",
+      "last_modified": "Sun, 27 Sep 2026 01:46:29 GMT",
       "content_length": 1145028,
-      "sha256": "0038c8104c71d3da04dfdaef28d9b2cb48f9f41e0f30806ee9f7a6dace9a6d72",
+      "sha256": "1ed113108bcacdbb0e8af7c73d0d072037b17df77dfdb20b3d7d3b6d7125f8a4",
       "publish_score": 100,
       "overall_score": 84.3,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:28:10.656Z"
+      "analyzed_at": "2026-09-27T20:07:56.234Z"
     },
     {
       "static_reference": "tdg-64163",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-64163/latest.zip",
-      "etag": "\"75eff4548b8d3ab5abd8d39eeca57aef\"",
-      "last_modified": "Sun, 20 Sep 2026 01:22:45 GMT",
+      "etag": "\"6c9425990dba5e5d06626e46c7de6e4f\"",
+      "last_modified": "Sun, 27 Sep 2026 00:05:57 GMT",
       "content_length": 322070,
-      "sha256": "a01a570d3bbd3ba0ae229391cccb5c39123d8133c3a6a542caa97707831a7c44",
+      "sha256": "efc02bdb28cd3edbd744304bb0d3514c8e62626885be0f32f4f8287b4dc73ca6",
       "publish_score": 100,
       "overall_score": 93.5,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:28:11.486Z"
+      "analyzed_at": "2026-09-27T20:07:56.626Z"
     },
     {
       "static_reference": "tdg-64973",
@@ -3367,14 +3367,14 @@
     {
       "static_reference": "tdg-78387",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-78387/latest.zip",
-      "etag": "\"c3c5e7c28940eaf1be473a843c45a9df\"",
-      "last_modified": "Sun, 20 Sep 2026 00:24:41 GMT",
+      "etag": "\"faf0cf4484e7e9e03fb38a693421a7c9\"",
+      "last_modified": "Sun, 27 Sep 2026 00:16:16 GMT",
       "content_length": 2246,
-      "sha256": "2754add5fa5cf6486269bfb80a791103d4db48a838c8ffa599d88f86cde4d9e9",
+      "sha256": "e93be3b6ee8d2f523b3f083a01e04001205ab7bd22b9c92d5355c029d86a262f",
       "publish_score": 80.6,
       "overall_score": 91.9,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:28:12.480Z"
+      "analyzed_at": "2026-09-27T20:07:57.231Z"
     },
     {
       "static_reference": "tdg-78934",
@@ -3391,14 +3391,14 @@
     {
       "static_reference": "tdg-79014",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-79014/latest.zip",
-      "etag": "\"57711446a530a82c7ff98528c0b80e63\"",
-      "last_modified": "Sun, 20 Sep 2026 00:59:45 GMT",
+      "etag": "\"a936eb3255e4ffa449e9600a02561d70\"",
+      "last_modified": "Sun, 27 Sep 2026 01:03:57 GMT",
       "content_length": 458470,
-      "sha256": "28b873fb470c1bec7a50e19a3ef29ef07a3987f24782ac5461c1a9874aea0535",
+      "sha256": "db442991ea3b86cce3e14441a14750b96678fc899357024eb1dbdc0698975b68",
       "publish_score": 86.2,
       "overall_score": 89,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:28:13.718Z"
+      "analyzed_at": "2026-09-27T20:07:57.951Z"
     },
     {
       "static_reference": "tdg-79151",
@@ -3451,14 +3451,14 @@
     {
       "static_reference": "tdg-79560",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-79560/latest.zip",
-      "etag": "\"777b283a64a85e5692bb99e2affef5fe\"",
-      "last_modified": "Wed, 16 Sep 2026 00:47:40 GMT",
-      "content_length": 4402092,
-      "sha256": "7776c46739d11147e1e112e61e353546e48f9868afe76704b15879ffbe90257f",
+      "etag": "\"37372053cd71c19b21266bf3939b1fcb\"",
+      "last_modified": "Fri, 25 Sep 2026 01:08:00 GMT",
+      "content_length": 4323216,
+      "sha256": "14f1640d1b373a5bcdab02201f0774218f257122cf9c20be40a8bdbf937864e1",
       "publish_score": 100,
-      "overall_score": 87.6,
+      "overall_score": 87.3,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:28:18.881Z"
+      "analyzed_at": "2026-09-27T20:08:01.314Z"
     },
     {
       "static_reference": "tdg-79576",
@@ -3487,14 +3487,14 @@
     {
       "static_reference": "tdg-79831",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-79831/latest.zip",
-      "etag": "\"ff269a9870a6aeac11eee78b1ed393d0\"",
-      "last_modified": "Tue, 08 Sep 2026 00:28:32 GMT",
-      "content_length": 2670576,
-      "sha256": "7426d25bd39c37d50b13a84983a01d1bac85a1f3ecf7ad574883ac3895de5635",
+      "etag": "\"24cece909d3d9ec1ac09d8da1971c94f\"",
+      "last_modified": "Fri, 25 Sep 2026 00:01:56 GMT",
+      "content_length": 2694847,
+      "sha256": "9a3179f693ca4eeab35b48fbf1719c4f605cfc8305831d71c17378a77a995e9e",
       "publish_score": 100,
-      "overall_score": 86.7,
+      "overall_score": 85.6,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-08T07:56:12.010Z"
+      "analyzed_at": "2026-09-27T20:08:03.307Z"
     },
     {
       "static_reference": "tdg-79847",
@@ -3518,7 +3518,7 @@
       "overall_score": null,
       "validation_status": "ERROR",
       "error": "403 Forbidden",
-      "analyzed_at": "2026-09-20T19:28:20.166Z"
+      "analyzed_at": "2026-09-27T20:08:03.620Z"
     },
     {
       "static_reference": "tdg-79898",
@@ -3535,26 +3535,26 @@
     {
       "static_reference": "tdg-79992",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-79992/latest.zip",
-      "etag": "\"22e0a1c5975f7694837b508f6ea04f3b\"",
-      "last_modified": "Sun, 20 Sep 2026 00:10:18 GMT",
+      "etag": "\"2c97eb3e6672348d95d9ebb4c079d0c6\"",
+      "last_modified": "Sun, 27 Sep 2026 01:20:54 GMT",
       "content_length": 83850,
-      "sha256": "55ce8a11bb2e853834640354e6041fd0f32d735cddba464cda4dcca281e0251c",
+      "sha256": "c9fba1358d916f996a365a8823b36268d9b187f5f36ff0bc087fe0b8082f1f74",
       "publish_score": 100,
       "overall_score": 97.2,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:28:20.646Z"
+      "analyzed_at": "2026-09-27T20:08:04.003Z"
     },
     {
       "static_reference": "tdg-80036",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-80036/latest.zip",
-      "etag": "\"eb1122d63ecbba1719dbd3d7d203c255\"",
-      "last_modified": "Sat, 19 Sep 2026 01:56:11 GMT",
-      "content_length": 4595289,
-      "sha256": "5d2d2d1903bbaf550acb937e4ff1b2c577540737e5b25a785a60adbc8fc84847",
+      "etag": "\"d4b150bdd4f8869e097fb98b475278df\"",
+      "last_modified": "Fri, 25 Sep 2026 00:39:07 GMT",
+      "content_length": 4548292,
+      "sha256": "f0ebe488314649c6c0450401a125911d6c002255575144ae455d4d550f80ac81",
       "publish_score": 100,
-      "overall_score": 86.7,
+      "overall_score": 86.8,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:28:23.808Z"
+      "analyzed_at": "2026-09-27T20:08:06.677Z"
     },
     {
       "static_reference": "tdg-80245",
@@ -3583,14 +3583,14 @@
     {
       "static_reference": "tdg-80587",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-80587/latest.zip",
-      "etag": "\"3ab9b8c6dcde8611ab971b0416168e05\"",
-      "last_modified": "Fri, 17 Jul 2026 01:42:22 GMT",
-      "content_length": 4063466,
-      "sha256": "305415c90fec43e874fb09badc2f06fb786453d15a762ab6eb827ee8a03ac52e",
+      "etag": "\"28d8e65599f62b0c333f63855bbe2429\"",
+      "last_modified": "Wed, 23 Sep 2026 00:48:02 GMT",
+      "content_length": 3808910,
+      "sha256": "bc4fd1046b205deb6c848a06025ca4f16427845ed671d12966dbfca95065257b",
       "publish_score": 100,
-      "overall_score": 88.1,
+      "overall_score": 88.9,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-08T07:56:22.996Z"
+      "analyzed_at": "2026-09-27T20:08:08.916Z"
     },
     {
       "static_reference": "tdg-80606",
@@ -3619,14 +3619,14 @@
     {
       "static_reference": "tdg-80694",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-80694/latest.zip",
-      "etag": "\"4a5600f2572071c0814d38abe1234f5c\"",
-      "last_modified": "Sat, 12 Sep 2026 00:01:00 GMT",
-      "content_length": 5865330,
-      "sha256": "1d59de1c3fb6f3daba2c0cef0f7b878d268cd1a5093617392711b2dabccc7c22",
+      "etag": "\"135a1f768d11cc1084f8e79768536962\"",
+      "last_modified": "Fri, 25 Sep 2026 00:39:47 GMT",
+      "content_length": 4633319,
+      "sha256": "a18dffb66ea53a14d708dfd5f3d4962543e959c8a9d5a1a44bac996a00f8a137",
       "publish_score": 100,
-      "overall_score": 78.7,
+      "overall_score": 78.5,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-13T19:26:12.480Z"
+      "analyzed_at": "2026-09-27T20:08:12.808Z"
     },
     {
       "static_reference": "tdg-80701",
@@ -3643,14 +3643,14 @@
     {
       "static_reference": "tdg-80934",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-80934/latest.zip",
-      "etag": "\"ad7ebce21bddb137ee6ac91500fbdd4f\"",
-      "last_modified": "Sun, 20 Sep 2026 00:24:29 GMT",
+      "etag": "\"d4c686cb541f141cf507959b2566b87d\"",
+      "last_modified": "Sun, 27 Sep 2026 00:25:35 GMT",
       "content_length": 1213960,
-      "sha256": "4fe75b2aee6b959b5eccfe419d6db8a50fe54825f1d062bc199658ec26b706bd",
+      "sha256": "abeda4944c8b6a5831ed3be2c55f7d7bf3a8e73e36038613caa60a5b38379eff",
       "publish_score": 100,
       "overall_score": 92.3,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:28:29.440Z"
+      "analyzed_at": "2026-09-27T20:08:13.599Z"
     },
     {
       "static_reference": "tdg-80973|tdg-83746",
@@ -3662,7 +3662,7 @@
       "overall_score": null,
       "validation_status": "ERROR",
       "error": "403 Forbidden",
-      "analyzed_at": "2026-09-20T19:28:29.712Z"
+      "analyzed_at": "2026-09-27T20:08:13.839Z"
     },
     {
       "static_reference": "tdg-81023",
@@ -3679,26 +3679,26 @@
     {
       "static_reference": "tdg-81026",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-81026/latest.zip",
-      "etag": "\"e2bda667d6c002d578104526f2c6b142\"",
-      "last_modified": "Sun, 20 Sep 2026 00:47:39 GMT",
-      "content_length": 24963684,
-      "sha256": "e832534e021e9a6739ade3b3bc244fd75853616b6d36375726fd6f76125cb610",
+      "etag": "\"a22baa6cb084c8d43588749741c72ceb\"",
+      "last_modified": "Sun, 27 Sep 2026 00:43:45 GMT",
+      "content_length": 25389559,
+      "sha256": "95d5d981721fcf5eab8dea40ddee70f57cfbb90afac9399bff2d6a971c51b38f",
       "publish_score": 100,
-      "overall_score": 81.4,
+      "overall_score": 81.6,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:28:36.221Z"
+      "analyzed_at": "2026-09-27T20:08:19.942Z"
     },
     {
       "static_reference": "tdg-81034",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-81034/latest.zip",
-      "etag": "\"0eb17081a534fed3158c40639247c00f\"",
-      "last_modified": "Tue, 15 Sep 2026 01:40:23 GMT",
-      "content_length": 193989,
-      "sha256": "4529df28b087d49a2a892126fd4fa733a76881ab9ed84330208ba001c904449b",
+      "etag": "\"24ac8cb406607cba0eb910b3711c2920\"",
+      "last_modified": "Fri, 25 Sep 2026 00:23:12 GMT",
+      "content_length": 193930,
+      "sha256": "aacd8a764c96cc086bc21f7fe39d3cd1b5321a6e39b3e7e301b6d71ea514b38f",
       "publish_score": 100,
       "overall_score": 92.3,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:28:36.938Z"
+      "analyzed_at": "2026-09-27T20:08:20.287Z"
     },
     {
       "static_reference": "tdg-81042",
@@ -3734,7 +3734,7 @@
       "overall_score": null,
       "validation_status": "ERROR",
       "error": "403 Forbidden",
-      "analyzed_at": "2026-09-20T19:28:37.747Z"
+      "analyzed_at": "2026-09-27T20:08:20.792Z"
     },
     {
       "static_reference": "tdg-81058",
@@ -3770,7 +3770,7 @@
       "overall_score": null,
       "validation_status": "ERROR",
       "error": "403 Forbidden",
-      "analyzed_at": "2026-09-20T19:28:38.300Z"
+      "analyzed_at": "2026-09-27T20:08:21.213Z"
     },
     {
       "static_reference": "tdg-81072|tdg-81645",
@@ -3782,19 +3782,19 @@
       "overall_score": null,
       "validation_status": "ERROR",
       "error": "403 Forbidden",
-      "analyzed_at": "2026-09-20T19:28:38.961Z"
+      "analyzed_at": "2026-09-27T20:08:21.419Z"
     },
     {
       "static_reference": "tdg-81074",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-81074/latest.zip",
-      "etag": "\"958b912af1d49fb385db0b47642738f8\"",
-      "last_modified": "Tue, 01 Sep 2026 01:44:41 GMT",
-      "content_length": 217182,
-      "sha256": "81ab4394c44ff9e76c6adad2dad15e685a020a141ee42e676b0d94bbbed18e46",
+      "etag": "\"6f70a839a95ef437c8a2956bda10130e\"",
+      "last_modified": "Thu, 24 Sep 2026 00:04:22 GMT",
+      "content_length": 435085,
+      "sha256": "26734e56aff9b928a7e570ff3d8845b5e4c35e8c917b5f6460804d3e165c2017",
       "publish_score": 100,
-      "overall_score": 93.7,
+      "overall_score": 93.4,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-08T07:56:48.109Z"
+      "analyzed_at": "2026-09-27T20:08:22.066Z"
     },
     {
       "static_reference": "tdg-81138|tdg-81650",
@@ -3806,7 +3806,7 @@
       "overall_score": null,
       "validation_status": "ERROR",
       "error": "403 Forbidden",
-      "analyzed_at": "2026-09-20T19:28:39.594Z"
+      "analyzed_at": "2026-09-27T20:08:22.250Z"
     },
     {
       "static_reference": "tdg-81146",
@@ -3847,26 +3847,26 @@
     {
       "static_reference": "tdg-8119",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-8119/latest.zip",
-      "etag": "\"ca50002cfc8c5fc2833cdfc5a93c7954\"",
-      "last_modified": "Sun, 20 Sep 2026 01:19:41 GMT",
+      "etag": "\"4a44d2f94223881da19a0bd319e1b90f\"",
+      "last_modified": "Sun, 27 Sep 2026 00:44:20 GMT",
       "content_length": 271285,
-      "sha256": "58afdc815368e9dcda2195c9f79b350acc12ad39ca70e98b8e14f5696c008113",
+      "sha256": "927df4979a31834dd1759ac4490885acceb1e357141d2dc829824308ed7a26ba",
       "publish_score": 100,
       "overall_score": 93.3,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:28:41.095Z"
+      "analyzed_at": "2026-09-27T20:08:23.020Z"
     },
     {
       "static_reference": "tdg-81252",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-81252/latest.zip",
-      "etag": "\"25836f7357c040db4d0cb1861e445ee5\"",
-      "last_modified": "Sun, 20 Sep 2026 00:08:30 GMT",
+      "etag": "\"8b8a9fdff31abe065828c25c5881cafa\"",
+      "last_modified": "Sun, 27 Sep 2026 01:07:08 GMT",
       "content_length": 50994,
-      "sha256": "b2af84462a8a88f82377749d9d93a8f4fe3132bea3a63542d59ac794fb0c5557",
+      "sha256": "a499087fa694972792501585a4b16be8867c2bf030d32e5730a11e37fa4742a6",
       "publish_score": 100,
       "overall_score": 90.9,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:28:41.649Z"
+      "analyzed_at": "2026-09-27T20:08:23.278Z"
     },
     {
       "static_reference": "tdg-81255",
@@ -3902,7 +3902,7 @@
       "overall_score": null,
       "validation_status": "ERROR",
       "error": "403 Forbidden",
-      "analyzed_at": "2026-09-20T19:28:42.186Z"
+      "analyzed_at": "2026-09-27T20:08:23.762Z"
     },
     {
       "static_reference": "tdg-81461|tdg-81464|tdg-81463|tdg-81462|tdg-83729|tdg-83728",
@@ -3914,7 +3914,7 @@
       "overall_score": null,
       "validation_status": "ERROR",
       "error": "403 Forbidden",
-      "analyzed_at": "2026-09-20T19:28:42.471Z"
+      "analyzed_at": "2026-09-27T20:08:24.025Z"
     },
     {
       "static_reference": "tdg-81547",
@@ -3931,14 +3931,14 @@
     {
       "static_reference": "tdg-81575",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-81575/latest.zip",
-      "etag": "\"df63a8ed6bda58334677a159399394d9\"",
-      "last_modified": "Sat, 19 Sep 2026 01:31:39 GMT",
-      "content_length": 1008955,
-      "sha256": "1c2e8a5732d2dfb474b60bf090fa757e5e183ab81967988fcab21834a3c2880f",
+      "etag": "\"dae3860fc8f57380c479333a018a9e27\"",
+      "last_modified": "Sun, 27 Sep 2026 00:08:02 GMT",
+      "content_length": 1928397,
+      "sha256": "ac45d93a1143be69e518f6e8b218a8252e03a5f73791f0c45839777b67fca0c7",
       "publish_score": 100,
-      "overall_score": 94.2,
+      "overall_score": 92.7,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:28:43.870Z"
+      "analyzed_at": "2026-09-27T20:08:25.345Z"
     },
     {
       "static_reference": "tdg-81643",
@@ -3962,7 +3962,7 @@
       "overall_score": null,
       "validation_status": "ERROR",
       "error": "403 Forbidden",
-      "analyzed_at": "2026-09-20T19:28:44.493Z"
+      "analyzed_at": "2026-09-27T20:08:25.699Z"
     },
     {
       "static_reference": "tdg-81649|tdg-81519",
@@ -3974,19 +3974,19 @@
       "overall_score": null,
       "validation_status": "ERROR",
       "error": "403 Forbidden",
-      "analyzed_at": "2026-09-20T19:28:44.954Z"
+      "analyzed_at": "2026-09-27T20:08:25.899Z"
     },
     {
       "static_reference": "tdg-81678",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-81678/latest.zip",
-      "etag": "\"96fe63c10a2a0c9e1dd97c51f907f815\"",
-      "last_modified": "Sun, 20 Sep 2026 00:10:37 GMT",
-      "content_length": 10642021,
-      "sha256": "de2fd92ee539af361c000d8eae9f0eea487d2275303c2b944b53e614d20facfa",
+      "etag": "\"c5bd63f1dcd99ba1a1e019dd57b7743d\"",
+      "last_modified": "Sun, 27 Sep 2026 00:16:26 GMT",
+      "content_length": 12078997,
+      "sha256": "c3f22d7f130ef44a1effee6ff2731ab52e017673e4b62c4682f44086d2aabb6d",
       "publish_score": 100,
-      "overall_score": 89.3,
+      "overall_score": 89,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:28:50.675Z"
+      "analyzed_at": "2026-09-27T20:08:32.576Z"
     },
     {
       "static_reference": "tdg-81754|tdg-83773",
@@ -3998,7 +3998,7 @@
       "overall_score": null,
       "validation_status": "ERROR",
       "error": "403 Forbidden",
-      "analyzed_at": "2026-09-20T19:28:50.981Z"
+      "analyzed_at": "2026-09-27T20:08:32.788Z"
     },
     {
       "static_reference": "tdg-81770",
@@ -4027,26 +4027,26 @@
     {
       "static_reference": "tdg-81995",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-81995/latest.zip",
-      "etag": "\"4085f386ecf510d749d029c643c76241\"",
-      "last_modified": "Fri, 18 Sep 2026 00:46:52 GMT",
-      "content_length": 9279495,
-      "sha256": "5db344379e62dbe98b69e03b67791ddb3b46493bf7f3e23a3a48f39721c26aac",
+      "etag": "\"f6faff2bd7dbad31de6a56b9511c3c1a\"",
+      "last_modified": "Fri, 25 Sep 2026 01:33:18 GMT",
+      "content_length": 9316501,
+      "sha256": "4c90221d9711bac762cd71e28ee709a6732b037fe0559e8af31eec9db909499c",
       "publish_score": 100,
       "overall_score": 85,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:28:56.949Z"
+      "analyzed_at": "2026-09-27T20:08:38.171Z"
     },
     {
       "static_reference": "tdg-8201",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-8201/latest.zip",
-      "etag": "\"851475835768b18f33a9c8693bddb529\"",
-      "last_modified": "Sun, 20 Sep 2026 00:10:04 GMT",
+      "etag": "\"f3152e7c6cd3235c216eb763b1542daf\"",
+      "last_modified": "Sun, 27 Sep 2026 01:21:46 GMT",
       "content_length": 38024,
-      "sha256": "1b5104abecb05b192b5d36809ad53e4af58e60fc2b24f583fe9bff723ca65adb",
+      "sha256": "1e7f0bfc881bdf48ffc11cd0d93f2cf2120d61a94241cbab1d76fc1772e780a4",
       "publish_score": 100,
       "overall_score": 97,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:28:57.287Z"
+      "analyzed_at": "2026-09-27T20:08:38.445Z"
     },
     {
       "static_reference": "tdg-82094",
@@ -4063,26 +4063,26 @@
     {
       "static_reference": "tdg-82136",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-82136/latest.zip",
-      "etag": "\"93d384e4082e817fee591ac9604c14d8\"",
-      "last_modified": "Sun, 20 Sep 2026 01:21:22 GMT",
-      "content_length": 13254790,
-      "sha256": "98d9dafe82d3872abf3617ceab25e7e0befe1731c68a44e4d8a0169366210fae",
+      "etag": "\"afbe5e5daafe4f92fc7197585927fc6a\"",
+      "last_modified": "Sun, 27 Sep 2026 00:38:22 GMT",
+      "content_length": 13201203,
+      "sha256": "543612141566ee6fcf34dcbfd96c70212962f3e42ef2599c78bf13c55e22156a",
       "publish_score": 100,
-      "overall_score": 81.9,
+      "overall_score": 82,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:29:02.639Z"
+      "analyzed_at": "2026-09-27T20:08:43.190Z"
     },
     {
       "static_reference": "tdg-82137",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-82137/latest.zip",
-      "etag": "\"5978d460de7f6875cd08b85f7c99aa82\"",
-      "last_modified": "Sun, 20 Sep 2026 00:10:16 GMT",
-      "content_length": 7868200,
-      "sha256": "9e771c6ec8f56d04663d57977737ea2c89751087c407517fdd866f9e8dd25412",
+      "etag": "\"94224abe78247c0a4ed25db9fa4bd201\"",
+      "last_modified": "Sun, 27 Sep 2026 01:15:54 GMT",
+      "content_length": 7903834,
+      "sha256": "01553a5bf08f909104328c2637a97e40ac110c7d60282ff7d462e355ca96e8f3",
       "publish_score": 100,
-      "overall_score": 81.5,
+      "overall_score": 81.4,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:29:06.231Z"
+      "analyzed_at": "2026-09-27T20:08:46.285Z"
     },
     {
       "static_reference": "tdg-82150",
@@ -4111,14 +4111,14 @@
     {
       "static_reference": "tdg-82199",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-82199/latest.zip",
-      "etag": "\"e92047996563218e2879e32dd0a445a6\"",
-      "last_modified": "Sun, 20 Sep 2026 01:03:05 GMT",
-      "content_length": 396107,
-      "sha256": "d220ca980b2452e45f1caf778fcf4c85d4670745ce6efefd9a03c70f4ae08328",
+      "etag": "\"60501bb8726ec43de14bad29ccee9665\"",
+      "last_modified": "Sun, 27 Sep 2026 00:17:07 GMT",
+      "content_length": 506615,
+      "sha256": "e29f190644f496b345100dc632abab82c5e1a8264059f34481818ea2dc89ad4d",
       "publish_score": 100,
-      "overall_score": 89.2,
+      "overall_score": 88.1,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:29:07.968Z"
+      "analyzed_at": "2026-09-27T20:08:47.264Z"
     },
     {
       "static_reference": "tdg-82272",
@@ -4135,14 +4135,14 @@
     {
       "static_reference": "tdg-82285",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-82285/latest.zip",
-      "etag": "\"ac8f023411e556adeb6708c111911710\"",
-      "last_modified": "Sun, 20 Sep 2026 00:55:44 GMT",
-      "content_length": 7165144,
-      "sha256": "3d92f915ee26fca94f13b85dc3f3288c71b92582072bc559162b7f26f8bec96c",
+      "etag": "\"39e3053a01f8b7e524ce69678e488e78\"",
+      "last_modified": "Sun, 27 Sep 2026 01:15:26 GMT",
+      "content_length": 7864136,
+      "sha256": "0ff2abf7dda8be91862f2c8cecb6ad6b5179de169a275c1f375ece5996695953",
       "publish_score": 100,
       "overall_score": 84.5,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:29:11.764Z"
+      "analyzed_at": "2026-09-27T20:08:51.352Z"
     },
     {
       "static_reference": "tdg-82294",
@@ -4171,26 +4171,26 @@
     {
       "static_reference": "tdg-82619",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-82619/latest.zip",
-      "etag": "\"c8b95aceb6fd0e956dd5287a0112bcb3\"",
-      "last_modified": "Sun, 20 Sep 2026 01:32:28 GMT",
+      "etag": "\"0cfb71bc746c717803b3723035af1acb\"",
+      "last_modified": "Sun, 27 Sep 2026 01:44:38 GMT",
       "content_length": 36078,
-      "sha256": "f27639365f5c67f0836522ce5aa15e672e0619ee4c94268f4eb0ef5d6e30d336",
+      "sha256": "94fb15642e3573e61f9b60c27ed70b1dbc4a29775f07c9b51eeaf0f81e94e480",
       "publish_score": 100,
       "overall_score": 96.9,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:29:12.961Z"
+      "analyzed_at": "2026-09-27T20:08:51.869Z"
     },
     {
       "static_reference": "tdg-82661",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-82661/latest.zip",
-      "etag": "\"8ce9977e3c7b3801aa5cef80a8854b1f\"",
-      "last_modified": "Sat, 19 Sep 2026 00:51:21 GMT",
-      "content_length": 2126026,
-      "sha256": "7f6f522b1df90b78d55b1fd8185922662533799802dd126ffc101d2e8838b7e2",
+      "etag": "\"ee3dfcdd2253f14d95b8d8e73b4f3eca\"",
+      "last_modified": "Sat, 26 Sep 2026 01:22:56 GMT",
+      "content_length": 2371585,
+      "sha256": "ef531517653a03ac4df8f9253fb979c870c6d2f0b3101427f241ea3f1848af24",
       "publish_score": 89.3,
-      "overall_score": 85.7,
+      "overall_score": 85.9,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:29:14.561Z"
+      "analyzed_at": "2026-09-27T20:08:53.271Z"
     },
     {
       "static_reference": "tdg-82662",
@@ -4231,14 +4231,14 @@
     {
       "static_reference": "tdg-82832",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-82832/latest.zip",
-      "etag": "\"597355c49441af5553d051ea4b4bc09c\"",
-      "last_modified": "Sun, 20 Sep 2026 01:37:55 GMT",
+      "etag": "\"b10c11bda03a947540996e879c3df6bd\"",
+      "last_modified": "Sun, 27 Sep 2026 01:53:30 GMT",
       "content_length": 304848,
-      "sha256": "72502d9b13780baaa00f2114d7f8d53d27f28624bdcc9b1681c77b252f34d796",
+      "sha256": "a402b7b66222c36d037e7a1322a07f7923cc98fc6edc4c43bf16f111f7e9b961",
       "publish_score": 100,
       "overall_score": 91.5,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:29:17.321Z"
+      "analyzed_at": "2026-09-27T20:08:53.992Z"
     },
     {
       "static_reference": "tdg-82874",
@@ -4267,14 +4267,14 @@
     {
       "static_reference": "tdg-83024",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-83024/latest.zip",
-      "etag": "\"d8ca74d4d599b3d6d31b9b25b4897ba1\"",
-      "last_modified": "Sun, 20 Sep 2026 01:17:55 GMT",
-      "content_length": 19865260,
-      "sha256": "1ff1fefa3023c50345bf318d19fd0e6db5c392ecd1a8151967a0a840b6b2bd0e",
+      "etag": "\"058627ce0d2aa660d9963954a0839c96\"",
+      "last_modified": "Sun, 27 Sep 2026 01:26:41 GMT",
+      "content_length": 19135759,
+      "sha256": "92f0d1ee7ff3efecfc93225f6227fda8195357894433f6468deac2e5ac5dd209",
       "publish_score": 100,
-      "overall_score": 84,
+      "overall_score": 84.1,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:29:33.812Z"
+      "analyzed_at": "2026-09-27T20:09:05.407Z"
     },
     {
       "static_reference": "tdg-83042",
@@ -4339,14 +4339,14 @@
     {
       "static_reference": "tdg-83202",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-83202/latest.zip",
-      "etag": "\"b770c9ee7d85767c5915257f6e742c11\"",
-      "last_modified": "Sun, 20 Sep 2026 01:50:22 GMT",
-      "content_length": 8039824,
-      "sha256": "4c52bd0eff0130605bcba4bb61244be08e28fc5d9a8d8972b6b2691b3e2f9d92",
+      "etag": "\"0dde46b48133d0734bee2e7311929380\"",
+      "last_modified": "Sun, 27 Sep 2026 01:31:19 GMT",
+      "content_length": 8615871,
+      "sha256": "290fca8264f3b4cebbfbbb072d3b330779f104e49030d2cffe39a40e89e33ce0",
       "publish_score": 59.5,
       "overall_score": 68.5,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:29:42.072Z"
+      "analyzed_at": "2026-09-27T20:09:08.941Z"
     },
     {
       "static_reference": "tdg-83300",
@@ -4370,7 +4370,7 @@
       "overall_score": null,
       "validation_status": "ERROR",
       "error": "403 Forbidden",
-      "analyzed_at": "2026-09-20T19:29:42.512Z"
+      "analyzed_at": "2026-09-27T20:09:09.381Z"
     },
     {
       "static_reference": "tdg-83368",
@@ -4387,86 +4387,86 @@
     {
       "static_reference": "tdg-83389",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-83389/latest.zip",
-      "etag": "\"a1d6fae3bcd998a5a52df8c2ef22075f\"",
-      "last_modified": "Tue, 15 Sep 2026 01:06:45 GMT",
-      "content_length": 2526370,
-      "sha256": "0eb568e3bec7567ed04d221ae12beda5dcd82692519b0054bd0693730d5a4ddc",
+      "etag": "\"f240d13c7594b6d52a476eac645dad67\"",
+      "last_modified": "Tue, 22 Sep 2026 01:07:36 GMT",
+      "content_length": 2526914,
+      "sha256": "1ec5cb6d93bb437dd210828b713aa4084479b1ba05d2432cf4b8204e9696f3be",
       "publish_score": 100,
-      "overall_score": 86.9,
+      "overall_score": 88.7,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:29:45.569Z"
+      "analyzed_at": "2026-09-27T20:09:11.243Z"
     },
     {
       "static_reference": "tdg-83394",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-83394/latest.zip",
-      "etag": "\"13c31322f9b96bfe948b20e76fdd73ee\"",
-      "last_modified": "Sun, 20 Sep 2026 01:11:06 GMT",
+      "etag": "\"cda203ad37ad200c4cc23b1cbe842222\"",
+      "last_modified": "Sun, 27 Sep 2026 00:22:54 GMT",
       "content_length": 274836,
-      "sha256": "152661a9469e43d0639b4ca5ab7bc08613f86252eacfc577276b298735918b8d",
+      "sha256": "ea13e25aa85d1833224639abf9ef825e01f37cc31b2d6a798794ab192e244190",
       "publish_score": 100,
       "overall_score": 89.6,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:29:45.998Z"
+      "analyzed_at": "2026-09-27T20:09:11.687Z"
     },
     {
       "static_reference": "tdg-83408",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-83408/latest.zip",
-      "etag": "\"4f38d1fc2996122cdab6d6c2006ba90d\"",
-      "last_modified": "Fri, 04 Sep 2026 00:40:38 GMT",
-      "content_length": 1977126,
-      "sha256": "e6ee02197c87c0a976517c048e8a710183608560569598f542323aaefdaf0889",
+      "etag": "\"d3fa784212a04eeba031e51c38c0c3ea\"",
+      "last_modified": "Thu, 24 Sep 2026 00:24:20 GMT",
+      "content_length": 2035876,
+      "sha256": "7aaeaf15bec2555c913f798fe1eb6523693e3eb1c8f3b9088382f416d5b3de0f",
       "publish_score": 100,
-      "overall_score": 88.1,
+      "overall_score": 89.8,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-08T07:58:06.592Z"
+      "analyzed_at": "2026-09-27T20:09:12.939Z"
     },
     {
       "static_reference": "tdg-83448",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-83448/latest.zip",
-      "etag": "\"01eef7c2714cabcadefcc988ae03e599\"",
-      "last_modified": "Sat, 19 Sep 2026 00:44:18 GMT",
-      "content_length": 87878,
-      "sha256": "8a2159a8ce2e149db168f0aa8c0f6b2c5baef4e95494a411472b06f5ebfe5ad5",
-      "publish_score": 100,
-      "overall_score": 92.7,
+      "etag": "\"bebead47cb31a55358f1827554d410f9\"",
+      "last_modified": "Sun, 27 Sep 2026 00:05:05 GMT",
+      "content_length": 90511,
+      "sha256": "a2c7fd99684fbc3a67abde209e5ee96381ccf01b73611445acb71b2a16d61ea7",
+      "publish_score": 92.6,
+      "overall_score": 89.7,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:29:46.619Z"
+      "analyzed_at": "2026-09-27T20:09:13.284Z"
     },
     {
       "static_reference": "tdg-83467",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-83467/latest.zip",
-      "etag": "\"73f987ee7e8576b2fbbd3cebf37140a1\"",
-      "last_modified": "Sun, 20 Sep 2026 01:34:24 GMT",
+      "etag": "\"45528832b6dc0db0aefa001ea965a5d9\"",
+      "last_modified": "Sun, 27 Sep 2026 00:01:44 GMT",
       "content_length": 93795,
-      "sha256": "28bf5b32b357e2326f963648aa9be0c4669c617ee73eb8ea71b6890571a082ba",
+      "sha256": "c92387563f1fa7ce5b80cdf243546d41d05b3928bcc0dd6504ce84a7e308ed34",
       "publish_score": 100,
       "overall_score": 94.2,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:29:47.033Z"
+      "analyzed_at": "2026-09-27T20:09:13.530Z"
     },
     {
       "static_reference": "tdg-83509",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-83509/latest.zip",
-      "etag": "\"8e9f406ce57a843d9d39de6759a0155b\"",
-      "last_modified": "Sun, 20 Sep 2026 00:09:39 GMT",
+      "etag": "\"52df68b70e5eb20ed052e2bc250a97b5\"",
+      "last_modified": "Sun, 27 Sep 2026 00:34:29 GMT",
       "content_length": 47350,
-      "sha256": "74c1e5b6ba8e983cbce47404ac364a7f7eb8fcb9b5bf07a30603f8062541f1c2",
+      "sha256": "8f0392f32bc80c7f5d57555291f51da7a1df0ce862faf004e0cba4c637810a12",
       "publish_score": 100,
       "overall_score": 96.4,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:29:47.583Z"
+      "analyzed_at": "2026-09-27T20:09:13.792Z"
     },
     {
       "static_reference": "tdg-83526",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-83526/latest.zip",
-      "etag": "\"c212130accf94f1e86a4e944550596e6\"",
-      "last_modified": "Fri, 18 Sep 2026 00:44:40 GMT",
-      "content_length": 1246059,
-      "sha256": "201ece1f47300229d62ffda1def432f670ebc70c36a945fb2f293df0e4bc396e",
+      "etag": "\"604a4dc892cf94389f71cc7bf2fa2d89\"",
+      "last_modified": "Fri, 25 Sep 2026 00:29:38 GMT",
+      "content_length": 1247083,
+      "sha256": "307964c30f3187ec813d623e3942cdc62c295fc6a08cb59d032ddaa2a69d7ba6",
       "publish_score": 92.6,
       "overall_score": 89.2,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:29:48.763Z"
+      "analyzed_at": "2026-09-27T20:09:14.775Z"
     },
     {
       "static_reference": "tdg-83529",
@@ -4483,50 +4483,50 @@
     {
       "static_reference": "tdg-83530",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-83530/latest.zip",
-      "etag": "\"af1cf9f48b55ee40d693a8bec2570b9c\"",
-      "last_modified": "Sun, 20 Sep 2026 01:23:08 GMT",
-      "content_length": 13667852,
-      "sha256": "f482f2ff65cf516d8af50573ee694418dde351a1235ea2d2046175fcb7b0101a",
+      "etag": "\"75233aa5ff4936baf79edf1ed63413d1\"",
+      "last_modified": "Sun, 27 Sep 2026 00:35:18 GMT",
+      "content_length": 13649668,
+      "sha256": "1ca56aea90a49ec06102169ecb1b376c089ceb0f0a4c6149c02387896e989fd5",
       "publish_score": 100,
-      "overall_score": 81.5,
+      "overall_score": 81.6,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:29:54.913Z"
+      "analyzed_at": "2026-09-27T20:09:20.820Z"
     },
     {
       "static_reference": "tdg-83627",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-83627/latest.zip",
-      "etag": "\"1aa7e819404caddbbfbb0be26c7fab1e\"",
-      "last_modified": "Sun, 20 Sep 2026 01:34:29 GMT",
+      "etag": "\"8bc626fa631e2210a86a55bb326425d8\"",
+      "last_modified": "Sun, 27 Sep 2026 00:51:16 GMT",
       "content_length": 2215,
-      "sha256": "f1d89ce6095099c453d27d24dce85a72feff5abced615f3230e24cafb4508a8e",
+      "sha256": "5ace19e7e9d017a782e2e17395e7d301a860764ff4ba77ad30db2c398075f1b4",
       "publish_score": 80.6,
       "overall_score": 91.9,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:29:55.218Z"
+      "analyzed_at": "2026-09-27T20:09:21.053Z"
     },
     {
       "static_reference": "tdg-83629",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-83629/latest.zip",
-      "etag": "\"c4b75357ef9f2eb7cc5a07476a8b00e0\"",
-      "last_modified": "Fri, 18 Sep 2026 00:29:14 GMT",
+      "etag": "\"1a1bea2ff42c7b0665a34bbe6d9c6e73\"",
+      "last_modified": "Sun, 27 Sep 2026 01:31:14 GMT",
       "content_length": 2220,
-      "sha256": "f977cd79e8f0092e8b0f3aaa9019f4a9b98cc4d88f26448d95c53933ab2a1041",
+      "sha256": "a9da70edc2c5ec835d9f65019835254b30c310918524d0c25c76f2bb29b40a11",
       "publish_score": 80.6,
       "overall_score": 91.9,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:29:55.557Z"
+      "analyzed_at": "2026-09-27T20:09:21.341Z"
     },
     {
       "static_reference": "tdg-83643",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-83643/latest.zip",
-      "etag": "\"ec90c1a6c295af509a4525e59112f68c\"",
-      "last_modified": "Sun, 20 Sep 2026 01:07:58 GMT",
+      "etag": "\"781b4c210772736f4e726c525a2a0d95\"",
+      "last_modified": "Sun, 27 Sep 2026 01:25:08 GMT",
       "content_length": 21027717,
-      "sha256": "7e3453ccd87e230d7ee410460b30c0a9bafb2cb2f6215565be1e783d45906401",
+      "sha256": "6bd62689c8f42d31d7c62e410f4a7087f8ad774306aad9714e6bd85144679eff",
       "publish_score": 100,
       "overall_score": 84.3,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:30:02.866Z"
+      "analyzed_at": "2026-09-27T20:09:28.598Z"
     },
     {
       "static_reference": "tdg-83735|tdg-83734|tdg-82900",
@@ -4538,19 +4538,19 @@
       "overall_score": null,
       "validation_status": "ERROR",
       "error": "403 Forbidden",
-      "analyzed_at": "2026-09-20T19:30:03.172Z"
+      "analyzed_at": "2026-09-27T20:09:28.803Z"
     },
     {
       "static_reference": "tdg-83751",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-83751/latest.zip",
-      "etag": "\"67e2057b149053920ea5105b95716c82\"",
-      "last_modified": "Sun, 20 Sep 2026 01:32:30 GMT",
-      "content_length": 15474748,
-      "sha256": "ad1d1e7a832365bf9df9381f33a81e129233242ec086b64d29595cc3f0683d7f",
+      "etag": "\"4db96247ca0c38ac9336e67a4776ba75\"",
+      "last_modified": "Sun, 27 Sep 2026 00:34:57 GMT",
+      "content_length": 17365457,
+      "sha256": "2da2e02bd371c00c60c71c430f4fdd6a0247ceec88161d4fa8360cf7b16c9a30",
       "publish_score": 100,
-      "overall_score": 89,
+      "overall_score": 88.9,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:30:15.460Z"
+      "analyzed_at": "2026-09-27T20:09:43.731Z"
     },
     {
       "static_reference": "tdg-83773|tdg-81754",
@@ -4562,7 +4562,7 @@
       "overall_score": null,
       "validation_status": "ERROR",
       "error": "403 Forbidden",
-      "analyzed_at": "2026-09-20T19:30:15.756Z"
+      "analyzed_at": "2026-09-27T20:09:43.952Z"
     },
     {
       "static_reference": "tdg-83775|tdg-84161",
@@ -4574,7 +4574,7 @@
       "overall_score": null,
       "validation_status": "ERROR",
       "error": "403 Forbidden",
-      "analyzed_at": "2026-09-20T19:30:16.034Z"
+      "analyzed_at": "2026-09-27T20:09:44.205Z"
     },
     {
       "static_reference": "tdg-83782",
@@ -4598,31 +4598,31 @@
       "overall_score": null,
       "validation_status": "ERROR",
       "error": "403 Forbidden",
-      "analyzed_at": "2026-09-20T19:30:16.494Z"
+      "analyzed_at": "2026-09-27T20:09:44.489Z"
     },
     {
       "static_reference": "tdg-83807",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-83807/latest.zip",
-      "etag": "\"4481039efa0537e3ad67afbdb356f5f7\"",
-      "last_modified": "Sun, 20 Sep 2026 01:22:57 GMT",
-      "content_length": 2082721,
-      "sha256": "4c688984c84e4cfd8e5fadcfb189f650e88ababd842bc3d47012a4d0aa137c21",
+      "etag": "\"de90e838a73cd351599c1fb4a1eef6c5\"",
+      "last_modified": "Sun, 27 Sep 2026 00:51:51 GMT",
+      "content_length": 1939612,
+      "sha256": "076df49edae583fcbb4f85ea8e1ebad12d4ea56b9b82ea94e0a77cdf4012c550",
       "publish_score": 100,
-      "overall_score": 90.7,
+      "overall_score": 90.1,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:30:18.503Z"
+      "analyzed_at": "2026-09-27T20:09:45.594Z"
     },
     {
       "static_reference": "tdg-83839",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-83839/latest.zip",
-      "etag": "\"b1f7f51a9fc88e4fd605f9661da25127\"",
-      "last_modified": "Sun, 20 Sep 2026 00:57:08 GMT",
+      "etag": "\"0ad6eac10bb9a680b2afb404968b696a\"",
+      "last_modified": "Sun, 27 Sep 2026 01:39:40 GMT",
       "content_length": 453065,
-      "sha256": "425c94ef1533fc27d9bf9dc13b809482341917d5b0ac27c2ffb1dbfcabacf476",
+      "sha256": "96a3a43feee9b5e46aae2755869547e3844208a59b7870f315aecb93eed6df18",
       "publish_score": 100,
       "overall_score": 91.5,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:30:19.265Z"
+      "analyzed_at": "2026-09-27T20:09:46.095Z"
     },
     {
       "static_reference": "tdg-83852",
@@ -4639,14 +4639,14 @@
     {
       "static_reference": "tdg-83859",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-83859/latest.zip",
-      "etag": "\"aeb0ca578ac4126a3e7481abe128d37d\"",
-      "last_modified": "Sun, 20 Sep 2026 01:18:08 GMT",
+      "etag": "\"59b424b05d4a3a00314c4a1169cac1f0\"",
+      "last_modified": "Sun, 27 Sep 2026 01:22:16 GMT",
       "content_length": 77296,
-      "sha256": "f1f3616415a4854a8e9f6d5a906f12c570d2c4e71235e57e7924278e59723b10",
+      "sha256": "ac013c7dbfcd4f84b41e1ed53f9b248825b734cf673d78e503ddbcf2d9f99770",
       "publish_score": 100,
       "overall_score": 95,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:30:19.957Z"
+      "analyzed_at": "2026-09-27T20:09:46.469Z"
     },
     {
       "static_reference": "tdg-83922|tdg-83921",
@@ -4658,79 +4658,79 @@
       "overall_score": null,
       "validation_status": "ERROR",
       "error": "403 Forbidden",
-      "analyzed_at": "2026-09-20T19:30:20.428Z"
+      "analyzed_at": "2026-09-27T20:09:46.657Z"
     },
     {
       "static_reference": "tdg-83990",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-83990/latest.zip",
-      "etag": "\"03e446e395d239f92e48209be5f1a207\"",
-      "last_modified": "Sun, 20 Sep 2026 01:36:13 GMT",
-      "content_length": 5472211,
-      "sha256": "30b51426cf82f2c1f3817c744165bbc3caba2f2dabd814cee5fc3c2713558748",
+      "etag": "\"f25b86f1ad20ed60d755745434bd05c9\"",
+      "last_modified": "Sun, 27 Sep 2026 00:58:28 GMT",
+      "content_length": 5976163,
+      "sha256": "b531f637633092f0ea106dc1027e2deee47b87d58a7fcbe44706b234c07d5d0f",
       "publish_score": 100,
-      "overall_score": 87.3,
+      "overall_score": 87.1,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:30:23.109Z"
+      "analyzed_at": "2026-09-27T20:09:49.382Z"
     },
     {
       "static_reference": "tdg-84037",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-84037/latest.zip",
-      "etag": "\"b716b0d10221fb2fd622e4b5020e8f65\"",
-      "last_modified": "Sun, 20 Sep 2026 00:59:21 GMT",
-      "content_length": 1705477,
-      "sha256": "6fc683afb92cdb31e51c4502ea9aa941f9bc6b2ce20967d13e06f04c1ca51a2c",
+      "etag": "\"b63cd8282d02392db1fcaac93e3c0a68\"",
+      "last_modified": "Thu, 24 Sep 2026 01:37:28 GMT",
+      "content_length": 1705463,
+      "sha256": "a7c03d25781627868a9ce5f95d22e812a7cb8a7d77922677495cca2c28addf00",
       "publish_score": 100,
       "overall_score": 91.9,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:30:24.483Z"
+      "analyzed_at": "2026-09-27T20:09:50.594Z"
     },
     {
       "static_reference": "tdg-84068",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-84068/latest.zip",
-      "etag": "\"6a94a01e96286d8e54eaa337db34c40c\"",
-      "last_modified": "Sun, 20 Sep 2026 01:20:09 GMT",
+      "etag": "\"2939980735f0f67a2b41aa0164355760\"",
+      "last_modified": "Sun, 27 Sep 2026 01:07:15 GMT",
       "content_length": 399027,
-      "sha256": "6195504a38af9e15d20ed2f98cc5c747f146fa6f7963b482c90c78d088e44e33",
+      "sha256": "a22905e2cbf22b9edb2ce4ad4d9a1b0311f235a57b0c1f07ca8915d0915c4369",
       "publish_score": 100,
-      "overall_score": 96.3,
+      "overall_score": 95.9,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:30:24.918Z"
+      "analyzed_at": "2026-09-27T20:09:51.065Z"
     },
     {
       "static_reference": "tdg-84087",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-84087/latest.zip",
-      "etag": "\"ac87cd8513bc42f33bd0dd3fcc5e5f6f\"",
-      "last_modified": "Sun, 20 Sep 2026 01:20:51 GMT",
+      "etag": "\"99971bcceb03dc91b4fc2e0a6c92db64\"",
+      "last_modified": "Sun, 27 Sep 2026 01:15:24 GMT",
       "content_length": 64410,
-      "sha256": "f855627ca6ebb390d0ed4f13a187a375640695e74b7886286a0e88b2e5de0d13",
+      "sha256": "383a3630beb50b86b60cf9aeb3f126d2bb74addac559f560dd5dac9e64b7d071",
       "publish_score": 100,
       "overall_score": 95.3,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:30:25.296Z"
+      "analyzed_at": "2026-09-27T20:09:51.329Z"
     },
     {
       "static_reference": "tdg-84089",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-84089/latest.zip",
-      "etag": "\"097f02cb95895a53454be3c633ba06ad\"",
-      "last_modified": "Sat, 19 Sep 2026 00:31:18 GMT",
+      "etag": "\"206b81baf9c30bbfe033cefb464e786d\"",
+      "last_modified": "Sun, 27 Sep 2026 00:42:21 GMT",
       "content_length": 32652,
-      "sha256": "2ca29aadeae4f1cb842b08e0707a6b2f62ce461875e73c08f4702d36d3a3bb7a",
+      "sha256": "b838001c9506c29387e29e92c365f852a2a76a4217f6dfe2ebdfba98ce2f47f7",
       "publish_score": 100,
       "overall_score": 96,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:30:25.596Z"
+      "analyzed_at": "2026-09-27T20:09:51.576Z"
     },
     {
       "static_reference": "tdg-84115",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-84115/latest.zip",
-      "etag": "\"e5fc4ceb9631911d9ecea02abd415148\"",
-      "last_modified": "Sat, 22 Aug 2026 01:25:58 GMT",
-      "content_length": 2810710,
-      "sha256": "a46aa8afa4a04211b8b67c0dfc242679248728675e17626354236357d7ec9bd4",
+      "etag": "\"9cb57d7f69e31f3eb4110c7f5e3ae327\"",
+      "last_modified": "Sat, 26 Sep 2026 01:30:49 GMT",
+      "content_length": 2409192,
+      "sha256": "420fe51085d54fb78d7f1f726d0ca6ac69e94104c422b3392230dc416360614e",
       "publish_score": 100,
-      "overall_score": 89.9,
+      "overall_score": 90.7,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-08T07:58:49.317Z"
+      "analyzed_at": "2026-09-27T20:09:52.918Z"
     },
     {
       "static_reference": "tdg-84121",
@@ -4747,50 +4747,50 @@
     {
       "static_reference": "tdg-84137",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-84137/latest.zip",
-      "etag": "\"78b1203527041f2c995931c69ca7da88\"",
-      "last_modified": "Thu, 10 Sep 2026 01:34:18 GMT",
-      "content_length": 322442,
-      "sha256": "fb36a3504b51d29185d192a29d44b8ef88cd08b71fbaddaa7c8350d87e82950f",
+      "etag": "\"2be4240deb452527c3002b7e22da4a5f\"",
+      "last_modified": "Sun, 27 Sep 2026 01:04:14 GMT",
+      "content_length": 322445,
+      "sha256": "d9a8dfea3b6742515deaf1ffb99367d46f15164c9b5a43d7f6e6f4be4d084b52",
       "publish_score": 100,
       "overall_score": 91,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-13T19:28:19.129Z"
+      "analyzed_at": "2026-09-27T20:09:53.533Z"
     },
     {
       "static_reference": "tdg-84176",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-84176/latest.zip",
-      "etag": "\"1e46925061daf8acaf0decb74e009e1d\"",
-      "last_modified": "Sun, 20 Sep 2026 01:37:26 GMT",
+      "etag": "\"b33013e25acef34405f98b5246dc313b\"",
+      "last_modified": "Sun, 27 Sep 2026 00:35:27 GMT",
       "content_length": 56548,
-      "sha256": "a3c1db790b3266e7326e9197be07a0d52f957d14371a930592f93d59dfb7914d",
+      "sha256": "8d73e8e316f24aecd29c8fab216f89e2d4fd201fb7f31fc23c6385ea34053026",
       "publish_score": 100,
       "overall_score": 94,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:30:26.796Z"
+      "analyzed_at": "2026-09-27T20:09:53.819Z"
     },
     {
       "static_reference": "tdg-8487",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-8487/latest.zip",
-      "etag": "\"0fdcdb4980ccf8d3065f84f26a7ffc81\"",
-      "last_modified": "Sun, 20 Sep 2026 00:09:19 GMT",
+      "etag": "\"18a2941c03dba3e33b14993d97a5f1d2\"",
+      "last_modified": "Sun, 27 Sep 2026 00:50:00 GMT",
       "content_length": 213219,
-      "sha256": "c041e1d3e9a8a9a0391b6bfdeee5bad1ad0079c7f349c7db256c4e014c23852d",
+      "sha256": "09b85375b9d961e2d08891ae0c85722ee21b32a0e4a22dcc398ec6bf8557d5e0",
       "publish_score": 100,
       "overall_score": 95,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:30:27.737Z"
+      "analyzed_at": "2026-09-27T20:09:54.191Z"
     },
     {
       "static_reference": "tdg-8597",
       "schedule_url": "https://files.mobilitydatabase.org/tdg-8597/latest.zip",
-      "etag": "\"eea4beaab92b07533e7aef157435e9d5\"",
-      "last_modified": "Sun, 20 Sep 2026 00:57:21 GMT",
+      "etag": "\"9fe43c29322e76bef6447f099a31d042\"",
+      "last_modified": "Sun, 27 Sep 2026 01:41:08 GMT",
       "content_length": 64502,
-      "sha256": "f796fb8af290ff1b2afaa4558f91ed91c1bbe80b0e6d79e8face6116ce2468c7",
+      "sha256": "5f327cdfeded6807819430130af3e07aa2e1722d8e01a8374ae22c9db25ef3ed",
       "publish_score": 100,
-      "overall_score": 94.1,
+      "overall_score": 94.4,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:30:28.290Z"
+      "analyzed_at": "2026-09-27T20:09:54.475Z"
     },
     {
       "static_reference": "tld-1071",
@@ -4831,14 +4831,14 @@
     {
       "static_reference": "tld-170",
       "schedule_url": "https://files.mobilitydatabase.org/tld-170/latest.zip",
-      "etag": "\"1fe917f426cd48eef9710011ffc385d6\"",
-      "last_modified": "Sun, 20 Sep 2026 01:29:49 GMT",
-      "content_length": 376647,
-      "sha256": "6d4900a47e8cfdac65357733bb4fd4443b8389d7f04812989e10b11d6a4da70d",
+      "etag": "\"6e73440da9711561a49f0c292f525065\"",
+      "last_modified": "Sun, 27 Sep 2026 00:44:18 GMT",
+      "content_length": 376292,
+      "sha256": "08d8e681a174aac37333cefa6608e0e80f2142904bfcba8ad960c18f7ea8f790",
       "publish_score": 92.6,
-      "overall_score": 86.4,
+      "overall_score": 84.8,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:30:29.917Z"
+      "analyzed_at": "2026-09-27T20:09:55.468Z"
     },
     {
       "static_reference": "tld-1717",
@@ -4879,14 +4879,14 @@
     {
       "static_reference": "tld-2276",
       "schedule_url": "https://files.mobilitydatabase.org/tld-2276/latest.zip",
-      "etag": "\"9f8cad3144074e5bc28d4410f4e2bdb3\"",
-      "last_modified": "Sun, 20 Sep 2026 00:29:47 GMT",
-      "content_length": 185527,
-      "sha256": "ee4c12ef91a4108639e06e6369346c3e12b288cbe1029afb4874f4a800b841d1",
+      "etag": "\"9b79ca61886b360be0a363941772adcf\"",
+      "last_modified": "Sun, 27 Sep 2026 01:50:04 GMT",
+      "content_length": 203540,
+      "sha256": "271a1f3902b70fbc6ccc2e99697bb7b26176a42d63c297002820f6cfd2919c99",
       "publish_score": 100,
-      "overall_score": 92.1,
+      "overall_score": 92,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:30:30.925Z"
+      "analyzed_at": "2026-09-27T20:09:56.213Z"
     },
     {
       "static_reference": "tld-235",
@@ -4999,14 +4999,14 @@
     {
       "static_reference": "tld-4385",
       "schedule_url": "https://files.mobilitydatabase.org/tld-4385/latest.zip",
-      "etag": "\"8ce680e9a8eb0c45c972f964e4d3f593\"",
-      "last_modified": "Sun, 20 Sep 2026 00:01:45 GMT",
-      "content_length": 1026403,
-      "sha256": "72d3af427aaa0a0996bdcdefefa23391e8a600e41c3f839846860053bfbc97b3",
+      "etag": "\"21c2d52dfdd2be32dc1a916a74079354\"",
+      "last_modified": "Sun, 27 Sep 2026 01:33:02 GMT",
+      "content_length": 1026402,
+      "sha256": "fcacc3da0c52cd419e6e509742f690b7c1968249964f50ad72217ed8f6b05b29",
       "publish_score": 100,
       "overall_score": 88.9,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:30:36.037Z"
+      "analyzed_at": "2026-09-27T20:09:57.876Z"
     },
     {
       "static_reference": "tld-4436",
@@ -5179,26 +5179,26 @@
     {
       "static_reference": "tld-4690",
       "schedule_url": "https://files.mobilitydatabase.org/tld-4690/latest.zip",
-      "etag": "\"781fd8f9a0a6d08ef988bd11515d9e3d\"",
-      "last_modified": "Sun, 20 Sep 2026 00:07:11 GMT",
+      "etag": "\"2ccbe0cf7b87cb1773d250a446643f26\"",
+      "last_modified": "Sun, 27 Sep 2026 00:52:50 GMT",
       "content_length": 448441,
-      "sha256": "3a28d5e54d4025113ee44c49efe9ee7cfe01657be5bdb414b569977f8aac0178",
+      "sha256": "64f52d25f4453b2806eafdbebab4f9ad9e1adc4bf070892f4478fa1cf735fbb0",
       "publish_score": 92.6,
-      "overall_score": 88.7,
+      "overall_score": 88.9,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:30:41.297Z"
+      "analyzed_at": "2026-09-27T20:10:00.280Z"
     },
     {
       "static_reference": "tld-4761",
       "schedule_url": "https://files.mobilitydatabase.org/tld-4761/latest.zip",
-      "etag": "\"871db1723439f14718087afff13eb652\"",
-      "last_modified": "Sat, 19 Sep 2026 01:54:03 GMT",
+      "etag": "\"39969030f6fc716c1f52e492bc6ba33e\"",
+      "last_modified": "Sun, 27 Sep 2026 01:09:12 GMT",
       "content_length": 284509,
-      "sha256": "02f3b90ba7287a7de23ce44649a0ea6a1525f8d193da7f156c07df5ebd18cf01",
+      "sha256": "2c26356834a4cca777682d3c70e2f495993b6845b0ee1e65d78a1a2d6687f575",
       "publish_score": 100,
       "overall_score": 95.2,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:30:41.888Z"
+      "analyzed_at": "2026-09-27T20:10:00.757Z"
     },
     {
       "static_reference": "tld-4777",
@@ -5227,158 +5227,158 @@
     {
       "static_reference": "tld-490",
       "schedule_url": "https://files.mobilitydatabase.org/tld-490/latest.zip",
-      "etag": "\"1d83f33108a9cf111670e9f2b5d53bea\"",
-      "last_modified": "Sun, 20 Sep 2026 01:24:25 GMT",
-      "content_length": 1290159,
-      "sha256": "8a01e57da42c416d1158836b2ff8845443c62aba9ee0323714f0e07d66421ddc",
+      "etag": "\"d7b92accacb245fdafc21df986b8e4d9\"",
+      "last_modified": "Sun, 27 Sep 2026 00:23:48 GMT",
+      "content_length": 1113604,
+      "sha256": "221933de7042d18ba7df00ab2140e6db7d6317f644be82b9bf8c6bbabd80115a",
       "publish_score": 100,
       "overall_score": 93,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:30:43.723Z"
+      "analyzed_at": "2026-09-27T20:10:02.022Z"
     },
     {
       "static_reference": "tld-5503",
       "schedule_url": "https://files.mobilitydatabase.org/tld-5503/latest.zip",
-      "etag": "\"c3edb610174215452c061f0d28303ccb\"",
-      "last_modified": "Thu, 10 Sep 2026 01:50:23 GMT",
-      "content_length": 828300,
-      "sha256": "f72c67ed7b8e03f7d007298dab867b85c1c5d1506f5e2873567a16de536e380e",
+      "etag": "\"f73dd3d68b276c04df7f14c4679973d4\"",
+      "last_modified": "Tue, 22 Sep 2026 00:31:19 GMT",
+      "content_length": 828267,
+      "sha256": "8043ffa912576ccdec1505d30e428b418709b917ce562772e0b5953497a563e5",
       "publish_score": 100,
       "overall_score": 95.4,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-13T19:28:43.493Z"
+      "analyzed_at": "2026-09-27T20:10:02.871Z"
     },
     {
       "static_reference": "tld-5531",
       "schedule_url": "https://files.mobilitydatabase.org/tld-5531/latest.zip",
-      "etag": "\"6ceb393fdcd2a48166a66713b92bbbc5\"",
-      "last_modified": "Sat, 15 Aug 2026 01:34:30 GMT",
-      "content_length": 509671,
-      "sha256": "83e158011782edc7954be3b2519339587edb7d476727224b7b90e48fb1b4e7bb",
+      "etag": "\"253eda7bdb79728143aa3ee58341ae22\"",
+      "last_modified": "Sat, 26 Sep 2026 00:38:55 GMT",
+      "content_length": 510272,
+      "sha256": "ce83ffaea14608be150b9eae2b7f89cc608ccbe212132b4481398a2d1d5808ac",
       "publish_score": 100,
       "overall_score": 95.3,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-08T07:59:34.914Z"
+      "analyzed_at": "2026-09-27T20:10:03.332Z"
     },
     {
       "static_reference": "tld-5630",
       "schedule_url": "https://files.mobilitydatabase.org/tld-5630/latest.zip",
-      "etag": "\"7d1ce5634524f9be6e4955c3e9309e82\"",
-      "last_modified": "Sun, 20 Sep 2026 00:01:44 GMT",
+      "etag": "\"eee71a9991070e9dccbfabf5f3835747\"",
+      "last_modified": "Sun, 27 Sep 2026 00:31:57 GMT",
       "content_length": 291256,
-      "sha256": "e054aa4e094dca87612dd188461d2a93ead77408f821574eadca64ae40b066aa",
+      "sha256": "6cb40711b12b23f0a410e61c082cc1a36ae093b92d776a2b7c2bb910e2e0ccc5",
       "publish_score": 100,
       "overall_score": 95,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:30:45.080Z"
+      "analyzed_at": "2026-09-27T20:10:03.728Z"
     },
     {
       "static_reference": "tld-5722",
       "schedule_url": "https://files.mobilitydatabase.org/tld-5722/latest.zip",
-      "etag": "\"6216c77489eb25067198a7d7bbed46b2\"",
-      "last_modified": "Sun, 20 Sep 2026 01:35:26 GMT",
+      "etag": "\"9e99dee1f1857eb8a3fa9f7564958cb4\"",
+      "last_modified": "Sun, 27 Sep 2026 01:16:35 GMT",
       "content_length": 122538,
-      "sha256": "818c8160077bd4d54d8ed170b2d5238014e8b1158459d99d82bec4dd29263418",
+      "sha256": "663b81f2f644109a650b6ae74d2d0a4553c8781700eeedbc9907a2dc2d19cc93",
       "publish_score": 100,
       "overall_score": 96,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:30:45.658Z"
+      "analyzed_at": "2026-09-27T20:10:03.988Z"
     },
     {
       "static_reference": "tld-5863",
       "schedule_url": "https://files.mobilitydatabase.org/tld-5863/latest.zip",
-      "etag": "\"6532ed5bccd85bb283cca4fad7414be9\"",
-      "last_modified": "Sun, 20 Sep 2026 00:01:40 GMT",
-      "content_length": 73591,
-      "sha256": "5f3857144e3b4801f66163fa4d03ce5a9b74cd7af26c1931ddef2901dfbf657d",
+      "etag": "\"9bfc444905837586eb6c9e164082fc4c\"",
+      "last_modified": "Sun, 27 Sep 2026 00:44:23 GMT",
+      "content_length": 73590,
+      "sha256": "78ba8c5aa3c2a0ed4142320ca9de7b12b6474a1992a4456167710caf99676944",
       "publish_score": 100,
       "overall_score": 90.9,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:30:46.266Z"
+      "analyzed_at": "2026-09-27T20:10:04.343Z"
     },
     {
       "static_reference": "tld-5864",
       "schedule_url": "https://files.mobilitydatabase.org/tld-5864/latest.zip",
-      "etag": "\"3b06094dd72319565650fddefa2ee69e\"",
-      "last_modified": "Sun, 20 Sep 2026 01:01:15 GMT",
-      "content_length": 76368,
-      "sha256": "ad25b1598aa52263516ca63270d06d8d06c15ca46deec7a058b8e76d5fcab498",
+      "etag": "\"98a93655645e87e700ed4a4fd673f5a5\"",
+      "last_modified": "Sun, 27 Sep 2026 01:18:17 GMT",
+      "content_length": 76367,
+      "sha256": "0aab0f22a0455fcd1e60178eb7a1129a62e565c69c732e1739d48cda2a592b46",
       "publish_score": 100,
       "overall_score": 90.6,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:30:46.640Z"
+      "analyzed_at": "2026-09-27T20:10:04.594Z"
     },
     {
       "static_reference": "tld-5869",
       "schedule_url": "https://files.mobilitydatabase.org/tld-5869/latest.zip",
-      "etag": "\"3d41217352412dcb00a057217b01c702\"",
-      "last_modified": "Sun, 20 Sep 2026 00:42:53 GMT",
+      "etag": "\"69f3f617ee498b70341438a7ead88b4e\"",
+      "last_modified": "Sun, 27 Sep 2026 01:07:41 GMT",
       "content_length": 53916,
-      "sha256": "5dbda7ce1be5fa1c8c83fe7ef7577b4a491033b8c525044e3c32072ae4f35768",
+      "sha256": "dda498cf26157bf6b53dfe0a8281ab8fcfcb44efc2bcf5ecc711578ed64a8037",
       "publish_score": 100,
       "overall_score": 92.7,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:30:47.180Z"
+      "analyzed_at": "2026-09-27T20:10:04.839Z"
     },
     {
       "static_reference": "tld-5893",
       "schedule_url": "https://files.mobilitydatabase.org/tld-5893/latest.zip",
-      "etag": "\"214498bc8351b76a891a65c3a8baeede\"",
-      "last_modified": "Sun, 20 Sep 2026 01:51:58 GMT",
-      "content_length": 177537,
-      "sha256": "60f2788625ec47262eefecdb943755be43b0f6419e11046dd85adbc6eef1d304",
+      "etag": "\"c3dbce495390d5edbbbc14a5d3dd8a99\"",
+      "last_modified": "Sun, 27 Sep 2026 01:04:02 GMT",
+      "content_length": 177536,
+      "sha256": "6c74bf81e862cf313d5776777009ad3bad42fef20776f43c7b44ad0829661615",
       "publish_score": 100,
       "overall_score": 92.3,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:30:47.662Z"
+      "analyzed_at": "2026-09-27T20:10:05.158Z"
     },
     {
       "static_reference": "tld-5895",
       "schedule_url": "https://files.mobilitydatabase.org/tld-5895/latest.zip",
-      "etag": "\"19cd3d850c0dc7f9d7dd6938306950cc\"",
-      "last_modified": "Fri, 18 Sep 2026 01:19:34 GMT",
-      "content_length": 854104,
-      "sha256": "93262c49490133551c96c7f7555202e1000d795eee64b75318e6522f80b6b118",
+      "etag": "\"1e25a90402efa1b58e312477a514d760\"",
+      "last_modified": "Sat, 26 Sep 2026 00:44:05 GMT",
+      "content_length": 848739,
+      "sha256": "c6efcd38cab44ee33c22ac2fad6b351e09c311689dc62a7c1613ae20f0717e4f",
       "publish_score": 100,
-      "overall_score": 96.2,
+      "overall_score": 95.2,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:30:48.726Z"
+      "analyzed_at": "2026-09-27T20:10:05.677Z"
     },
     {
       "static_reference": "tld-5899",
       "schedule_url": "https://files.mobilitydatabase.org/tld-5899/latest.zip",
-      "etag": "\"d0e838824b868abd2eeabe9696440bd4\"",
-      "last_modified": "Sun, 20 Sep 2026 01:36:38 GMT",
-      "content_length": 126636,
-      "sha256": "ae765efc77d955856414adf42a2df863d8a24f81373fd5184a0cfad8eb7039f8",
+      "etag": "\"295946b5b0b5454a822bf91f047d13fd\"",
+      "last_modified": "Sun, 27 Sep 2026 00:04:49 GMT",
+      "content_length": 126635,
+      "sha256": "53f1b539cfe5aa86aefde45ed52de0f149827f51a48469bc7833ee9396a8cdbe",
       "publish_score": 100,
       "overall_score": 91.6,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:30:49.270Z"
+      "analyzed_at": "2026-09-27T20:10:05.938Z"
     },
     {
       "static_reference": "tld-6095",
       "schedule_url": "https://files.mobilitydatabase.org/tld-6095/latest.zip",
-      "etag": "\"dfeba98d28a9cb887de895ecba9ee3b3\"",
-      "last_modified": "Sun, 20 Sep 2026 00:54:54 GMT",
-      "content_length": 81254,
-      "sha256": "cf923f87990939829a075362f01896ee6f0eefd7923d29de7cc2ba9ff9d59315",
+      "etag": "\"51443da0b1b5d532120fa0da3705dada\"",
+      "last_modified": "Sun, 27 Sep 2026 01:18:06 GMT",
+      "content_length": 81253,
+      "sha256": "aa8a400a7363287876161966f9210a74b94927a2bda181ce8f4e0bdc1a8e7c2e",
       "publish_score": 100,
       "overall_score": 93.6,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:30:49.612Z"
+      "analyzed_at": "2026-09-27T20:10:06.213Z"
     },
     {
       "static_reference": "tld-61",
       "schedule_url": "https://files.mobilitydatabase.org/tld-61/latest.zip",
-      "etag": "\"d52897b052614b6c7d666f166e01f543\"",
-      "last_modified": "Sun, 20 Sep 2026 01:22:30 GMT",
-      "content_length": 27017,
-      "sha256": "6d5c81b601ce3f7c0edaa575bcd38b213068f1c1be3df6634349b4aaaab649f9",
+      "etag": "\"5021f425db81f20a4f498d194ef2169b\"",
+      "last_modified": "Sun, 27 Sep 2026 01:04:20 GMT",
+      "content_length": 27279,
+      "sha256": "9da6581e258171c7c92087f7d97637f9d14008e29ac7c804a4363d0f80490c4f",
       "publish_score": 100,
       "overall_score": 93.8,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:30:49.913Z"
+      "analyzed_at": "2026-09-27T20:10:06.453Z"
     },
     {
       "static_reference": "tld-6675",
@@ -5395,50 +5395,50 @@
     {
       "static_reference": "tld-6694",
       "schedule_url": "https://files.mobilitydatabase.org/tld-6694/latest.zip",
-      "etag": "\"7999a1fe61035ae4bf12001d44d03ca4\"",
-      "last_modified": "Sun, 20 Sep 2026 00:45:28 GMT",
+      "etag": "\"b24e59ea4ac6865ba5978c5a8d0852d6\"",
+      "last_modified": "Sun, 27 Sep 2026 00:14:55 GMT",
       "content_length": 59212,
-      "sha256": "3f46b3b4d7c017b1a7590fcfa439c0b4bb6a45a7aed2fb00dd99649f66cddacf",
+      "sha256": "6c861d9c0374e911f4e23e142ba18797b1d605c55b961bb21d3a78190e410f94",
       "publish_score": 100,
       "overall_score": 93.7,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:30:50.678Z"
+      "analyzed_at": "2026-09-27T20:10:06.951Z"
     },
     {
       "static_reference": "tld-6713",
       "schedule_url": "https://files.mobilitydatabase.org/tld-6713/latest.zip",
-      "etag": "\"a8e3a937341271be13908ff7d0319b2a\"",
-      "last_modified": "Sun, 20 Sep 2026 00:09:20 GMT",
-      "content_length": 134905,
-      "sha256": "1c04ebf6cc7a2348ab97148bfd506c370f928c0acef83170bfd3d3bb71941c71",
+      "etag": "\"e19aa8f6e455e16a95ce1aa58211c91b\"",
+      "last_modified": "Sun, 27 Sep 2026 01:09:31 GMT",
+      "content_length": 134904,
+      "sha256": "2c287d85fc51393be9fa1ec089e58ce8ed3f2334ca3647ca1f5ff148b48ceed7",
       "publish_score": 100,
       "overall_score": 92.9,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:30:51.407Z"
+      "analyzed_at": "2026-09-27T20:10:07.199Z"
     },
     {
       "static_reference": "tld-6724",
       "schedule_url": "https://files.mobilitydatabase.org/tld-6724/latest.zip",
-      "etag": "\"12b5f061b27d65b523c308663e373aaa\"",
-      "last_modified": "Sun, 20 Sep 2026 00:44:29 GMT",
-      "content_length": 36693,
-      "sha256": "4ba2b9bd8c94fb63351a26b4e9b99ec3dad6d5d0ed5ae4106ef0317f5f12a58b",
+      "etag": "\"39a20c8106b2c4cbe648b89466e84654\"",
+      "last_modified": "Sun, 27 Sep 2026 00:58:09 GMT",
+      "content_length": 36692,
+      "sha256": "f110f92a935e8eedba15665177e1454785c6a8aa8a61fbc6a710959414f1c48d",
       "publish_score": 100,
       "overall_score": 92.6,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:30:51.944Z"
+      "analyzed_at": "2026-09-27T20:10:07.416Z"
     },
     {
       "static_reference": "tld-6735",
       "schedule_url": "https://files.mobilitydatabase.org/tld-6735/latest.zip",
-      "etag": "\"52f59054d6ba06647e662c389d8c3787\"",
-      "last_modified": "Sun, 20 Sep 2026 01:01:45 GMT",
-      "content_length": 91869,
-      "sha256": "00ac2611b7eb35a806bb217b2653f0f49c8dcca5be8d90f6733f7613be3118b2",
+      "etag": "\"559fdbdb8dd10673b8479f484ceea671\"",
+      "last_modified": "Sun, 27 Sep 2026 01:04:23 GMT",
+      "content_length": 91868,
+      "sha256": "61397711cb1fae0a44bc0a73cafa9adcfff755161b857bedbcd439f64da69773",
       "publish_score": 92.6,
       "overall_score": 89.3,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-20T19:30:52.528Z"
+      "analyzed_at": "2026-09-27T20:10:07.675Z"
     },
     {
       "static_reference": "tld-674",
@@ -5455,14 +5455,14 @@
     {
       "static_reference": "tld-6773",
       "schedule_url": "https://files.mobilitydatabase.org/tld-6773/latest.zip",
-      "etag": "\"9876135066f61f9a3de187cf5c9b2fd6\"",
-      "last_modified": "Fri, 20 Mar 2026 01:21:08 GMT",
-      "content_length": 676097,
-      "sha256": "53fc0077c6cf0e88fea04082a377d3407c9f606b13eadc8781a52c83244a96c2",
+      "etag": "\"0a6add24c2c1ced2383ecf72e9667700\"",
+      "last_modified": "Sat, 26 Sep 2026 01:22:51 GMT",
+      "content_length": 376540,
+      "sha256": "7672ab024441ad17a9e64ca998ffa09935c843a84742292ca5ceb42593dcddf6",
       "publish_score": 100,
-      "overall_score": 94,
+      "overall_score": 96,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-08T07:59:43.911Z"
+      "analyzed_at": "2026-09-27T20:10:08.283Z"
     },
     {
       "static_reference": "tld-6785",
@@ -5563,14 +5563,14 @@
     {
       "static_reference": "tld-820",
       "schedule_url": "https://files.mobilitydatabase.org/tld-820/latest.zip",
-      "etag": "\"163092d17e04e23ac88202f79134f229\"",
-      "last_modified": "Thu, 20 Aug 2026 01:39:43 GMT",
-      "content_length": 53359,
-      "sha256": "0294bd733b0566e2b2b1c2476093b49217c6b7b2e2224f8ab6898dd71ad19a17",
+      "etag": "\"103348de2ede12cd6e80e5f12a276c95\"",
+      "last_modified": "Fri, 25 Sep 2026 01:23:41 GMT",
+      "content_length": 53342,
+      "sha256": "5b348a1179ed2e577c57609e045f40875d20e7670c4861c05644eeec3a1d019b",
       "publish_score": 100,
       "overall_score": 97.3,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-08T07:59:49.773Z"
+      "analyzed_at": "2026-09-27T20:10:09.548Z"
     },
     {
       "static_reference": "tld-881",
@@ -5587,14 +5587,14 @@
     {
       "static_reference": "tld-98",
       "schedule_url": "https://files.mobilitydatabase.org/tld-98/latest.zip",
-      "etag": "\"a860af66b353ff120e50ac09502bc37c\"",
-      "last_modified": "Thu, 20 Aug 2026 00:21:06 GMT",
-      "content_length": 1848993,
-      "sha256": "443a5d2a0d4c4d109d7cfed1c0ad0d2c08ddff210b51e7fe056d247c4eb67596",
+      "etag": "\"d9b0509b4fda7da908a64628235c5289\"",
+      "last_modified": "Fri, 25 Sep 2026 01:27:19 GMT",
+      "content_length": 1842967,
+      "sha256": "5cab8da0ab35a1124db39ef9d8aa6bae859c5bef7d6df8217b56344fc05815c3",
       "publish_score": 100,
-      "overall_score": 94.5,
+      "overall_score": 93.3,
       "validation_status": "COMPLETE",
-      "analyzed_at": "2026-09-08T07:59:51.806Z"
+      "analyzed_at": "2026-09-27T20:10:10.854Z"
     }
   ]
 }
